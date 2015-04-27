@@ -1,0 +1,249 @@
+<!DOCTYPE HTML>
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>新用户注册 - 翻书网</title>
+
+  <link rel="shortcut icon" href="favicon.png">
+  <link href="css/style.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="css/grid.css" media="screen" rel="stylesheet" type="text/css">
+ 
+  <script src="js/jquery-1.7.2.min.js" ></script>
+  <script src="js/html5.js" ></script>
+  <script src="js/jflow.plus.js"></script>
+  <script src="js/jquery.carouFredSel-5.2.2-packed.js"></script>
+  <script src="js/checkbox.js"></script>
+  <script src="js/radio.js"></script>
+  <script src="js/selectBox.js"></script>
+
+  <script>
+	$(document).ready(function() {
+		$("select").selectBox();
+	});
+  </script>
+
+  <script>
+	$(document).ready(function(){
+		$("#myController").jFlow({
+			controller: ".control", // must be class, use . sign
+			slideWrapper : "#jFlowSlider", // must be id, use # sign
+			slides: "#slider",  // the div where all your sliding divs are nested in
+			selectedWrapper: "jFlowSelected",  // just pure text, no sign
+			width: "984px",  // this is the width for the content-slider
+			height: "480px",  // this is the height for the content-slider
+			duration: 400,  // time in miliseconds to transition one slide
+			prev: ".slidprev", // must be class, use . sign
+			next: ".slidnext", // must be class, use . sign
+			auto: true	
+		});
+	});
+  </script>
+  <script>
+	$(function() {
+	  $('#list_product').carouFredSel({
+		prev: '#prev_c1',
+		next: '#next_c1',
+		auto: false
+	  });
+          $('#list_product2').carouFredSel({
+		prev: '#prev_c2',
+		next: '#next_c2',
+		auto: false
+	  });
+	  $('#list_banners').carouFredSel({
+		prev: '#ban_prev',
+		next: '#ban_next',
+		scroll: 1,
+		auto: false
+	  });
+	  $(window).resize();
+	});
+  </script>
+  <script>
+       $(document).ready(function(){
+	      $("button").click(function(){
+		     $(this).addClass('click')
+	      });             
+       })
+  </script>
+    
+</head>
+<body>
+  <div class="container_12">
+    <div id="top">
+    	<div class="grid_6">
+        <div class="welcome">
+			✿　<a href="index.html">翻书网首页</a>
+        </div><!-- .welcome -->
+      </div><!-- .grid_6 -->
+    </div><!-- #top -->
+  
+    <div class="clear"></div>
+   
+    <header id="branding">
+      <div class="grid_3">
+        <hgroup>
+          <h1 id="site_logo"><a href="index.html" title=""><img src="images/logo.png" alt="Online Book Store Logo"/></a></h1>
+          <h2 id="site_description">Online Book Store</h2>
+        </hgroup>
+      </div><!-- .grid_3 -->
+      
+      <div class="grid_3" style="padding-left:45%">
+        <form class="search">
+          <input type="text" name="search" class="entry_form" value="" placeholder="Search book here ..."/>
+	</form>
+      </div><!-- .grid_3 -->
+      
+    </header><!-- #branding -->
+  </div><!-- .container_12 -->
+  
+  <div class="clear"></div>
+  
+  <section id="main" class="entire_width" style="margin:0">
+    <div class="container_12">      
+       <div id="content">
+		<div class="grid_12">
+			<h1 class="page_title">注册新用户</h1>
+		</div><!-- .grid_12 -->
+		
+		<div class="grid_6 new_customers">
+			<h3>登录</h3>
+			<p>如果您已经成为了翻书网的用户，请点击下方的登录通道进行登录</p>
+			<div class="clear"></div>
+			<button class="account">登录</button>
+                </div><!-- .grid_6 -->
+		
+		<div class="grid_6" style="padding-top:30px">
+			<form class="registed" style="padding-left:20%">
+				<br />			
+				<div class="email">
+					<strong>登录邮箱:</strong><sup class="surely">*</sup><br/>
+					<input type="email" name="" class="" value="" />
+				</div><!-- .email -->
+							
+				<div class="password">
+					<strong>设置密码:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+
+				<div class="password">
+					<strong>确认密码:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+
+				<div class="password">
+					<strong>真实姓名:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+
+				<div class="password">
+					<strong>身份证号码:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+
+				<div class="password">
+					<strong>密保邮箱:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+
+				<div class="password">
+					<strong>验证码:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="" class="" value="" />
+				</div><!-- .password -->
+				
+				<div class="remember">
+					<input class="niceCheck" type="checkbox" name="Remember_password" />
+					<span class="rem">我已阅读并同意《翻书网通行证用户协议》和《翻书<br />网保护隐私条款》</span>
+				</div><!-- .remember -->
+				
+				<div class="submit" style="padding-left:25%">										
+					<input type="submit" value="接受协议并注册" />
+				</div><!-- .submit -->
+			</form><!-- .registed -->
+                </div><!-- .grid_6 -->
+       </div><!-- #content -->
+      <div class="clear"></div>
+    </div><!-- .container_12 -->
+  </section><!-- #main -->
+  
+  <div class="clear"></div>
+    
+  <footer style="margin-top:80px">
+    <div class="f_navigation">
+      <div class="container_12">
+        <div class="grid_3">
+          <h3>联系我们</h3>
+          <ul class="f_contact">
+            <li>北京翻书网有限责任公司</li>
+            <li>+86 17710215512</li>
+            <li>fanyongliang@fanshu.com</li>
+          </ul><!-- .f_contact -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>购物指南</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="#">关于我们</a></li>
+              <li><a href="#">隐私政策</a></li>
+              <li><a href="#">用户条款</a></li>
+              <li><a href="#">安全支付</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>商家服务</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="contact_us.html">联系我们</a></li>
+              <li><a href="#">优惠政策</a></li>
+              <li><a href="#">反馈问题</a></li>
+              <li><a href="#">官方BLOG</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>我的翻书</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="#">个人中心</a></li>
+              <li><a href="#">历史订单</a></li>
+              <li><a href="#">购物车</a></li>
+              <li><a href="#">最新消息</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="clear"></div>
+      </div><!-- .container_12 -->
+    </div><!-- .f_navigation -->
+
+    <div class="f_info">
+      <div class="container_12">
+        <div class="grid_6">
+          <p class="copyright">Copyright (C) 翻书网 20015-2025, All Rights Reserved</p>
+        </div><!-- .grid_6 -->
+
+        <div class="grid_6">
+          <div class="soc">
+            <a class="google"></a>
+            <a class="twitter"></a>
+            <a class="facebook"></a>
+          </div><!-- .soc -->
+        </div><!-- .grid_6 -->
+
+        <div class="clear"></div>
+      </div><!-- .container_12 -->
+    </div><!-- .f_info -->
+  </footer>
+
+</body>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+</html>

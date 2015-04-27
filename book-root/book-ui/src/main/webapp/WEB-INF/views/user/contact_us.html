@@ -1,0 +1,304 @@
+<!DOCTYPE HTML>
+<html>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+<head>
+  <meta charset="UTF-8">
+
+  <meta name="description" content="">
+  <meta name="keywords" content="">
+
+  <title>联系我们</title>
+
+  <link rel="shortcut icon" href="favicon.ico">
+  <link href="css/style.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="css/grid.css" media="screen" rel="stylesheet" type="text/css">
+ 
+  <script src="js/jquery-1.7.2.min.js" ></script>
+  <script src="js/html5.js" ></script>
+  <script src="js/jflow.plus.js"></script>
+  <script src="js/jquery.carouFredSel-5.2.2-packed.js"></script>
+  <script src="js/checkbox.js"></script>
+  <script src="js/radio.js"></script>
+  <script src="js/selectBox.js"></script>
+
+  <script>
+	$(document).ready(function() {
+		$("select").selectBox();
+	});
+  </script>
+
+ <script>
+	$(document).ready(function(){
+		$("#myController").jFlow({
+			controller: ".control", // must be class, use . sign
+			slideWrapper : "#jFlowSlider", // must be id, use # sign
+			slides: "#slider",  // the div where all your sliding divs are nested in
+			selectedWrapper: "jFlowSelected",  // just pure text, no sign
+			width: "984px",  // this is the width for the content-slider
+			height: "480px",  // this is the height for the content-slider
+			duration: 400,  // time in miliseconds to transition one slide
+			prev: ".slidprev", // must be class, use . sign
+			next: ".slidnext", // must be class, use . sign
+			auto: true	
+		});
+	});
+  </script>
+  <script>
+	$(function() {
+	  $('#list_product').carouFredSel({
+		prev: '#prev_c1',
+		next: '#next_c1',
+		auto: false
+	  });
+          $('#list_product2').carouFredSel({
+		prev: '#prev_c2',
+		next: '#next_c2',
+		auto: false
+	  });
+	  $('#list_banners').carouFredSel({
+		prev: '#ban_prev',
+		next: '#ban_next',
+		scroll: 1,
+		auto: false
+	  });
+	  $(window).resize();
+	});
+  </script>
+  <script>
+       $(document).ready(function(){
+	      $("button").click(function(){
+		     $(this).addClass('click')
+	      });             
+       })
+  </script>
+    
+</head>
+<body>
+  <div class="container_12">
+     <div id="top">
+
+      <div class="grid_6">
+        <div class="welcome">
+          <span>欢迎来到翻书网  请</span><a href="login.html">登录</a>&nbsp;&nbsp;&nbsp;&nbsp;<a href="regist.html">免费注册</a>.
+        </div><!-- .welcome -->
+      </div><!-- .grid_6 -->
+        
+    </div><!-- #top -->
+  
+    <div class="clear"></div>
+   
+    <header id="branding">
+      <div class="grid_3">
+        <hgroup>
+          <h1 id="site_logo"><a href="index.html" title=""><img src="images/logo.png" alt="Online Book Store Logo"/></a></h1>
+          <h2 id="site_description">Online Book Store</h2>
+        </hgroup>
+      </div><!-- .grid_3 -->
+      
+      <div class="grid_3">
+        <form class="search">
+          <input type="text" name="search" class="entry_form" value="" placeholder="Search book here ..."/>
+	</form>
+      </div><!-- .grid_3 -->
+      
+      <div class="grid_6">
+        <ul id="cart_nav">
+          <li>
+            <a class="cart_li" href="#">购物车 <span>￥0.00</span></a>
+            <ul class="cart_cont">
+              <li class="no_border"><p>最近添加的项目</p></li>
+              <li>
+                <a href="product_page.html" class="prev_cart"><div class="cart_vert"><img src="images/cart_img.png" alt="" title="" /></div></a>
+                <div class="cont_cart">
+                  <h4>商品一</h4>
+                  <div class="price">1 x ￥399.00</div>
+                </div>
+                <a title="close" class="close" href="#"></a>
+                <div class="clear"></div>
+              </li>
+              
+              <li>
+                <a href="product_page.html" class="prev_cart"><div class="cart_vert"><img src="images/produkt_slid1.png" alt="" title="" /></div></a>
+                <div class="cont_cart">
+                  <h4>商品二</h4>
+                  <div class="price">1 x ￥399.00</div>
+                </div>
+                <a title="close" class="close" href="#"></a>
+                <div class="clear"></div>
+              </li>
+	      <li class="no_border">
+		<a href="shopping_cart.html" class="view_cart">查看购物车</a>
+		<a href="checkout.html" class="checkout">支付</a>
+	      </li>
+            </ul>
+          </li>
+        </ul>
+
+        <nav class="private">
+          <ul>
+            <li><a href="#">个人中心</a></li>
+		<li class="separator">|</li>
+            <li><a href="#">我的收藏夹</a></li>
+          </ul>
+        </nav><!-- .private -->
+      </div><!-- .grid_6 -->
+    </header><!-- #branding -->
+  </div><!-- .container_12 -->
+  
+  <div class="clear"></div>
+  
+  <div id="block_nav_primary">
+    <div class="container_12">
+      <div class="grid_12">
+        <nav class="primary">
+          <ul>
+            <li class="curent"><a href="">小说</a></li>
+            <li><a href="">童书</a></li>
+            <li><a href="">励志</a></li>
+            <li><a href="">生活</a></li>
+            <li><a href="">社科</a></li>
+            <li><a href="">科技</a></li>
+	    	<li><a href="">期刊</a></li>
+	    	<li><a href="">教育</a></li>
+          </ul>
+        </nav><!-- .primary -->
+      </div><!-- .grid_12 -->
+    </div><!-- .container_12 -->
+  </div><!-- .block_nav_primary -->
+  
+  <div class="clear"></div>
+  
+  <section id="main" class="entire_width">
+    <div class="container_12">      
+       <div id="content">
+		<div class="grid_12">
+			<h1 class="page_title">联系我们</h1>
+		</div><!-- .grid_12 -->
+		
+		<div class="grid_4 adress">
+			<h3>地址:</h3>
+			<p>1号, 长安大街, 北京, 中国</p>
+			<hr>
+			
+			<h3>电话:</h3>
+			<p>厂家: <span>+777 (100) 1234</span><br/>
+			客服: <span>+777 (100) 4321</span><br/>
+			<hr>
+			
+			<h3>Email</h3>
+			<p>厂家: <span>support@example.com</span><br/>
+			客服: <span>manager@example.com</span><br/>
+                </div><!-- .adress -->
+		
+		<div class="grid_8">
+			<form class="contact">
+				<h2>信息</h2>
+							
+				<div class="name">
+					<strong>Name:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="name" value="" />
+				</div><!-- .name -->
+				
+				<div class="email">
+					<strong>Email: </strong><sup class="surely">*</sup><br/>
+					<input type="email" name="email" value="" />
+				</div><!-- .email -->
+							
+				<div class="phone">
+					<strong>Telephone:</strong><br/>
+					<input type="text" name="phone" value="" />
+				</div><!-- .phone -->
+				
+				<div class="comment">
+					<strong>Comment:</strong><sup class="surely">*</sup><br/>
+					<textarea name="comment"></textarea>
+				</div><!-- .comment -->
+				
+				<div class="submit">
+					<div class="field"><sup class="surely">*</sup><span>发送失败</span></div>
+					<input type="submit" value="提交" />
+				</div><!-- .submit -->
+			</form><!-- .contact -->
+                </div><!-- .grid_8 -->
+       </div><!-- #content -->
+       
+      <div class="clear"></div>
+    </div><!-- .container_12 -->
+  </section><!-- #main -->
+  
+  <div class="clear"></div>
+    
+  <footer>
+    <div class="f_navigation">
+      <div class="container_12">
+        <div class="grid_3">
+          <h3>联系我们</h3>
+          <ul class="f_contact">
+            <li>北京翻书网有限责任公司</li>
+            <li>+86 17710215512</li>
+            <li>fanyongliang@fanshu.com</li>
+          </ul><!-- .f_contact -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>购物指南</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="#">关于我们</a></li>
+              <li><a href="#">隐私政策</a></li>
+              <li><a href="#">用户条款</a></li>
+              <li><a href="#">安全支付</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>商家服务</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="contact_us.html">联系我们</a></li>
+              <li><a href="#">优惠政策</a></li>
+              <li><a href="#">反馈问题</a></li>
+              <li><a href="#">官方BLOG</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="grid_3">
+          <h3>我的翻书</h3>
+          <nav class="f_menu">
+            <ul>
+              <li><a href="#">个人中心</a></li>
+              <li><a href="#">历史订单</a></li>
+              <li><a href="#">购物车</a></li>
+              <li><a href="#">最新消息</a></li>
+            </ul>
+          </nav><!-- .private -->
+        </div><!-- .grid_3 -->
+
+        <div class="clear"></div>
+      </div><!-- .container_12 -->
+    </div><!-- .f_navigation -->
+
+    <div class="f_info">
+      <div class="container_12">
+        <div class="grid_6">
+          <p class="copyright">Copyright (C) 翻书网 20015-2025, All Rights Reserved</p>
+        </div><!-- .grid_6 -->
+
+        <div class="grid_6">
+          <div class="soc">
+            <a class="google"></a>
+            <a class="twitter"></a>
+            <a class="facebook"></a>
+          </div><!-- .soc -->
+        </div><!-- .grid_6 -->
+
+        <div class="clear"></div>
+      </div><!-- .container_12 -->
+    </div><!-- .f_info -->
+  </footer>
+
+</body>
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=utf-8" /><!-- /Added by HTTrack -->
+</html>

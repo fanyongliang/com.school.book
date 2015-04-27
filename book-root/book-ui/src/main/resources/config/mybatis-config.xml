@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE configuration
+  PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+	<settings>
+		<setting name="logImpl" value="STDOUT_LOGGING"/>
+	</settings>
+	<!-- 为实体类起别名 -->
+	<typeAliases>
+		<typeAlias alias="Server" type="cn.gyyx.action.beans.novicecard.ServerBean"/>
+		<typeAlias alias="NoviceCard" type="cn.gyyx.action.beans.novicecard.NoviceCardBean"/>
+		<typeAlias alias="VirtualItem" type="cn.gyyx.action.beans.novicecard.VirtualItemBean"/>
+		<typeAlias alias="ReceiveLog" type="cn.gyyx.action.beans.novicecard.NoviceCardReceiveLogBean"/>
+		<typeAlias alias="ActivityConfigBean" type="cn.gyyx.action.beans.novicecard.ActivityConfigBean"/>
+		<typeAlias alias="ErWeiMa" type="cn.gyyx.action.beans.novicecard.ErWeiMaBean"/>
+	
+		<typeAlias alias="WDNo1PetInfoBean" type="cn.gyyx.action.beans.wdno1pet.WDNo1PetInfoBean"/>
+		<typeAlias alias="ImageBean" type="cn.gyyx.action.beans.wdno1pet.ImageBean"/>
+		<typeAlias alias="CommentItem" type="cn.gyyx.action.beans.wdno1pet.CommentBean"/>
+		<typeAlias alias="CrimeReporter" type="cn.gyyx.action.beans.wdno1pet.CrimeReporterBean"/>
+		<typeAlias alias="Vote" type="cn.gyyx.action.beans.wdno1pet.VoteBean"/>
+		<typeAlias alias="LotteryConfig" type="cn.gyyx.action.beans.wdno1pet.LotteryConfigBean"/>
+		<typeAlias alias="UserLottery" type="cn.gyyx.action.beans.wdno1pet.UserLotteryBean"/>
+		
+		<typeAlias alias="Writing" type="cn.gyyx.action.beans.wdninestory.WritingBean"/>
+		<typeAlias alias="VoteBean" type="cn.gyyx.action.beans.wdninestory.VoteBean"/>
+
+		<typeAlias alias="WishBean" type="cn.gyyx.action.beans.wd9year.WishBean"/>
+		
+		<typeAlias alias="Qualification" type="cn.gyyx.action.beans.lottery.QualificationBean"/>
+	
+	</typeAliases>
+	<environments default="ActionDBV2">
+		<environment id="ActionDBV2">
+			<transactionManager type="JDBC"></transactionManager>
+			<dataSource type="POOLED">
+				<property name="driver"
+					value="${jdbc.driverClassName}" />
+				<property name="url"
+					value="${jdbc.ActionDBV2url}" />
+				<property name="username" value="${jdbc.ActionDBV2username}" />
+				<property name="password" value="${jdbc.ActionDBV2password}" />
+			</dataSource>
+		</environment>
+	</environments>
+	<mappers>
+		<mapper resource="mapper/novicecard/hd-config-mapper.xml" />
+		<mapper resource="mapper/novicecard/serverMapper.xml" />
+		<mapper resource="mapper/novicecard/noviceCardMapper.xml" />
+		<mapper resource="mapper/novicecard/receiveLogMapper.xml" />
+		<mapper resource="mapper/novicecard/novice-card-virtual-item.xml" />	
+		<mapper resource="mapper/novicecard/erWeiMaMapper.xml" />
+		
+		<mapper resource="mapper/wdno1pet/PetInfoMapper.xml"/>
+		<mapper resource="mapper/wdno1pet/ImageMapper.xml"/>
+		<mapper resource="mapper/wdno1pet/Comment.xml"/>
+		<mapper resource="mapper/wdno1pet/CrimeReporter.xml"/>
+		<mapper resource="mapper/wdno1pet/Vote.xml"/>
+		<mapper resource="mapper/wdno1pet/UserLottery.xml"/>
+		<mapper resource="mapper/wdno1pet/LotteryConfig.xml"/>
+		
+		<mapper resource="mapper/wdninestory/writing.xml"/>
+		<mapper resource="mapper/wdninestory/vote.xml"/>
+
+		<mapper resource="mapper/wd9year/WishMapper.xml"/>
+		
+		<mapper resource="mapper/lottery/qualification.xml"/>
+
+	</mappers>
+</configuration>
