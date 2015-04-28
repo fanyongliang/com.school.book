@@ -21,10 +21,6 @@ public class UserInfoBean {
 	 * 密保邮箱
 	 */
 	private String userEmail;
-	/**
-	 * 帐号类型
-	 */
-	private String userType;
 
 	public UserInfoBean() {
 		super();
@@ -32,22 +28,13 @@ public class UserInfoBean {
 	}
 
 	public UserInfoBean(int code, String userName, String realName,
-			String idCard, String userEmail, String userType) {
+			String idCard, String userEmail) {
 		super();
 		this.code = code;
 		this.userName = userName;
 		this.realName = realName;
 		this.idCard = idCard;
 		this.userEmail = userEmail;
-		this.userType = userType;
-	}
-
-	public String getUserType() {
-		return userType;
-	}
-
-	public void setUserType(String userType) {
-		this.userType = userType;
 	}
 
 	public int getCode() {
