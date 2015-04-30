@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.book.dao.IBookInfoMapper">
+	<resultMap id="BookInfoMap" type="BookInfoBean">
+		<id property="code" column="code" />
+		<result property="" column="" />
+		<result property="" column="" />
+		<result property="" column="" />
+	</resultMap>
+
+</mapper>

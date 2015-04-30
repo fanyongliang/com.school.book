@@ -16,6 +16,11 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
   </properties>
   <dependencies>
+	  <dependency>
+		  <groupId>com.school.book</groupId>
+		  <artifactId>book-bll</artifactId>
+		  <version>0.0.1</version>
+	  </dependency>
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>

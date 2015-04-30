@@ -30,11 +30,10 @@ public class UserPasswdBean {
 		this.userType = userType;
 	}
 
-	public UserPasswdBean(int code, String userName, String userPasswd,
+	public UserPasswdBean(int code, String userPasswd,
 			String passwdKey, String userType) {
 		super();
 		this.code = code;
-		this.userName = userName;
 		this.userPasswd = userPasswd;
 		this.passwdKey = passwdKey;
 		this.userType = userType;

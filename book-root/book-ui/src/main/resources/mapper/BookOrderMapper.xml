@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.school.book.dao.IBookOrderMapper">
+	<resultMap id="BookOrderMap" type="BookOrderBean">
+		<id property="code" column="code" />
+		<result property="isPay" column="is_pay" />
+		<result property="orderCode" column="order_code" />
+		<result property="orderTime" column="order_time" />
+		<result property="total" column="total" />
+		<result property="userAddress" column="user_address" />
+		<result property="userCode" column="user_code" />
+	</resultMap>
+
+</mapper>
