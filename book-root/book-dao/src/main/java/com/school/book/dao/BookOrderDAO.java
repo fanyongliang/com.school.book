@@ -1,7 +1,6 @@
 package com.school.book.dao;
 
 import org.apache.ibatis.session.SqlSessionFactory;
-import org.slf4j.Logger;
 
 import cn.gyyx.core.Slf4jFactory;
 /**
@@ -10,7 +9,6 @@ import cn.gyyx.core.Slf4jFactory;
 public class BookOrderDAO {
 	private SqlSessionFactory sqlSessionFactory;
 	private IUserPasswdMapper iUserPasswdMapper ;
-	private static final Logger logger = Slf4jFactory.getLogger(BookOrderDAO.class);
 
 	public BookOrderDAO() {
 		sqlSessionFactory = MyBatisConnectionFactory

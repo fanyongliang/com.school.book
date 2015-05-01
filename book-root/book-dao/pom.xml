@@ -32,6 +32,8 @@
 		<groupId>com.microsoft.sqlserver</groupId>
 		<artifactId>jdbc</artifactId>
 		<version>4.0.2206.100</version>
+		<scope>system</scope>
+		<systemPath>C:\Users\dilei\.m2\repository\com\microsoft\sqlserver\jdbc\4.0.2206.100\jdbc-4.0.2206.100.jar</systemPath>
 	</dependency>
 	<!-- mybatis -->
 	<dependency>

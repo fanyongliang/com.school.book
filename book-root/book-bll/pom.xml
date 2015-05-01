@@ -29,9 +29,11 @@
     </dependency>
    	<!-- md5 -->
 	<dependency>
-		<groupId>cn.gyyx.core</groupId>
+		<groupId>utility</groupId>
 		<artifactId>utility</artifactId>
 		<version>0.1</version>
+		<scope>system</scope>
+		<systemPath>C:\Users\dilei\.m2\repository\cn\gyyx\core\utility\0.1\utility-0.1.jar</systemPath>
 	</dependency>
 	<!-- xmemcache -->
 	<dependency>
