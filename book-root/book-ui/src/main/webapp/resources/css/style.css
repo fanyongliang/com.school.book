@@ -211,6 +211,7 @@ input[type="submit"]:focus{
 }
 /*** Input **/
 input[type="email"],
+input[type="password"],
 input[type="text"]{
 	height: 33px;
 	padding: 0 10px;
@@ -222,6 +223,7 @@ input[type="text"]{
 	behavior: url(PIE.htc);
 }
 input[type="email"]:focus,
+input[type="password"]:focus,
 input[type="text"]:focus,
 textarea:focus{
 	outline:none;
@@ -1872,6 +1874,7 @@ form.registed strong{
 	font: bold 13px/13px Segoeui-Bold, Myriad Pro, Verdana, serif;
 }
 form.registed input[type="text"],
+form.registed input[type="password"],
 form.registed input[type="email"]{
 	width: 255px;
 	margin: 5px 0 13px 0;

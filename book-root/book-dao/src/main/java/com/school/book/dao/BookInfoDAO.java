@@ -2,7 +2,6 @@ package com.school.book.dao;
 
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import cn.gyyx.core.Slf4jFactory;
 /**
  * 图书信息数据处理类
  */

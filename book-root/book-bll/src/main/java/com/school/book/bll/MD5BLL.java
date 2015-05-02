@@ -1,6 +1,6 @@
 package com.school.book.bll;
 
-import cn.gyyx.core.utility.MD5;
+import com.school.book.dao.utility.MD5;
 
 /**
  * 密码加密实现类
@@ -20,6 +20,16 @@ public class MD5BLL {
 		String seed = String.valueOf(charArray);
 		String newPassword = MD5.encode(password) + seed;
 		String [] result = {seed,MD5.encode(newPassword)};
+		return result;
+	}
+	/**
+	 * 实现对传来的密码进行MD5加密,包含key
+	 * @param password key
+	 * @return String:加密后的密码
+	 */
+	public String getPassword(String password,String key) {
+		String newPassword = MD5.encode(password) + key;
+		String result = MD5.encode(newPassword);
 		return result;
 	}
 }

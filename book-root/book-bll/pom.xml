@@ -7,9 +7,7 @@
     <artifactId>book-root</artifactId>
     <version>0.0.1</version>
   </parent>
-  <groupId>com.school.book</groupId>
   <artifactId>book-bll</artifactId>
-  <version>0.0.1</version>
   <name>book-bll</name>
   <url>http://maven.apache.org</url>
   <properties>
@@ -27,14 +25,6 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
-   	<!-- md5 -->
-	<dependency>
-		<groupId>utility</groupId>
-		<artifactId>utility</artifactId>
-		<version>0.1</version>
-		<scope>system</scope>
-		<systemPath>C:\Users\dilei\.m2\repository\cn\gyyx\core\utility\0.1\utility-0.1.jar</systemPath>
-	</dependency>
 	<!-- xmemcache -->
 	<dependency>
 		<groupId>com.googlecode.xmemcached</groupId>

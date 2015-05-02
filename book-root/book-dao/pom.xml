@@ -1,45 +1,41 @@
 <?xml version="1.0"?>
-<project xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd" xmlns="http://maven.apache.org/POM/4.0.0"
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-  <modelVersion>4.0.0</modelVersion>
-  <parent>
-    <groupId>com.school.book</groupId>
-    <artifactId>book-root</artifactId>
-    <version>0.0.1</version>
-  </parent>
-  <groupId>com.school.book</groupId>
-  <artifactId>book-dao</artifactId>
-  <version>0.0.1</version>
-  <name>book-dao</name>
-  <url>http://maven.apache.org</url>
-  <properties>
-    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-  </properties>
-  <dependencies>
-  	<dependency>
-	    <groupId>com.school.book</groupId> 
-	  	<artifactId>book-bean</artifactId>
-	  	<version>0.0.1</version>
-    </dependency>
-    <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <version>3.8.1</version>
-      <scope>test</scope>
-    </dependency>
-    <!-- SQLSERVER JDBC -->
-	<dependency>
-		<groupId>com.microsoft.sqlserver</groupId>
-		<artifactId>jdbc</artifactId>
-		<version>4.0.2206.100</version>
-		<scope>system</scope>
-		<systemPath>C:\Users\dilei\.m2\repository\com\microsoft\sqlserver\jdbc\4.0.2206.100\jdbc-4.0.2206.100.jar</systemPath>
-	</dependency>
-	<!-- mybatis -->
-	<dependency>
-		<groupId>org.mybatis</groupId>
-		<artifactId>mybatis</artifactId>
-		<version>3.2.7</version>
-	</dependency>
-  </dependencies>
+<project
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd"
+	xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.school.book</groupId>
+		<artifactId>book-root</artifactId>
+		<version>0.0.1</version>
+	</parent>
+	<artifactId>book-dao</artifactId>
+	<name>book-dao</name>
+	<url>http://maven.apache.org</url>
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+	<dependencies>
+		<dependency>
+			<groupId>com.school.book</groupId>
+			<artifactId>book-bean</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>3.8.1</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.25</version>
+		</dependency>
+		<!-- mybatis -->
+		<dependency>
+			<groupId>org.mybatis</groupId>
+			<artifactId>mybatis</artifactId>
+			<version>3.2.7</version>
+		</dependency>
+	</dependencies>
 </project>
