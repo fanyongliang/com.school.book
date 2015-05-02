@@ -6,6 +6,7 @@ public interface IUserPasswdMapper {
 	/**
 	 * 插入用户密码Bean
 	 * @param userPasswdBean
+	 * @return 
 	 */
 	public void insertUserPasswd(UserPasswdBean userPasswdBean);
 	/**
@@ -19,4 +20,6 @@ public interface IUserPasswdMapper {
 	 * @param userId
 	 */
 	public void updateUserName(Integer userId);
+	
+	public UserPasswdBean getUserPasswordByUserName(String userName);
 }

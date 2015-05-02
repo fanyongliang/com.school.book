@@ -1,6 +1,12 @@
 package com.school.book.bean;
 
-public class UserInfoBean {
+import java.io.Serializable;
+
+public class UserInfoBean implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 	/**
 	 * 编号
 	 */
@@ -21,6 +27,43 @@ public class UserInfoBean {
 	 * 密保邮箱
 	 */
 	private String userEmail;
+	
+	/**
+	 * 密码
+	 */
+	private String userPasswd;
+	/**
+	 * key
+	 */
+	private String passwdKey;
+	/**
+	 * 帐号类型
+	 */
+	private int userType;
+
+	public String getUserPasswd() {
+		return userPasswd;
+	}
+
+	public void setUserPasswd(String userPasswd) {
+		this.userPasswd = userPasswd;
+	}
+
+	public String getPasswdKey() {
+		return passwdKey;
+	}
+
+	public void setPasswdKey(String passwdKey) {
+		this.passwdKey = passwdKey;
+	}
+ 
+	public int getUserType() {
+		return userType;
+	}
+
+	public void setUserType(int userType) {
+		this.userType = userType;
+	}
 
 	public UserInfoBean() {
 		super();

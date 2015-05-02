@@ -16,8 +16,8 @@
 		<typeAlias alias="UserInfoBean" type="com.school.book.bean.UserInfoBean"/>
 		<typeAlias alias="UserPasswdBean" type="com.school.book.bean.UserPasswdBean"/>
 	</typeAliases>
-	<environments default="">
-		<environment id="">
+	<environments default="book">
+		<environment id="book">
 			<transactionManager type="JDBC"></transactionManager>
 			<dataSource type="POOLED">
 				<property name="driver"

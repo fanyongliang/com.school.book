@@ -10,8 +10,9 @@ import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-import cn.gyyx.core.prop.PropertiesParser;
-import cn.gyyx.core.prop.SimpleProperties;
+import com.school.book.dao.prop.PropertiesParser;
+import com.school.book.dao.prop.SimpleProperties;
+
 
 public class MyBatisConnectionFactory {
 	private static SqlSessionFactory sqlOaInternalDBSessionFactory;
@@ -24,7 +25,7 @@ public class MyBatisConnectionFactory {
 			Reader reader = Resources.getResourceAsReader(resource);
 			if (sqlOaInternalDBSessionFactory == null) {
 				
-				sqlOaInternalDBSessionFactory = new SqlSessionFactoryBuilder().build(reader, "JavaTraining", dataSqlProperties);
+				sqlOaInternalDBSessionFactory = new SqlSessionFactoryBuilder().build(reader, "book", dataSqlProperties);
 			}
 		} catch (IOException e) {
 			// TODO Auto-generated catch block

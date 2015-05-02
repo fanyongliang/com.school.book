@@ -7,10 +7,8 @@
     <artifactId>book-root</artifactId>
     <version>0.0.1</version>
   </parent>
-    <groupId>com.school.book</groupId> 
   	<artifactId>book-bean</artifactId>
   	<name>book-bean</name>
-  	<version>0.0.1</version>
   <url>http://maven.apache.org</url>
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
