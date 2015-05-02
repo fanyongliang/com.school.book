@@ -8,7 +8,7 @@
 	<typeAliases>
 		<typeAlias alias="BookInfoBean" type="com.school.book.bean.BookInfoBean"/>
 		<typeAlias alias="BookOrderBean" type="com.school.book.bean.BookOrderBean"/>
-		<typeAlias alias="BookOrderInfoBean" type="com.school.book.bean.BookOrderInfoBean "/>
+		<typeAlias alias="BookOrderInfoBean" type="com.school.book.bean.BookOrderInfoBean"/>
 		<typeAlias alias="BookReviewsBean" type="com.school.book.bean.BookReviewsBean"/>
 		<typeAlias alias="NavListBean" type="com.school.book.bean.NavListBean"/>
 		<typeAlias alias="ShoppingCarBean" type="com.school.book.bean.ShoppingCarBean"/>
