@@ -1,5 +1,8 @@
 package com.school.book.dao;
 
+import java.util.List;
+
+import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.UserInfoBean;
 
 public interface IUserInfoMapper {
@@ -9,6 +12,7 @@ public interface IUserInfoMapper {
 	 * @return
 	 */
 	public void insertUserInfo(UserInfoBean userInfoBean);
+	
 //	/**
 //	 * 根据用户名删除数据库中的记录
 //	 * @param info_account

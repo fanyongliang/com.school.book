@@ -4,9 +4,40 @@
 <mapper namespace="com.school.book.dao.IBookInfoMapper">
 	<resultMap id="BookInfoMap" type="BookInfoBean">
 		<id property="code" column="code" />
-		<result property="" column="" />
-		<result property="" column="" />
-		<result property="" column="" />
+		<result property="bookPrice" column="book_price" />
+		<result property="bookDiscounts" column="book_discounts" />
+		<result property="isNew" column="is_new" />
+		<result property="isHot" column="is_hot" />
+		<result property="isHigh" column="is_high" />
+		<result property="isDiscounts" column="is_discounts" />
+		<result property="inputTime" column="input_time" />
+		<result property="bookAuthor" column="book_author" />
+		<result property="bookPress" column="book_press" />
+		<result property="bookPublictionTime" column="book_publiction_time" />
+		<result property="bookType" column="book_type" />
+		<result property="bookDescribe" column="book_describe" />
+		<result property="bookPicture" column="book_picture" />
+		<result property="isInstore" column="is_instore" />
+		<result property="bookBatch" column="book_batch" />		
 	</resultMap>
-
+	<select id="selectByIsNew" resultMap="BookInfoBean">
+		select * 
+		from book_info_tb 
+		where is_new = 1 and is_instore = 1 
+	</select>
+	<select id="selectByIsHot" resultMap="BookInfoBean">
+		select * 
+		from book_info_tb 
+		where is_hot = 1 and is_instore = 1 
+	</select>
+	<select id="selectByIsHigh" resultMap="BookInfoBean">
+		select * 
+		from book_info_tb 
+		where is_high = 1 and is_instore = 1 
+	</select>
+	<select id="selectBytype" resultMap="BookInfoBean" parameterType="String">
+		select * 
+		from book_info_tb 
+		where book_type = #{bookType} and is_instore = 1 
+	</select>
 </mapper>
