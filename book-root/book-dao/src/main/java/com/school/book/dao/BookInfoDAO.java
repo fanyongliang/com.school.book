@@ -5,7 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import com.school.book.bean.AdvPhotoBean;
+
 import com.school.book.bean.BookInfoBean;
 
 /**
