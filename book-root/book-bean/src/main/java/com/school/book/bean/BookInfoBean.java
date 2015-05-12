@@ -277,5 +277,4 @@ public class BookInfoBean {
 	public void setBookBatch(Integer bookBatch) {
 		this.bookBatch = bookBatch;
 	}
-
 }
