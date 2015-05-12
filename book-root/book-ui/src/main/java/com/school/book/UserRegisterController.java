@@ -28,7 +28,7 @@ import com.school.book.bll.LandAndRegistrationBll;
  *
  */
 @Controller
-@RequestMapping("register")
+@RequestMapping("/user")
 public class UserRegisterController {
 	/**
 	 * 创建UserInfoBLL对象实例
@@ -48,16 +48,38 @@ public class UserRegisterController {
 	 * @return
 	 * @throws UnsupportedEncodingException 
 	 */
-	@RequestMapping("/pass")
+	@RequestMapping("registerpass")
 	public String list(UserInfoBean userInfoBean, Model model) throws UnsupportedEncodingException {
 		String userName = userInfoBean.getUserName();
 		String realName = userInfoBean.getRealName();
 		realName =  new String(realName.getBytes("iso8859-1"),"utf-8");
+		if(userName == "" || realName == "" || userInfoBean.getUserPasswd() == "" || userInfoBean.getUserPasswdRP() == "" || userInfoBean.getIdCard() == "" || userInfoBean.getUserEmail() == ""){
+			logger.info("带*号的不允许为空!");
+			model.addAttribute("msg", "带*号的不允许为空!");
+			model.addAttribute("realName", realName);
+			model.addAttribute("idCard", userInfoBean.getIdCard());
+			model.addAttribute("userEmail", userInfoBean.getUserEmail());
+			return "user/regist";
+		}else if(!userInfoBean.getUserPasswd().equals(userInfoBean.getUserPasswdRP())){
+			logger.info("两次输入密码不一致!");
+			model.addAttribute("msg", "两次输入密码不一致!");
+			model.addAttribute("realName", realName);
+			model.addAttribute("idCard", userInfoBean.getIdCard());
+			model.addAttribute("userEmail", userInfoBean.getUserEmail());
+			return "user/regist";
+		}else if(userInfoBean.getUserType()!= 2){
+			logger.info("请勾选同意阅读条款!");
+			model.addAttribute("msg", "请勾选同意阅读条款!");
+			model.addAttribute("realName", realName);
+			model.addAttribute("idCard", userInfoBean.getIdCard());
+			model.addAttribute("userEmail", userInfoBean.getUserEmail());
+			return "user/regist";
+		}
 		userInfoBean.setRealName(realName);
 		if (landAndRegistrationBll.checkRegisterUserName(userName) == true) {
 			landAndRegistrationBll.addUserInfo(userInfoBean);
 			logger.info("Welcome book store! ...");
-			return "redirect:login/";
+			return "redirect:/login/form";
 		} else {
 			logger.info("用户名已存在!");
 			model.addAttribute("msg", "用户名已存在,重新输入");
@@ -73,7 +95,7 @@ public class UserRegisterController {
 	 * 
 	 * @return
 	 */
-	@RequestMapping("/")
+	@RequestMapping("register")
 	public String show() {
 		return "user/regist";
 	}

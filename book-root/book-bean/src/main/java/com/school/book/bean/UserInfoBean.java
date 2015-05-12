@@ -33,6 +33,18 @@ public class UserInfoBean implements Serializable{
 	 */
 	private String userPasswd;
 	/**
+	 * 重复密码
+	 */
+	private String userPasswdRP;
+	public String getUserPasswdRP() {
+		return userPasswdRP;
+	}
+
+	public void setUserPasswdRP(String userPasswdRP) {
+		this.userPasswdRP = userPasswdRP;
+	}
+
+	/**
 	 * key
 	 */
 	private String passwdKey;

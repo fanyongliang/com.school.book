@@ -100,10 +100,24 @@ public class LandAndRegistrationBll {
 		userPasswdBean.setUserName(userInfoBean.getUserName());
 		userPasswdBean.setUserPasswd(password[1]);
 		userPasswdBean.setPasswdKey(password[0]);
-		userPasswdBean.setUserType(2);
+		userPasswdBean.setUserType(userInfoBean.getUserType());
 		userPasswdDAO.add(userPasswdBean);
 		userInfoDAO.add(userInfoBean);
 	}
+	/**
+	 * 用户修改密码
+	 * @param userInfo
+	 * @return
+	 */
+	public void updateUserPassword(UserInfoBean userInfoBean) {
+		UserPasswdBean userPasswdBean = new UserPasswdBean();
+		String[] password = md5.changePassword(userInfoBean.getUserPasswd());
+		userPasswdBean.setUserName(userInfoBean.getUserName());
+		userPasswdBean.setUserPasswd(password[1]);
+		userPasswdBean.setPasswdKey(password[0]);
+		userPasswdDAO.update(userPasswdBean);
+	}
+	
 	/**
 	 * 返回通过用户名查找到的用户信息
 	 * @param info_account

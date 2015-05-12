@@ -8,4 +8,17 @@
 		<result property="navChildCode" column="nav_child_code" />
 		<result property="navPareName" column="nav_pare_name" />
 	</resultMap>
+	
+	<select id="selectNavListIsShow" resultMap="NavListMap" resultType="List">
+		SELECT * FROM nav_list_tb WHERE is_show = 1
+	</select>
+	<select id="selectAllNavList" resultMap="NavListMap" resultType="List">
+		SELECT * FROM nav_list_tb
+	</select>
+	<insert id="addNewNav" parameterType="NavListBean">
+		INSERT INTO nav_list_tb (nav_pare_name,is_show) VALUES (#{navPareName},#{isShow})
+	</insert>
+	<update id="updateNavigation" parameterType="NavListBean">
+		UPDATE nav_list_tb SET nav_pare_name = #{navPareName} , is_show = #{isShow} WHERE code = #{code}
+	</update>
 </mapper>

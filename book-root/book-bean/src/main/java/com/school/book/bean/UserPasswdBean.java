@@ -27,8 +27,19 @@ public class UserPasswdBean implements Serializable{
 	 * 帐号类型
 	 */
 	private int userType;
+	/**
+	 * 验证码
+	 */
+	private String validateCode;
 
 
+	public String getValidateCode() {
+		return validateCode;
+	}
+
+	public void setValidateCode(String validateCode) {
+		this.validateCode = validateCode;
+	}
 
 	public int getUserType() {
 		return userType;
