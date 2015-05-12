@@ -19,46 +19,216 @@ public class BookInfoDAO {
 				.getSqlAccountSessionFactory();
 	}
 	/**
-	 * @注     释：根据参数来返回书籍信息
-	 * @参     数：Integer is    0:is_new  1:is_hot  2:is_high
-	 * @返回值：List<BookInfoBean>
+	 * 新增未上架图书
+	 * @param bookInfoBean
 	 */
-	public List<BookInfoBean> selectByIs(Integer is){
+	public void addOutStoreBook(BookInfoBean bookInfoBean){
 		SqlSession session = sqlSessionFactory.openSession();
-		List<BookInfoBean> bookInfoList = null;
 		try {
 			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
-			switch(is){
-			case 0 : bookInfoList = iBookInfoMapper.selectByIsNew();
-					 break;
-			case 1 : bookInfoList = iBookInfoMapper.selectByIsHot();
-					 break;
-			case 2 : bookInfoList = iBookInfoMapper.selectByIsHigh();
-					 break;
-			}			
-		} catch (Exception e) {
-
+			iBookInfoMapper.addOutStoreBook(bookInfoBean);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	
+	/**
+	 * 查询所有未上架的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectOutStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectOutStoreBook();
 		} finally {
 			session.close();
 		}
-		return bookInfoList;
 	}
 	/**
-	 * @注     释：按书籍类别查找书籍信息
-	 * @参     数：bookType : 书籍类别
-	 * @返回值：List<BookInfoBean>
+	 * 删除未上架图书
 	 */
-	public List<BookInfoBean> selectByType(String bookType){
+	public void deleteOutStoreBook(Integer code){
 		SqlSession session = sqlSessionFactory.openSession();
-		List<BookInfoBean> bookInfoList = null;
 		try {
 			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
-			bookInfoList = iBookInfoMapper.selectBytype(bookType);			
-		} catch (Exception e) {
-
+			iBookInfoMapper.deleteOutStoreBook(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 修改未上架图书
+	 * @param bookInfoBean
+	 */
+	public void updateOutStoreBook(BookInfoBean bookInfoBean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.updateOutStoreBook(bookInfoBean);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 未上架-->上架
+	 */
+	public void inOutStoreBook(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.inOutStoreBook(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有已上架的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectInStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectInStoreBook();
 		} finally {
 			session.close();
 		}
-		return bookInfoList;
+	}
+	/**
+	 * 添加折扣
+	 * @param bookInfoBean
+	 */
+	public void instorebookdisc(BookInfoBean bookInfoBean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.instorebookdisc(bookInfoBean);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 新书推荐
+	 */
+	public void instorebooknew(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.instorebooknew(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 热门推荐
+	 */
+	public void instorebookhot(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.instorebookhot(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 评分推荐
+	 */
+	public void instorebookhigh(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.instorebookhigh(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有有折扣的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectDiscStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectDiscStoreBook();
+		} finally {
+			session.close();
+		}
+	}
+	/**
+	 * 修改折扣
+	 * @param bookInfoBean
+	 */
+	public void instorebookdiscupdate(BookInfoBean bookInfoBean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.instorebookdiscupdate(bookInfoBean);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有NEW的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectNewStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectNewStoreBook();
+		} finally {
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有HOT的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectHotStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectHotStoreBook();
+		} finally {
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有HIGH的图书
+	 * @param bookInfoBean
+	 */
+	public List<BookInfoBean> selectHighStoreBook(){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectHighStoreBook();
+		} finally {
+			session.close();
+		}
+	}
+	/**
+	 * 根据图书ID查询图书
+	 * @param bookInfoBean
+	 */
+	public BookInfoBean selectBookInfoByCode(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectBookInfoByCode(code);
+		} finally {
+			session.close();
+		}
 	}
 }

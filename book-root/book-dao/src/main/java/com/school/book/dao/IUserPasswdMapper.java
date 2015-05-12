@@ -10,6 +10,12 @@ public interface IUserPasswdMapper {
 	 */
 	public void insertUserPasswd(UserPasswdBean userPasswdBean);
 	/**
+	 * 修改用户密码
+	 * @param userPasswdBean
+	 * @return 
+	 */
+	public void updateUserPasswd(UserPasswdBean userPasswdBean);
+	/**
 	 * 查找用户密码靠用户名
 	 * @param userName 用户名
 	 * @return 用户密码

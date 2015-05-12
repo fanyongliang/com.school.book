@@ -32,6 +32,26 @@ public class UserPasswdDAO {
 		}
 	}
 	
+	/**
+	 * 用户修改密码
+	 * @param userPasswdBean
+	 * @return
+	 */
+	public void update(UserPasswdBean userPasswdBean) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IUserPasswdMapper dao = session.getMapper(IUserPasswdMapper.class);
+			dao.updateUserPasswd(userPasswdBean);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 通过用户名获取用户密码
+	 * @param userName
+	 * @return
+	 */
 	public UserPasswdBean getUserPasswordByUserName(String userName) {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {

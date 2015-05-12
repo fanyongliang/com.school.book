@@ -9,17 +9,17 @@
 
   <title>404 - 翻书网</title>
   
-  <link rel="shortcut icon" href="favicon.png">
-  <link href="css/style.css" media="screen" rel="stylesheet" type="text/css">
-  <link href="css/grid.css" media="screen" rel="stylesheet" type="text/css">
+  <link rel="shortcut icon" href="${rc.contextPath}/resources/favicon.png">
+  <link href="${rc.contextPath}/resources/css/style.css" media="screen" rel="stylesheet" type="text/css">
+  <link href="${rc.contextPath}/resources/css/grid.css" media="screen" rel="stylesheet" type="text/css">
  
-  <script src="js/jquery-1.7.2.min.js" ></script>
-  <script src="js/html5.js" ></script>
-  <script src="js/jflow.plus.js"></script>
-  <script src="js/jquery.carouFredSel-5.2.2-packed.js"></script>
-  <script src="js/checkbox.js"></script>
-  <script src="js/radio.js"></script>
-  <script src="js/selectBox.js"></script>
+  <script src="${rc.contextPath}/resources/js/jquery-1.7.2.min.js" ></script>
+  <script src="${rc.contextPath}/resources/js/html5.js" ></script>
+  <script src="${rc.contextPath}/resources/js/jflow.plus.js"></script>
+  <script src="${rc.contextPath}/resources/js/jquery.carouFredSel-5.2.2-packed.js"></script>
+  <script src="${rc.contextPath}/resources/js/checkbox.js"></script>
+  <script src="${rc.contextPath}/resources/js/radio.js"></script>
+  <script src="${rc.contextPath}/resources/js/selectBox.js"></script>
 
   <script>
 	$(document).ready(function() {
@@ -77,7 +77,7 @@
     <div id="top">
     	<div class="grid_6">
         <div class="welcome">
-			✿　<a href="index.html">翻书网首页</a>
+			✿　<a href="/book-ui/user/index">翻书网首页</a>
         </div><!-- .welcome -->
       </div><!-- .grid_6 -->
     </div><!-- #top -->
@@ -87,7 +87,7 @@
     <header id="branding">
       <div class="grid_3">
         <hgroup>
-          <h1 id="site_logo"><a href="index.html" title=""><img src="images/logo.png" alt="Online Book Store Logo"/></a></h1>
+          <h1 id="site_logo"><a href="/book-ui/user/index" title=""><img src="${rc.contextPath}/resources/images/logo.png" alt="Online Book Store Logo"/></a></h1>
           <h2 id="site_description">Online Book Store</h2>
         </hgroup>
       </div><!-- .grid_3 -->
@@ -113,7 +113,7 @@
 			<br />
 			<br />
 			<br />
-			<h6 style="padding-left:50%">Page not found... <a href="index.html">返回首页</a></h6>
+			<h6 style="padding-left:50%">Page not found... <a href="/book-ui/user/index">返回首页</a></h6>
         </div><!-- .adress -->
 
       <div class="clear"></div>
@@ -129,8 +129,8 @@
           <h3>联系我们</h3>
           <ul class="f_contact">
             <li>北京翻书网有限责任公司</li>
-            <li>+86 17710215512</li>
-            <li>fanyongliang@fanshu.com</li>
+            <li>+86 </li>
+            <li>@fanshu.com</li>
           </ul><!-- .f_contact -->
         </div><!-- .grid_3 -->
 
@@ -177,7 +177,7 @@
     <div class="f_info">
       <div class="container_12">
         <div class="grid_6">
-          <p class="copyright">Copyright (C) 翻书网 20015-2025, All Rights Reserved</p>
+          <p class="copyright">Copyright (C) 翻书网 2015-2025, All Rights Reserved</p>
         </div><!-- .grid_6 -->
 
         <div class="grid_6">
