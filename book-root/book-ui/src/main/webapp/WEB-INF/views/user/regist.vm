@@ -120,13 +120,13 @@
 		<script>
 			$(function(){
 				$(".account").click(function(){
-					window.location.href="/book-ui/login/form";
+					window.location.href="/book-ui/user/login";
 				})
 			})
 		</script>
 		
 		<div class="grid_6" style="padding-top:30px">
-			<form class="registed" action="pass" id="userRegForm" method="post" style="padding-left:20%">
+			<form class="registed" action="registerpass" id="userRegForm" method="post" style="padding-left:20%">
 				<br />			
 				<div class="email">
 					<strong>帐号:</strong><sup class="surely">*</sup><br/>

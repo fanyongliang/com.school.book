@@ -79,7 +79,7 @@ public class UserRegisterController {
 		if (landAndRegistrationBll.checkRegisterUserName(userName) == true) {
 			landAndRegistrationBll.addUserInfo(userInfoBean);
 			logger.info("Welcome book store! ...");
-			return "redirect:/login/form";
+			return "redirect:/user/login";
 		} else {
 			logger.info("用户名已存在!");
 			model.addAttribute("msg", "用户名已存在,重新输入");

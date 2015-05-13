@@ -2,7 +2,7 @@
 <html class="app">
 <head>
     <meta charset="utf-8" />
-    <title>管理员首页</title>
+    <title>未通过评论</title>
 	<link rel="shortcut icon" href="/book-ui/resources/favicon.png">
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/font.css" type="text/css" cache="false" />
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/app.v2.css" type="text/css" />
@@ -125,8 +125,8 @@
                                 <!-- 左侧大导航 begin -->
                                 <nav class="nav-primary hidden-xs">
                                     <ul class="nav">
-                                        <li class="active">
-                                            <a href="" class="active">
+                                        <li>
+                                            <a href="index" class="active">
                                                 <i class="fa fa-home icon">
                                                     <b class="bg-danger"></b>
                                                 </i>
@@ -187,7 +187,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-										<li>
+										<li  class="active">
                                             <a href="">
                                                 <i class="fa fa-desktop icon">
                                                     <b class="bg-success"></b>
@@ -199,7 +199,7 @@
                                                 <span>评论管理</span>
                                             </a>
                                             <ul class="nav lt">
-                                                <li>
+                                                <li  class="active">
                                                     <a href="">
                                                         <i class="fa fa-angle-down text"></i>
                                                         <i class="fa fa-angle-up text-active"></i>
@@ -208,7 +208,7 @@
                                                     <ul class="nav bg">
 														<li><a href="reviewswait"><i class="fa fa-angle-right"></i><span>待审核评论</span> </a></li>
                                                         <li><a href="reviewspass"><i class="fa fa-angle-right"></i><span>已通过评论</span> </a></li>
-														<li><a href="reviewsnopass"><i class="fa fa-angle-right"></i><span>未通过评论</span> </a></li>
+														<li class="active"><a href="reviewsnopass"><i class="fa fa-angle-right"></i><span>未通过评论</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -305,133 +305,87 @@
                 <!-- 公用左侧导航  end-->
                 <section id="content">
                     <section class="vbox">
+                        <!--头部功能-->
+                        <header class="header bg-white b-b clearfix">
+                            <div class="row m-t-sm">
+                                <div class="col-sm-3 m-b-xs">
+                                    <div class="col-sm-2 m-b-xs">
+						            </div>
+                                </div>
+                            </div>
+                        </header>
                         <!--表格主体-->
-                        <section class="scrollable padder" style="background-color:white">
-                            <span style="font-size:35pt;position: absolute;top: 40%;left: 30%;">欢迎进入后台管理系统</span>
+                        <section class="scrollable padder">
+                            <div class="m-b-md">
+                            </div>
+                            <!--数据表格  begin -->
+                            <section class="panel panel-default">
+                                <div class="table-responsive">
+                                    <table class="table table-striped m-b-none">
+                                        <thead>
+                                            <tr>
+                                                <th>编号</th>
+                                                <th>图书编号</th>
+												<th>评论星级</th>
+												<th>评论内容</th>
+												<th>评论用户</th>
+                                                <th>操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+											#if(${bookReviewsList} != "[]")
+    											#foreach($bookReviews in $bookReviewsList)
+                                                 <tr>
+                                                    <td>$velocityCount</td>
+    												<td>$!bookReviews.bookCode</td>
+    												#if($!bookReviews.bookQuality == 1)
+    													<td>★</td>
+    												#elseif($!bookReviews.bookQuality == 2)
+    													<td>★★</td>
+    												#elseif($!bookReviews.bookQuality == 3)
+    													<td>★★★</td>
+    												#elseif($!bookReviews.bookQuality == 4)
+    													<td>★★★★</td>
+    												#elseif($!bookReviews.bookQuality == 5)
+    													<td>★★★★★</td>
+    												#else
+    													<td></td>
+    												#end
+    												<td>$!bookReviews.bookReviews</td>
+    												<td>$!bookReviews.realName</td>
+    												<td><span style="color:red">未通过</span></td>
+                                                </tr>
+    											#end
+											#else
+												<tr>
+                                                    <td colspan="9">
+														<span style="font-size:20pt;color:red;margin-left:30%">暂无未通过评论！</span>
+													</td>
+                                                </tr>
+											#end
+											
+                                        </tbody>
+                                    </table>
+
+                                </div>
+                            </section>
+                            <!--数据表格  end -->
                         </section>
                     </section>
                 </section>
             </section>
         </section>
     </section>
-    <!--弹层信息-->
-    <div class="modal fade" id="addnew">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">添加新导航</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="addNavForm" method="post">
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">导航名:</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="navPareNameadd" name="navPareName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">是否显示:</label>
-                            <div class="col-sm-10">
-                                <select class="input form-control" id="isShowadd" name="isShow" style="width:189px;">
-										<option value="1">是</option>
-										<option value="0" selected>否</option>
-								</select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                    <button type="button" id="addNavButton" class="btn btn-info">添加</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
 	
 	<script>
 		$(function(){
-			$("#addNavButton").click(function(){
-				if($("#navPareNameadd").val() == ""){
-					alert("导航名不能为空！");
-				}else{
-					$("#addNavForm").attr("action","addnavigation");
-					$("#addNavForm").submit();
-				}
-			})
-			
-			$(".js_edit_nav").click(function(){
+			$(".js_reviews_pass").click(function(){
 				var code = $(this).attr("code");
-				var navPareName = $(this).attr("navPareName");
-				var isShow = $(this).attr("isShow");
-				$("#codeedit").val(code);
-				$("#navPareNameedit").val(navPareName);
-				$("#isShowedit").val(isShow);
+				window.location.href="reviewstopass?code="+code;
 			})
-			$(".js_edit_show").click(function(){
+			$(".js_reviews_nopass").click(function(){
 				var code = $(this).attr("code");
-				var navPareName = $(this).attr("navPareName");
-				var isShow = 1;
-				window.location.href="updatenavigation?code="+code+"&navPareName="+navPareName+"&isShow="+isShow;
-			})
-			$(".js_edit_hidden").click(function(){
-				var code = $(this).attr("code");
-				var navPareName = $(this).attr("navPareName");
-				var isShow = 0;
-				window.location.href="updatenavigation?code="+code+"&navPareName="+navPareName+"&isShow="+isShow;
-			})
-		})
-	</script>
-	
-    <div class="modal fade" id="editnew">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">编辑导航</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="editNavForm" method="get">
-						<input type="hidden" id="codeedit" name="code">
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">导航名:</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="navPareNameedit" name="navPareName" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">是否显示:</label>
-                            <div class="col-sm-10">
-                                <select class="input form-control" id="isShowedit" name="isShow" style="width:189px;">
-												<option value="1">是</option>
-												<option value="0">否</option>
-										</select>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                    <button type="button" id="editNavButton" class="btn btn-info">修改</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--弹层信息-->
-	
-	<script>
-		$(function(){
-			$("#editNavButton").click(function(){
-				if($("#navPareNameedit").val() == ""){
-					alert("导航名不能为空！");
-				}else{
-					$("#editNavForm").attr("action","updatenavigation");
-					$("#editNavForm").submit();
-				}
+				window.location.href="reviewstonopass?code="+code;
 			})
 		})
 	</script>

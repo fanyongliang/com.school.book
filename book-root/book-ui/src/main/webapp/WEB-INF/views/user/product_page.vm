@@ -9,7 +9,7 @@
 
   <title>商品详细</title>
 
-  <link rel="shortcut icon" href="${rc.contextPath}/resources/favicon.ico">
+  <link rel="shortcut icon" href="${rc.contextPath}/resources/favicon.png">
   <link href="${rc.contextPath}/resources/css/style.css" media="screen" rel="stylesheet" type="text/css">
   <link href="${rc.contextPath}/resources/css/grid.css" media="screen" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="${rc.contextPath}/resources/css/jquery.jqzoom.css" type="text/css">
@@ -159,14 +159,18 @@
       <div class="grid_12">
         <nav class="primary">
           <ul>
-            <li class="curent"><a href="">小说</a></li>
-            <li><a href="">童书</a></li>
-            <li><a href="">励志</a></li>
-            <li><a href="">生活</a></li>
-            <li><a href="">社科</a></li>
-            <li><a href="">科技</a></li>
-	    	<li><a href="">期刊</a></li>
-	    	<li><a href="">教育</a></li>
+            <li>
+              <a href="">所有分类</a>
+              <ul class="sub">
+				#foreach($navAll in $navList)
+					<li style="text-align:center"><a href="">$!navAll.navPareName</a></li>
+                #end
+              </ul>
+            </li>
+			<li><a>></a></li>
+            #foreach($nav in $navList)
+				<li><a href="">$!nav.navPareName</a></li>
+			#end
           </ul>
         </nav><!-- .primary -->
       </div><!-- .grid_12 -->
@@ -336,31 +340,101 @@
 					<div class="tab2 tab_body">
 						<h4>用户的评价</h4>
 						<ul class="comments">
-							<li>
-								<div class="autor">Mike Example</div>, <time datetime="2012-11-03">03.11.2012</time>
-
-								<div class="evaluation">
-									<div class="quality">
-										<strong>Quality</strong>
-										<a class="plus" href=""></a>
-										<a class="plus" href=""></a>
-										<a class="plus" href=""></a>
-										<a href=""></a>
-										<a href=""></a>
-									</div>
-									<div class="clear"></div>
-								</div><!-- .evaluation -->
-
-								<p>Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis lobortis dictum.</p>
-							</li>
-
+							#if(${bookReviewsList} != "[]")
+    							#foreach($reviewsList in $bookReviewsList)
+    							<li>
+    								<div class="autor">$!reviewsList.realName</div>, <time datetime="$!reviewsList.bookReviewsTime">$!reviewsList.bookReviewsTime</time>
+									#if($!reviewsList.bookQuality == 5)
+        								<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#elseif($!reviewsList.bookQuality == 4)
+										<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#elseif($!reviewsList.bookQuality == 3)
+										<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#elseif($!reviewsList.bookQuality == 2)
+										<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a class="plus" href=""></a>
+        										<a class="plus" href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#elseif($!reviewsList.bookQuality == 1)
+										<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a class="plus" href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#else
+										<div class="evaluation">
+        									<div class="quality">
+        										<strong>评分</strong>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        										<a href=""></a>
+        									</div>
+        									<div class="clear"></div>
+        								</div><!-- .evaluation -->
+									#end
+    								<p>$!reviewsList.bookReviews</p>
+    							</li>
+								#end
+							#else
+								<tr>
+                                    <td colspan="9">
+										<span style="font-size:10pt;margin-left:40%">暂无用户评论！</span>
+									</td>
+                                </tr>
+							#end
 						</ul><!-- .comments -->
 
-						<form class="add_comments" id="userReviewsForm" method="get">
+						<form class="add_comments" id="userReviewsForm">
 							<h4>写上您的评价</h4>
 							<input type="hidden" id="bookCode" name="bookCode" value="$!{bookInfoBeanDetail.code}"/>
 							<input type="hidden" id="userCode" name="userCode" value="$!{userCode}"/>
-							<input type="hidden" id="bookQuality" name="bookQuality" value="$!{userCode}"/>
+							<input type="hidden" id="realNameJudge" name="realName" value="$!{realName}"/>
+							<input type="hidden" id="bookQuality" name="bookQuality" value=""/>
 							<div class="quality">
 								<strong>星级</strong><sup class="surely">*</sup>
 								<input class="niceRadio" type="radio" name="bookQuality" value="1" /><span class="eva_num">&nbsp;1</span>
@@ -382,7 +456,7 @@
 					<script>
 						$(function(){
 							$("#userReviewsButton").click(function(){
-								if($realName == ""){
+								if($("#realNameJudge").val() == ""){
 									window.location.href="login";
 								}else{
         							if($("#bookReviews").val()== ""){
@@ -390,7 +464,19 @@
         							}else{
     									var bookQuality = $(this).parents().find("input[name=bookQuality]:checked").val();
     									$("#bookQuality").val(bookQuality);
-										
+										$.ajax
+										({
+											type:"post",
+											url:"reviewsadd",
+											data:$("#userReviewsForm").serialize(),
+											success:function(){
+												alert("提交成功!");
+												history.go(0);
+											},
+											error:function(){
+												alert("提交失败!");
+											}
+										});
     								}
 								}
 							})

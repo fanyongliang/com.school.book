@@ -27,6 +27,57 @@ public class BookReviewsBean {
 	 * 评论内容
 	 */
 	private String bookReviews;
+	/**
+	 * 是否通过
+	 */
+	private int isDelete;
+	/**
+	 * 是否审核
+	 */
+	private int isAccess;
+	/**
+	 * 用户姓名
+	 */
+	private String realName;
+
+	public BookReviewsBean(int code, int bookCode, int userCode,
+			int bookQuality, Date bookReviewsTime, String bookReviews,
+			int isDelete, int isAccess, String realName) {
+		super();
+		this.code = code;
+		this.bookCode = bookCode;
+		this.userCode = userCode;
+		this.bookQuality = bookQuality;
+		this.bookReviewsTime = bookReviewsTime;
+		this.bookReviews = bookReviews;
+		this.isDelete = isDelete;
+		this.isAccess = isAccess;
+		this.realName = realName;
+	}
+
+	public int getIsDelete() {
+		return isDelete;
+	}
+
+	public void setIsDelete(int isDelete) {
+		this.isDelete = isDelete;
+	}
+
+	public int getIsAccess() {
+		return isAccess;
+	}
+
+	public void setIsAccess(int isAccess) {
+		this.isAccess = isAccess;
+	}
+
+	public String getRealName() {
+		return realName;
+	}
+
+	public void setRealName(String realName) {
+		this.realName = realName;
+	}
 
 	public int getCode() {
 		return code;

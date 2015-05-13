@@ -206,9 +206,9 @@
                                                         <span>用户评论</span>
                                                     </a>
                                                     <ul class="nav bg">
-														<li><a href=""><i class="fa fa-angle-right"></i><span>待审核评论</span> </a></li>
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>已通过评论</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>未通过评论</span> </a></li>
+														<li><a href="reviewswait"><i class="fa fa-angle-right"></i><span>待审核评论</span> </a></li>
+                                                        <li><a href="reviewspass"><i class="fa fa-angle-right"></i><span>已通过评论</span> </a></li>
+														<li><a href="reviewsnopass"><i class="fa fa-angle-right"></i><span>未通过评论</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
