@@ -56,16 +56,7 @@ public class UserRegisterController {
 		String realName = userInfoBean.getRealName();
 		userName =  new String(userName.getBytes("iso8859-1"),"utf-8");
 		realName =  new String(realName.getBytes("iso8859-1"),"utf-8");
-		String card15 = "^[1-9]\\d{7}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{3}$";
-		Pattern regex15 = Pattern.compile(card15); 
-		String card18 = "^[1-9]\\d{5}[1-9]\\d{3}((0\\d)|(1[0-2]))(([0|1|2]\\d)|3[0-1])\\d{4}$";
-		Pattern regex18 = Pattern.compile(card18); 
-		Matcher matcher = null ;
-		if(userInfoBean.getIdCard().length() == 18){
-			matcher = regex18.matcher(userInfoBean.getUserEmail());
-		}else{
-			matcher = regex15.matcher(userInfoBean.getUserEmail());
-		}
+		String reg = "^\\d{15}|^\\d{17}([0-9]|X|x)$";
 		
 		if(userName == "" || realName == "" || userInfoBean.getUserPasswd() == "" || userInfoBean.getUserPasswdRP() == "" || userInfoBean.getIdCard() == "" || userInfoBean.getUserEmail() == ""){
 			logger.info("带*号的不允许为空!");
@@ -83,7 +74,7 @@ public class UserRegisterController {
 			model.addAttribute("idCard", userInfoBean.getIdCard());
 			model.addAttribute("userEmail", userInfoBean.getUserEmail());
 			return "user/regist";
-		}else if (!matcher.matches()) {
+		}else if (!userInfoBean.getIdCard().matches(reg)) {
 			logger.info("身份证格式不正确！!");
 			model.addAttribute("msg", "身份证格式不正确！");
 			model.addAttribute("userName", userName);
