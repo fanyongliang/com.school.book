@@ -110,4 +110,17 @@ public class BookInfoBll {
 	public BookInfoBean selectBookInfoByCode(Integer code) {
 		return bookInfoDAO.selectBookInfoByCode(code);
 	}
+	/**
+	 * 根据图书分类查询所有图书
+	 */
+	public List<BookInfoBean> selectInStoreBookByBookType(String bookType) {
+		return bookInfoDAO.selectInStoreBookByBookType(bookType);
+	}
+	/**
+	 * 根据图书名模糊查询所有图书
+	 */
+	public List<BookInfoBean> selectInStoreBookByBookName(String bookName) {
+		return bookInfoDAO.selectInStoreBookByBookName(bookName);
+	}
+	
 }

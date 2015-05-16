@@ -89,4 +89,12 @@
 	<select id="selectBookInfoByCode" parameterType="Integer" resultMap="BookInfoMap">
 		SELECT * FROM book_info_tb WHERE code = #{code}
 	</select>
+	<!-- 根据图书分类查询所有图书 -->
+	<select id="selectInStoreBookByBookType" parameterType="String" resultMap="BookInfoMap">
+		SELECT * FROM book_info_tb WHERE book_type = #{bookType}
+	</select>
+	<!-- 根据图书名模糊查询所有图书 -->
+	<select id="selectInStoreBookByBookName" parameterType="String" resultMap="BookInfoMap">
+		SELECT * FROM book_info_tb WHERE book_name LIKE CONCAT('%','${_parameter}','%')
+	</select>
 </mapper>

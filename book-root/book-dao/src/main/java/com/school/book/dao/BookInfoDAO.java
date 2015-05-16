@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
+
 import com.school.book.bean.BookInfoBean;
 
 /**
@@ -230,4 +231,29 @@ public class BookInfoDAO {
 			session.close();
 		}
 	}
+	/**
+	 * 根据图书分类查询所有图书
+	 */
+	public List<BookInfoBean> selectInStoreBookByBookType(String bookType){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectInStoreBookByBookType(bookType);
+		} finally {
+			session.close();
+		}
+	}
+	/**
+	 * 根据图书名模糊查询所有图书
+	 */
+	public List<BookInfoBean> selectInStoreBookByBookName(String bookName){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			return iBookInfoMapper.selectInStoreBookByBookName(bookName);
+		} finally {
+			session.close();
+		}
+	}
+	
 }

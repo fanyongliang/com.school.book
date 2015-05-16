@@ -33,7 +33,7 @@ public class Page404Controller {
 	 */
 	@RequestMapping("/error")
 	public String index(Model model) {
-		logger.info("路径发生错误~");
+		logger.info("PageNotFound!路径发生错误~");
 		return "404";
 	}
 

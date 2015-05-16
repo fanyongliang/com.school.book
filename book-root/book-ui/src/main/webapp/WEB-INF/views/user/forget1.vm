@@ -94,9 +94,21 @@
       </div><!-- .grid_3 -->
       
       <div class="grid_3" style="padding-left:45%">
-        <form class="search">
-          <input type="text" name="search" class="entry_form" value="" placeholder="Search book here ..."/>
+        <form class="search" action="bookInfoNameGrid">
+          <input type="text" name="bookName" class="entry_form" value="" placeholder="Search book here ..."/>
 	</form>
+	<script>
+	  	$(function(){
+			$(".entry_form").blur(function(){
+				if($(".entry_form").val()==""){
+				
+				}else{
+					var bookName = $(".entry_form").val();
+					window.location.href="bookInfoNameGrid?bookName="+bookName;
+				}
+			})
+		})
+	  </script>
       </div><!-- .grid_3 -->
       
     </header><!-- #branding -->

@@ -103,9 +103,21 @@
       </div><!-- .grid_3 -->
 
       <div class="grid_3">
-        <form class="search">
-          <input type="text" name="search" class="entry_form" value="" placeholder="Search book here ..."/>
+        <form class="search" action="bookInfoNameGrid">
+          <input type="text" name="bookName" class="entry_form" value="" placeholder="Search book here ..."/>
 	</form>
+	<script>
+	  	$(function(){
+			$(".entry_form").blur(function(){
+				if($(".entry_form").val()==""){
+				
+				}else{
+					var bookName = $(".entry_form").val();
+					window.location.href="bookInfoNameGrid?bookName="+bookName;
+				}
+			})
+		})
+	  </script>
       </div><!-- .grid_3 -->
 
       <div class="grid_6">
@@ -160,16 +172,16 @@
         <nav class="primary">
           <ul>
             <li>
-              <a href="">所有分类</a>
+              <a href="bookInfoGrid?bookType=所有分类">所有分类</a>
               <ul class="sub">
 				#foreach($navAll in $navList)
-					<li style="text-align:center"><a href="">$!navAll.navPareName</a></li>
+					<li style="text-align:center"><a href="bookInfoGrid?bookType=$!navAll.navPareName">$!navAll.navPareName</a></li>
                 #end
               </ul>
             </li>
 			<li><a>></a></li>
             #foreach($nav in $navList)
-				<li><a href="">$!nav.navPareName</a></li>
+				<li><a href="bookInfoGrid?bookType=$!nav.navPareName">$!nav.navPareName</a></li>
 			#end
           </ul>
         </nav><!-- .primary -->
@@ -182,7 +194,7 @@
   <div class="container_12">
     <div class="grid_12">
        <div class="breadcrumbs">
-	      <a href="index.html">主页</a><span>&#8250;</span><a href="#">图书</a><span>&#8250;</span><span class="current">详细</span>
+	      <a href="/book-ui/user/index">主页</a><span>&#8250;</span><a href="bookInfoGrid?bookType=所有分类">图书</a><span>&#8250;</span><span class="current">详细</span>
        </div><!-- .breadcrumbs -->
     </div><!-- .grid_12 -->
   </div><!-- .container_12 -->
@@ -199,9 +211,9 @@
 		     
 		     <nav class="left_menu">
 			    <ul>
-				   <li><a href="">新书上架 <span style="margin-left:50%">更多</span></a></li>
-				   <li><a href="">畅销图书 <span style="margin-left:50%">更多</span></a></li>
-				   <li class="last"><a href="">人气图书<span style="margin-left:50%">更多</span></a></li>
+				   <li><a href="bookInfoGrid?bookType=新书上架">新书上架 <span style="margin-left:50%">更多</span></a></li>
+				   <li><a href="bookInfoGrid?bookType=畅销图书">畅销图书 <span style="margin-left:50%">更多</span></a></li>
+				   <li class="last"><a href="bookInfoGrid?bookType=人气图书">人气图书<span style="margin-left:50%">更多</span></a></li>
 			    </ul>
 		     </nav><!-- .left_menu -->
 	      </aside>
@@ -227,7 +239,7 @@
 	      <aside id="tags">
 		     <h3>Tags</h3>
 			 #foreach($tag in $navList)
-		     <a class="t$velocityCount" href="">$tag.navPareName</a>
+		     <a class="t$velocityCount" href="bookInfoGrid?bookType=$!tag.navPareName">$!tag.navPareName</a>
 		     #end
 	      </aside><!-- #community_poll -->
 
@@ -238,6 +250,14 @@
 
 		<div class="product_page">
 			<div class="grid_4 img_slid" id="products">
+				#if($!bookInfoBeanDetail.isNew == 1 && $!bookInfoBeanDetail.isHot == 0 && $!bookInfoBeanDetail.isHigh == 0)
+        			<img class="sale" src="/book-ui/resources/images/new.png" alt="New">
+        		#elseif($!bookInfoBeanDetail.isNew == 0 && $!bookInfoBeanDetail.isHot == 1 && $!bookInfoBeanDetail.isHigh == 0)
+        			<img class="sale" src="/book-ui/resources/images/sale.png" alt="Sale">
+        		#elseif($!bookInfoBeanDetail.isNew == 0 && $!bookInfoBeanDetail.isHot == 0 && $!bookInfoBeanDetail.isHigh == 1)
+        			<img class="sale" src="/book-ui/resources/images/top.png" alt="Top">
+        		#else
+    			#end
 				<div class="preview slides_container">
 					<div class="prev_bg">
 						<a href="$!imagesPath$!{bookInfoBeanDetail.bookPicture}" class="jqzoom" rel='gal1' title="">
@@ -533,7 +553,14 @@
 			</div><!-- .carousel -->
 		</div><!-- .product_page -->
 		<div class="clear"></div>
-
+		<script>
+	  	$(function(){
+			$(".js_list_book").click(function(){
+				var code = $(this).attr("code");
+				window.location.href="bookdetailed?code="+code;
+			})
+		})
+	  </script>
        </div><!-- #content -->
 
       <div class="clear"></div>
