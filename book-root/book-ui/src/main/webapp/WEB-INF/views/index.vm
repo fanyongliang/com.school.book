@@ -208,7 +208,34 @@
 
       <div class="clear"></div>
 
-
+	  <script>
+		$(function(){
+			$(".js_obn").click(function(){
+				var code = $(this).attr("code");
+				var userCode = $(this).attr("userCode");
+				var bookName = $(this).attr("bookName");
+				var getData={
+						   bookCode:code,
+						   userCode:userCode,
+						   bookName:bookName
+				};
+				$.ajax
+				({
+					type:'get',
+					url:'bookcompareadd',
+					data:getData,
+					dataType:'text',
+					success:function(){
+						alert("添加比较列表成功!");
+						history.go(0);
+					},
+					error:function(){
+						alert("添加比较列表失败,请检查登录状态!");
+					}
+				})
+			})
+		})
+	</script>
 
       <div class="carousel">
         <div class="c_header">
@@ -241,7 +268,7 @@
                 </div>
                 </div>
 				<a class="like"></a>
-                <a href="" class="obn"></a>
+                <a code="$!{newList.code}" bookName="$!{newList.bookName}" userCode="$!userCode" class="obn js_obn"></a>
                 <a href="" class="bay"></a>
               </div><!-- .cart -->
             </div><!-- .grid_3 -->
@@ -281,7 +308,7 @@
                 </div>
                 </div>
 				<a class="like"></a>
-                <a href="" class="obn"></a>
+                <a code="$!{hotList.code}" bookName="$!{hotList.bookName}" userCode="$!userCode" class="obn js_obn"></a>
                 <a href="" class="bay"></a>
               </div><!-- .cart -->
             </div><!-- .grid_3 -->
@@ -323,7 +350,7 @@
                 </div>
                 </div>
 				<a class="like"></a>
-                <a href="" class="obn"></a>
+                <a code="$!{highList.code}" bookName="$!{highList.bookName}" userCode="$!userCode" class="obn js_obn"></a>
                 <a href="" class="bay"></a>
               </div><!-- .cart -->
             </div><!-- .grid_3 -->

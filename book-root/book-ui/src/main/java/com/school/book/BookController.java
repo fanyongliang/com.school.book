@@ -69,8 +69,19 @@ public class BookController {
 					logger.info("value:"+value);
 					if (landAndRegistrationBll.getMem(value) == null) {
 						logger.info("memcache中不存在信息!");
-						model.addAttribute("msg", "cache中不存在信息!");
-						return "user/login";
+						model.addAttribute("realName", "");
+						List<NavListBean> navList = NavListBll.selectNavListIsShow();
+						model.addAttribute("navList", navList);
+						List<AdvPhotoBean> advPhotoList = advPhotoBll.selectAllAdvPhoto();
+						model.addAttribute("advPhotoList", advPhotoList);
+						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+						List<BookInfoBean> bookInfoListNew = bookInfoBll.selectNewStoreBook();
+						model.addAttribute("bookInfoListNew", bookInfoListNew);
+						List<BookInfoBean> bookInfoListHot = bookInfoBll.selectHotStoreBook();
+						model.addAttribute("bookInfoListHot", bookInfoListHot);
+						List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
+						model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+						return "index";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -89,6 +100,7 @@ public class BookController {
 							return "index";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("userCode", bean.getCode());
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
 							model.addAttribute("navList", navList);
 							List<AdvPhotoBean> advPhotoList = advPhotoBll.selectAllAdvPhoto();

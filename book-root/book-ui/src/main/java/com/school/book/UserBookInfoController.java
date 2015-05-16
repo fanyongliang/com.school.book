@@ -10,6 +10,7 @@ package com.school.book;
 
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
@@ -26,10 +27,12 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.school.book.bean.BookCompareBean;
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.BookReviewsBean;
 import com.school.book.bean.NavListBean;
 import com.school.book.bean.UserInfoBean;
+import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
@@ -42,6 +45,7 @@ import com.school.book.bll.NavListBll;
 public class UserBookInfoController {
 	private NavListBll NavListBll = new NavListBll();
 	private BookInfoBll bookInfoBll = new BookInfoBll();
+	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
 	/**
 	 * 创建logger控制台日志显示对象
@@ -71,8 +75,31 @@ public class UserBookInfoController {
 					logger.info("value:"+value);
 					if (landAndRegistrationBll.getMem(value) == null) {
 						logger.info("memcache中不存在信息!");
-						model.addAttribute("msg", "cache中不存在信息!");
-						return "user/login";
+						model.addAttribute("realName", "");
+						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+						List<NavListBean> navList = NavListBll.selectNavListIsShow();
+						model.addAttribute("navList", navList);
+						List<BookInfoBean> bookInfoList = null;
+						if(bookType.equals("所有分类")){
+							bookInfoList = bookInfoBll.selectInStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("新书上架")){
+							bookInfoList = bookInfoBll.selectNewStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("畅销图书")){
+							bookInfoList = bookInfoBll.selectHotStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("人气图书")){
+							bookInfoList = bookInfoBll.selectHighStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else{
+							bookInfoList =  bookInfoBll.selectInStoreBookByBookType(bookType);
+							model.addAttribute("bookInfoList", bookInfoList);
+						}
+						model.addAttribute("bookType", bookType);
+						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+						model.addAttribute("bookCompareList", bookCompareList);
+						return "user/catalog_grid";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -98,6 +125,8 @@ public class UserBookInfoController {
 								model.addAttribute("bookInfoList", bookInfoList);
 							}
 							model.addAttribute("bookType", bookType);
+							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_grid";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -123,6 +152,8 @@ public class UserBookInfoController {
 								model.addAttribute("bookInfoList", bookInfoList);
 							}
 							model.addAttribute("bookType", bookType);
+							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_grid";
 						}
 					}
@@ -150,6 +181,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookInfoList", bookInfoList);
 					}
 					model.addAttribute("bookType", bookType);
+					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+					model.addAttribute("bookCompareList", bookCompareList);
 					return "user/catalog_grid";
 				}
 			}
@@ -177,6 +210,8 @@ public class UserBookInfoController {
 				model.addAttribute("bookInfoList", bookInfoList);
 			}
 			model.addAttribute("bookType", bookType);
+			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+			model.addAttribute("bookCompareList", bookCompareList);
 			return "user/catalog_grid";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -200,6 +235,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookInfoList", bookInfoList);
 		}
 		model.addAttribute("bookType", bookType);
+		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+		model.addAttribute("bookCompareList", bookCompareList);
 		return "user/catalog_grid";
 	}
 	
@@ -224,8 +261,31 @@ public class UserBookInfoController {
 					logger.info("value:"+value);
 					if (landAndRegistrationBll.getMem(value) == null) {
 						logger.info("memcache中不存在信息!");
-						model.addAttribute("msg", "cache中不存在信息!");
-						return "user/login";
+						model.addAttribute("realName", "");
+						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+						List<NavListBean> navList = NavListBll.selectNavListIsShow();
+						model.addAttribute("navList", navList);
+						List<BookInfoBean> bookInfoList = null;
+						if(bookType.equals("所有分类")){
+							bookInfoList = bookInfoBll.selectInStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("新书上架")){
+							bookInfoList = bookInfoBll.selectNewStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("畅销图书")){
+							bookInfoList = bookInfoBll.selectHotStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else if(bookType.equals("人气图书")){
+							bookInfoList = bookInfoBll.selectHighStoreBook();
+							model.addAttribute("bookInfoList", bookInfoList);
+						}else{
+							bookInfoList =  bookInfoBll.selectInStoreBookByBookType(bookType);
+							model.addAttribute("bookInfoList", bookInfoList);
+						}
+						model.addAttribute("bookType", bookType);
+						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+						model.addAttribute("bookCompareList", bookCompareList);
+						return "user/catalog_list";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -251,6 +311,8 @@ public class UserBookInfoController {
 								model.addAttribute("bookInfoList", bookInfoList);
 							}
 							model.addAttribute("bookType", bookType);
+							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_list";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -276,6 +338,8 @@ public class UserBookInfoController {
 								model.addAttribute("bookInfoList", bookInfoList);
 							}
 							model.addAttribute("bookType", bookType);
+							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_list";
 						}
 					}
@@ -303,6 +367,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookInfoList", bookInfoList);
 					}
 					model.addAttribute("bookType", bookType);
+					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+					model.addAttribute("bookCompareList", bookCompareList);
 					return "user/catalog_list";
 				}
 			}
@@ -330,6 +396,8 @@ public class UserBookInfoController {
 				model.addAttribute("bookInfoList", bookInfoList);
 			}
 			model.addAttribute("bookType", bookType);
+			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+			model.addAttribute("bookCompareList", bookCompareList);
 			return "user/catalog_list";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -353,6 +421,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookInfoList", bookInfoList);
 		}
 		model.addAttribute("bookType", bookType);
+		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+		model.addAttribute("bookCompareList", bookCompareList);
 		return "user/catalog_list";
 	}
 	
@@ -377,8 +447,16 @@ public class UserBookInfoController {
 					logger.info("value:"+value);
 					if (landAndRegistrationBll.getMem(value) == null) {
 						logger.info("memcache中不存在信息!");
-						model.addAttribute("msg", "cache中不存在信息!");
-						return "user/login";
+						model.addAttribute("realName", "");
+						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+						List<NavListBean> navList = NavListBll.selectNavListIsShow();
+						model.addAttribute("navList", navList);
+						List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
+						model.addAttribute("bookInfoList", bookInfoList);
+						model.addAttribute("bookName", bookName);
+						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+						model.addAttribute("bookCompareList", bookCompareList);
+						return "user/catalog_grid_search";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -389,6 +467,8 @@ public class UserBookInfoController {
 							List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 							model.addAttribute("bookInfoList", bookInfoList);
 							model.addAttribute("bookName", bookName);
+							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_grid_search";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -399,6 +479,8 @@ public class UserBookInfoController {
 							List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 							model.addAttribute("bookInfoList", bookInfoList);
 							model.addAttribute("bookName", bookName);
+							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_grid_search";
 						}
 					}
@@ -411,6 +493,8 @@ public class UserBookInfoController {
 					List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 					model.addAttribute("bookInfoList", bookInfoList);
 					model.addAttribute("bookName", bookName);
+					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+					model.addAttribute("bookCompareList", bookCompareList);
 					return "user/catalog_grid_search";
 				}
 			}
@@ -423,6 +507,8 @@ public class UserBookInfoController {
 			List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 			model.addAttribute("bookInfoList", bookInfoList);
 			model.addAttribute("bookName", bookName);
+			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+			model.addAttribute("bookCompareList", bookCompareList);
 			return "user/catalog_grid_search";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -431,6 +517,8 @@ public class UserBookInfoController {
 		List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 		model.addAttribute("bookInfoList", bookInfoList);
 		model.addAttribute("bookName", bookName);
+		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+		model.addAttribute("bookCompareList", bookCompareList);
 		return "user/catalog_grid_search";
 	}
 	
@@ -455,8 +543,16 @@ public class UserBookInfoController {
 					logger.info("value:"+value);
 					if (landAndRegistrationBll.getMem(value) == null) {
 						logger.info("memcache中不存在信息!");
-						model.addAttribute("msg", "cache中不存在信息!");
-						return "user/login";
+						model.addAttribute("realName", "");
+						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+						List<NavListBean> navList = NavListBll.selectNavListIsShow();
+						model.addAttribute("navList", navList);
+						List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
+						model.addAttribute("bookInfoList", bookInfoList);
+						model.addAttribute("bookName", bookName);
+						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+						model.addAttribute("bookCompareList", bookCompareList);
+						return "user/catalog_list_search";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -467,6 +563,8 @@ public class UserBookInfoController {
 							List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 							model.addAttribute("bookInfoList", bookInfoList);
 							model.addAttribute("bookName", bookName);
+							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_list_search";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -477,6 +575,8 @@ public class UserBookInfoController {
 							List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 							model.addAttribute("bookInfoList", bookInfoList);
 							model.addAttribute("bookName", bookName);
+							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
+							model.addAttribute("bookCompareList", bookCompareList);
 							return "user/catalog_list_search";
 						}
 					}
@@ -489,6 +589,8 @@ public class UserBookInfoController {
 					List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 					model.addAttribute("bookInfoList", bookInfoList);
 					model.addAttribute("bookName", bookName);
+					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+					model.addAttribute("bookCompareList", bookCompareList);
 					return "user/catalog_list_search";
 				}
 			}
@@ -501,6 +603,8 @@ public class UserBookInfoController {
 			List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 			model.addAttribute("bookInfoList", bookInfoList);
 			model.addAttribute("bookName", bookName);
+			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+			model.addAttribute("bookCompareList", bookCompareList);
 			return "user/catalog_list_search";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -509,6 +613,8 @@ public class UserBookInfoController {
 		List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBookByBookName(bookName);
 		model.addAttribute("bookInfoList", bookInfoList);
 		model.addAttribute("bookName", bookName);
+		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
+		model.addAttribute("bookCompareList", bookCompareList);
 		return "user/catalog_list_search";
 	}
 

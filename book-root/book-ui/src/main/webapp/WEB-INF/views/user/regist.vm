@@ -142,7 +142,7 @@
 				<br />			
 				<div class="email">
 					<strong>帐号:</strong><sup class="surely">*</sup><br/>
-					<input type="text" name="userName" id="userRegName" class="" value="" />
+					<input type="text" name="userName" id="userRegName" class="" value="$!userName" />
 				</div><!-- .email -->
 							
 				<div class="password">

@@ -86,7 +86,7 @@ public class LandAndRegistrationBll {
 		MemcachedClientBuilder builder = new XMemcachedClientBuilder(
 				"127.0.0.1:11211");
 		MemcachedClient client = builder.build();
-		return client.get(value);
+		return client.get(value,3000);
 	}
 
 	/**

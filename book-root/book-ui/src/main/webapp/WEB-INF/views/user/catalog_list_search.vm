@@ -210,19 +210,93 @@
 	      
 
 	      <aside id="compare_products">
-			<h3>商品比较</h3>
+			<h3>商品比较（仅限两本）</h3>
 
 			<ul>
-			    <li><a title="close" class="close" href="#"></a>Home Collection Honeysuckle Orchid Flameless</li>
-			    <li><a title="close" class="close" href="#"></a>Caldrea Linen and Room Spray, Ginger Pomelo</li>
-			    <li><a title="close" class="close" href="#"></a>Fresh Wave Travel Size Spray</li>
+				#if(${bookCompareList} != "[]")
+    				#foreach($bookCompare in $bookCompareList)
+    			    <li bookCode = "$!bookCompare.bookCode"><a title="close" class="close js_close_compare" code="$!bookCompare.code"></a>$velocityCount :&nbsp;$bookCompare.bookName</li>
+					#end
+				#else
+					<tr>
+                        <td colspan="9">
+							<span style="font-size:10pt;margin-left:30%">请先选择图书</span>
+						</td>
+                    </tr>
+				#end
 			</ul>
 
-			<button class="compare">Compare</button>
-			<a class="clear_all" href="#">Clear All</a>
+			<button class="compare">比较</button>
+			<a class="clear_all js_remove_compare" userCode="$!userCode">清空</a>
 
 			<div class="clear"></div>
 	      </aside><!-- #compare_products -->
+
+	      <script>
+		  	$(function(){
+				$(".compare").click(function(){
+					if($("#realNameJudge").val() == ""){
+						window.location.href="login";
+					}else{
+    					if($(this).parent().find("ul").text().trim()== "请先选择图书"){
+    						alert("请先选择图书！");
+    					}else if($(this).parent().find("ul li").size()<2){
+							alert("选择的图书不足两本！");
+						}else if($(this).parent().find("ul li").size()>2){
+							alert("选择的图书超过两本！");
+						}else{
+    						var bookfirst = $(this).parent().find("ul li").eq(0).attr("bookCode");
+							var booksecond = $(this).parent().find("ul li").eq(1).attr("bookCode");
+							window.location.href="bookcompare?bookfirst="+bookfirst+"&booksecond="+booksecond;
+    					}
+					}
+				})
+				$(".js_close_compare").click(function(){
+					var code = $(this).attr("code");
+					var data = {
+						code:code
+					};
+					$.ajax
+					({
+							type:'get',
+							url:'bookcompareremove',
+							data:data,
+							dataType:'text',
+							success:function(){
+								alert("删除成功!");
+								history.go(0);
+							},
+							error:function(){
+								alert("删除失败!");
+							}
+						})
+				})
+				$(".js_remove_compare").click(function(){
+					if($(this).parent().find("ul").text().trim()== "请先选择图书"){
+    						alert("请先选择图书！");
+					}else{
+    					var userCode = $(this).attr("userCode");
+    					var data = {
+    						userCode:userCode
+    					};
+    					$.ajax
+						({
+    							type:'get',
+    							url:'bookcompareremoveall',
+    							data:data,
+    							dataType:'text',
+    							success:function(){
+    								alert("比较列表清空成功!");
+    								history.go(0);
+    							},
+    							error:function(){
+    								alert("比较列表清空失败!");
+    							}
+    					})
+					}
+				})
+			})
+		  </script>
 
 	      
 
@@ -256,6 +330,35 @@
 			    <a class="sort_up" href="#">&#8593;</a>
 		     </div><!-- .sort -->
 	      </div><!-- .options -->
+		  
+		  <script>
+				$(function(){
+					$(".js_obn").click(function(){
+						var code = $(this).attr("code");
+						var userCode = $(this).attr("userCode");
+						var bookName = $(this).attr("bookName");
+						var getData={
+        						   bookCode:code,
+        						   userCode:userCode,
+        						   bookName:bookName
+    					};
+						$.ajax
+						({
+							type:'get',
+							url:'bookcompareadd',
+							data:getData,
+							dataType:'text',
+							success:function(){
+								alert("添加比较列表成功!");
+								history.go(0);
+							},
+							error:function(){
+								alert("添加比较列表失败,请检查登录状态!");
+							}
+						})
+					})
+				})
+			</script>
 	      
 	      <div class="listing_product">
 			
@@ -307,7 +410,7 @@
     							<div class="price_old">￥$!book.bookPrice</div>
     						</div>
     						<a href="#" class="bay">加入购物车</a>
-    						<a href="#" class="obn"></a>
+    						<a code="$!{book.code}" bookName="$!{book.bookName}" userCode="$!userCode" class="obn js_obn"></a>
     						<a href="#" class="like"></a>
     					</div><!-- .cart -->
     				</div><!-- .grid_2 -->
