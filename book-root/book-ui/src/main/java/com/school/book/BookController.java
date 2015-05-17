@@ -8,6 +8,7 @@ package com.school.book;
  -------------------------------------------------------------------------*/
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -25,11 +26,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.school.book.bean.AdvPhotoBean;
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.NavListBean;
+import com.school.book.bean.ShoppingCarBean;
 import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.AdvPhotoBll;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
+import com.school.book.bll.ShoppingCarBll;
 
 
 @Controller
@@ -39,6 +42,7 @@ public class BookController {
 	private AdvPhotoBll advPhotoBll = new AdvPhotoBll();
 	private BookInfoBll bookInfoBll = new BookInfoBll();
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
+	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
@@ -81,6 +85,8 @@ public class BookController {
 						model.addAttribute("bookInfoListHot", bookInfoListHot);
 						List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 						model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "index";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -97,6 +103,8 @@ public class BookController {
 							model.addAttribute("bookInfoListHot", bookInfoListHot);
 							List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 							model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "index";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -112,6 +120,11 @@ public class BookController {
 							model.addAttribute("bookInfoListHot", bookInfoListHot);
 							List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 							model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "index";
 						}
 					}
@@ -129,6 +142,8 @@ public class BookController {
 					model.addAttribute("bookInfoListHot", bookInfoListHot);
 					List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 					model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "index";
 				}
 			}
@@ -146,6 +161,8 @@ public class BookController {
 			model.addAttribute("bookInfoListHot", bookInfoListHot);
 			List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 			model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "index";
 		}
 		List<NavListBean> navList = NavListBll.selectNavListIsShow();
@@ -159,6 +176,8 @@ public class BookController {
 		model.addAttribute("bookInfoListHot", bookInfoListHot);
 		List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 		model.addAttribute("bookInfoListHigh", bookInfoListHigh);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "index";
 	}
 

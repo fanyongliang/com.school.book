@@ -11,6 +11,7 @@ package com.school.book;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.TimeoutException;
 
@@ -29,12 +30,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.school.book.bean.BookCompareBean;
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.NavListBean;
+import com.school.book.bean.ShoppingCarBean;
 import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
+import com.school.book.bll.ShoppingCarBll;
 
 
 
@@ -46,6 +49,7 @@ public class UserBookCompareController {
 	private BookReviewsBll bookReviewsBll = new BookReviewsBll();
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
 	private BookCompareBll bookCompareBll = new BookCompareBll();
+	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
@@ -119,6 +123,8 @@ public class UserBookCompareController {
 						BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 						model.addAttribute("bookInfoFirst", bookInfoFirst);
 						model.addAttribute("bookInfoSecond", bookInfoSecond);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "user/compare";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -131,6 +137,8 @@ public class UserBookCompareController {
 							BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 							model.addAttribute("bookInfoFirst", bookInfoFirst);
 							model.addAttribute("bookInfoSecond", bookInfoSecond);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/compare";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -142,6 +150,11 @@ public class UserBookCompareController {
 							BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 							model.addAttribute("bookInfoFirst", bookInfoFirst);
 							model.addAttribute("bookInfoSecond", bookInfoSecond);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/compare";
 						}
 					}
@@ -155,6 +168,8 @@ public class UserBookCompareController {
 					BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 					model.addAttribute("bookInfoFirst", bookInfoFirst);
 					model.addAttribute("bookInfoSecond", bookInfoSecond);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "user/compare";
 				}
 			}
@@ -168,6 +183,8 @@ public class UserBookCompareController {
 			BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 			model.addAttribute("bookInfoFirst", bookInfoFirst);
 			model.addAttribute("bookInfoSecond", bookInfoSecond);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "user/compare";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -177,6 +194,8 @@ public class UserBookCompareController {
 		BookInfoBean bookInfoSecond = bookInfoBll.selectBookInfoByCode(booksecond);
 		model.addAttribute("bookInfoFirst", bookInfoFirst);
 		model.addAttribute("bookInfoSecond", bookInfoSecond);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/compare";
 	}
 }

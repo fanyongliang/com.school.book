@@ -8,4 +8,26 @@
 		<result property="bookQuantity" column="book_quantity" />
 		<result property="userCode" column="user_code" />
 	</resultMap>
+	<insert id="insertToCar" parameterType="ShoppingCarBean">
+	INSERT INTO shopping_car_tb 
+	( book_code, user_code, book_quantity)
+	VALUES
+	( #{bookCode}, #{userCode}, #{bookQuantity}); 
+	</insert>
+	<delete id="deleteToCar" parameterType="Integer">
+	delete from shopping_car_tb where code = #{carCode} 
+	</delete>
+	<delete id="deleteAllToCar" parameterType="Integer">
+	delete from shopping_car_tb where user_code = #{userCode}
+	</delete>
+	<select id="selectToCar" parameterType="Integer" resultType="list" resultMap="ShoppingCarMap">
+	select * from shopping_car_tb where user_code = #{userCode}
+	</select>
+	<select id="selectCarByBookCode" parameterType="ShoppingCarBean" resultMap="ShoppingCarMap">
+	select * from shopping_car_tb where user_code = #{userCode} and book_code = #{bookCode}
+	</select>
+	<update id="updateCarByCode" parameterType="ShoppingCarBean">
+	update shopping_car_tb set book_quantity = #{bookQuantity}  
+	where code = #{code}
+	</update>
 </mapper>

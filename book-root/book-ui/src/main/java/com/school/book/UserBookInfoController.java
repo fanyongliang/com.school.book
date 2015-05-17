@@ -31,12 +31,14 @@ import com.school.book.bean.BookCompareBean;
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.BookReviewsBean;
 import com.school.book.bean.NavListBean;
+import com.school.book.bean.ShoppingCarBean;
 import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
+import com.school.book.bll.ShoppingCarBll;
 
 
 
@@ -47,6 +49,7 @@ public class UserBookInfoController {
 	private BookInfoBll bookInfoBll = new BookInfoBll();
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
+	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
@@ -99,6 +102,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookType", bookType);
 						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 						model.addAttribute("bookCompareList", bookCompareList);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "user/catalog_grid";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -127,6 +132,8 @@ public class UserBookInfoController {
 							model.addAttribute("bookType", bookType);
 							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -154,6 +161,11 @@ public class UserBookInfoController {
 							model.addAttribute("bookType", bookType);
 							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid";
 						}
 					}
@@ -183,6 +195,8 @@ public class UserBookInfoController {
 					model.addAttribute("bookType", bookType);
 					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 					model.addAttribute("bookCompareList", bookCompareList);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "user/catalog_grid";
 				}
 			}
@@ -212,6 +226,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookType", bookType);
 			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 			model.addAttribute("bookCompareList", bookCompareList);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "user/catalog_grid";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -237,6 +253,8 @@ public class UserBookInfoController {
 		model.addAttribute("bookType", bookType);
 		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 		model.addAttribute("bookCompareList", bookCompareList);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/catalog_grid";
 	}
 	
@@ -285,6 +303,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookType", bookType);
 						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 						model.addAttribute("bookCompareList", bookCompareList);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "user/catalog_list";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -313,6 +333,8 @@ public class UserBookInfoController {
 							model.addAttribute("bookType", bookType);
 							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -340,6 +362,11 @@ public class UserBookInfoController {
 							model.addAttribute("bookType", bookType);
 							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list";
 						}
 					}
@@ -369,6 +396,8 @@ public class UserBookInfoController {
 					model.addAttribute("bookType", bookType);
 					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 					model.addAttribute("bookCompareList", bookCompareList);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "user/catalog_list";
 				}
 			}
@@ -398,6 +427,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookType", bookType);
 			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 			model.addAttribute("bookCompareList", bookCompareList);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "user/catalog_list";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -423,6 +454,8 @@ public class UserBookInfoController {
 		model.addAttribute("bookType", bookType);
 		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 		model.addAttribute("bookCompareList", bookCompareList);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/catalog_list";
 	}
 	
@@ -456,6 +489,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookName", bookName);
 						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 						model.addAttribute("bookCompareList", bookCompareList);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "user/catalog_grid_search";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -469,6 +504,8 @@ public class UserBookInfoController {
 							model.addAttribute("bookName", bookName);
 							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid_search";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -481,6 +518,11 @@ public class UserBookInfoController {
 							model.addAttribute("bookName", bookName);
 							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid_search";
 						}
 					}
@@ -495,6 +537,8 @@ public class UserBookInfoController {
 					model.addAttribute("bookName", bookName);
 					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 					model.addAttribute("bookCompareList", bookCompareList);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "user/catalog_grid_search";
 				}
 			}
@@ -509,6 +553,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookName", bookName);
 			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 			model.addAttribute("bookCompareList", bookCompareList);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "user/catalog_grid_search";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -519,6 +565,8 @@ public class UserBookInfoController {
 		model.addAttribute("bookName", bookName);
 		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 		model.addAttribute("bookCompareList", bookCompareList);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/catalog_grid_search";
 	}
 	
@@ -552,6 +600,8 @@ public class UserBookInfoController {
 						model.addAttribute("bookName", bookName);
 						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 						model.addAttribute("bookCompareList", bookCompareList);
+						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+						model.addAttribute("shoppingCarList", shoppingCarList);
 						return "user/catalog_list_search";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
@@ -565,6 +615,8 @@ public class UserBookInfoController {
 							model.addAttribute("bookName", bookName);
 							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list_search";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
@@ -577,6 +629,11 @@ public class UserBookInfoController {
 							model.addAttribute("bookName", bookName);
 							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
 							model.addAttribute("bookCompareList", bookCompareList);
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
+								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
+							}
+							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list_search";
 						}
 					}
@@ -591,6 +648,8 @@ public class UserBookInfoController {
 					model.addAttribute("bookName", bookName);
 					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 					model.addAttribute("bookCompareList", bookCompareList);
+					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+					model.addAttribute("shoppingCarList", shoppingCarList);
 					return "user/catalog_list_search";
 				}
 			}
@@ -605,6 +664,8 @@ public class UserBookInfoController {
 			model.addAttribute("bookName", bookName);
 			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 			model.addAttribute("bookCompareList", bookCompareList);
+			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+			model.addAttribute("shoppingCarList", shoppingCarList);
 			return "user/catalog_list_search";
 		}
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
@@ -615,6 +676,8 @@ public class UserBookInfoController {
 		model.addAttribute("bookName", bookName);
 		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
 		model.addAttribute("bookCompareList", bookCompareList);
+		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
+		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/catalog_list_search";
 	}
 

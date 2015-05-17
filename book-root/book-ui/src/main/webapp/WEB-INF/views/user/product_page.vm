@@ -123,36 +123,60 @@
       <div class="grid_6">
         <ul id="cart_nav">
           <li>
-            <a class="cart_li" href="#">购物车 <span>￥0.00</span></a>
+            <a class="cart_li" href="#">购物车 </a>
             <ul class="cart_cont">
               <li class="no_border"><p>最近添加的项目</p></li>
-              <li>
-                <a href="product_page.html" class="prev_cart"><div class="cart_vert"><img src="images/cart_img.png" alt="" title="" /></div></a>
-                <div class="cont_cart">
-                  <h4>商品一</h4>
-                  <div class="price">1 x ￥399.00</div>
-                </div>
-                <a title="close" class="close" href="#"></a>
-                <div class="clear"></div>
-              </li>
-              
-              <li>
-                <a href="product_page.html" class="prev_cart"><div class="cart_vert"><img src="images/produkt_slid1.png" alt="" title="" /></div></a>
-                <div class="cont_cart">
-                  <h4>商品二</h4>
-                  <div class="price">1 x ￥399.00</div>
-                </div>
-                <a title="close" class="close" href="#"></a>
-                <div class="clear"></div>
-              </li>
+              #if(${shoppingCarList} != "[]")
+			      #foreach($card in $shoppingCarList)
+	              <li>
+	                <a code="$!card.bookCode"class="prev_cart js_list_book"><div class="cart_vert"><img src="$!imagesPath$!{card.bookInfoBean.bookPicture}" alt="" title="" /></div></a>
+	                <div class="cont_cart">
+	                  <h4>$!{card.bookInfoBean.bookName}</h4>
+	                  <div class="price">$!{card.bookQuantity} x ￥$!{card.bookInfoBean.bookPrice}</div>
+	                </div>
+	                <a title="close" class="close js_close_car" carCode="$!{card.code}"></a>
+	                <div class="clear"></div>
+	              </li>
+              		#end
+			  #else
+					<tr>
+	                    <td colspan="6">
+							<span style="font-size:10pt;margin-left:35%">购物车是空的</span>
+						</td>
+	                </tr>
+				#end
 	      <li class="no_border">
-		<a href="shopping_cart.html" class="view_cart">查看购物车</a>
+		<a href="getAllShoppingCar?userCode=$!userCode" class="view_cart">查看购物车</a>
 		<a href="checkout.html" class="checkout">支付</a>
 	      </li>
             </ul>
           </li>
         </ul>
 
+		<script>
+       	$(function(){
+       		$(".js_close_car").click(function(){
+       			var carCode = $(this).attr("carCode");
+       			var data = {
+						carCode:carCode
+					};
+					$.ajax({
+							type:'get',
+							url:'removeShoppingCar',
+							data:data,
+							dataType:'text',
+							success:function(){
+								alert("删除成功!");
+								history.go(0);
+							},
+							error:function(){
+								alert("删除失败!");
+							}
+						})
+       		})
+       	})
+       </script>
+		
         <nav class="private">
           <ul>
             <li><a href="#">个人中心</a></li>
@@ -376,8 +400,8 @@
 						</div>
 						
 						<div class="cart">
-							<a href="" class="bay">加入购物车</a>
-							<input type="text" name="" class="number" value="1" />
+							<a code="$!{bookInfoBeanDetail.code}" userCode="$!userCode" class="bay js_bay">加入购物车</a>
+							<input type="text" name="bookQuantity" class="number" value="1" />
 							<span>数量:</span>
 						</div>
 						<div class="clear"></div>
@@ -411,6 +435,54 @@
 							},
 							error:function(){
 								alert("添加比较列表失败,请检查登录状态!");
+							}
+						})
+					})
+					$(".js_bay").click(function(){
+						var code = $(this).attr("code");
+						var userCode = $(this).attr("userCode");
+						var bookQuantity = $(this).parent().find("input[name=bookQuantity]").val();
+						var getData={
+								   bookCode:code,
+								   userCode:userCode,
+								   bookQuantity:bookQuantity
+						};
+						$.ajax
+						({
+							type:'get',
+							url:'addShoppingCar',
+							data:getData,
+							dataType:'text',
+							success:function(){
+								alert("添加购物车成功!");
+								history.go(0);
+							},
+							error:function(){
+								alert("添加购物车失败,请检查登录状态!");
+							}
+						})
+					})
+					$(".js_bay_high").click(function(){
+						var code = $(this).attr("code");
+						var userCode = $(this).attr("userCode");
+						var bookQuantity = 1;
+						var getData={
+								   bookCode:code,
+								   userCode:userCode,
+								   bookQuantity:bookQuantity
+						};
+						$.ajax
+						({
+							type:'get',
+							url:'addShoppingCar',
+							data:getData,
+							dataType:'text',
+							success:function(){
+								alert("添加购物车成功!");
+								history.go(0);
+							},
+							error:function(){
+								alert("添加购物车失败,请检查登录状态!");
 							}
 						})
 					})
@@ -641,7 +713,7 @@
                         </div>
         				<a class="like"></a>
                         <a code="$!{highList.code}" bookName="$!{highList.bookName}" userCode="$!userCode" class="obn js_obn"></a>
-                        <a href="" class="bay"></a>
+                        <a code="$!{highList.code}" userCode="$!userCode" class="bay js_bay_high"></a>
                       </div><!-- .cart -->
                     </div><!-- .grid_3 -->
                   </li>

@@ -17,6 +17,17 @@ public class ShoppingCarBean {
 	 * 图书数量
 	 */
 	private int bookQuantity;
+	/**
+	 * 图书信息
+	 */
+	private BookInfoBean bookInfoBean;
+	public BookInfoBean getBookInfoBean() {
+		return bookInfoBean;
+	}
+
+	public void setBookInfoBean(BookInfoBean bookInfoBean) {
+		this.bookInfoBean = bookInfoBean;
+	}
 
 	public ShoppingCarBean(int code, int bookCode, int userCode,
 			int bookQuantity) {

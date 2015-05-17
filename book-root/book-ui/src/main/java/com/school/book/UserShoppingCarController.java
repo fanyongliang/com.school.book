@@ -1,15 +1,5 @@
 package com.school.book;
 
-/*------------------------------------------------------------------------- 
- * 作者：
- * 版本号：v1.0 
- * 本类主要用途描述： 
- * 图书详情
- -------------------------------------------------------------------------*/
-
-
-
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,10 +15,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.school.book.bean.BookCompareBean;
 import com.school.book.bean.BookInfoBean;
-import com.school.book.bean.BookReviewsBean;
 import com.school.book.bean.NavListBean;
 import com.school.book.bean.ShoppingCarBean;
 import com.school.book.bean.UserInfoBean;
@@ -39,31 +28,74 @@ import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
 import com.school.book.bll.ShoppingCarBll;
 
-
+/**
+ * 购物车控制器
+ */
 @Controller
 @RequestMapping("/user")
-public class UserBookDetailedController {
+public class UserShoppingCarController {
 	private NavListBll NavListBll = new NavListBll();
 	private BookInfoBll bookInfoBll = new BookInfoBll();
 	private BookReviewsBll bookReviewsBll = new BookReviewsBll();
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
-	
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
 	private static final Logger logger = LoggerFactory
-			.getLogger(UserBookDetailedController.class);
-
-
+			.getLogger(UserRegisterController.class);
 	/**
-	 *  图书详细信息
-	 * 
+	 * 向购物车中增加
+	 * @param shoppingCarBean
+	 */
+	@RequestMapping("addShoppingCar")
+	@ResponseBody
+	public void addShoppingCar(Integer userCode,Integer bookCode,Integer bookQuantity){
+		System.out.println(userCode);
+		System.out.println(bookCode);
+		System.out.println(bookQuantity);
+		ShoppingCarBean shoppingCarBean = new ShoppingCarBean();
+		shoppingCarBean.setUserCode(userCode);
+		shoppingCarBean.setBookCode(bookCode);
+		shoppingCarBean.setBookQuantity(bookQuantity);
+		shoppingCarBll.insertToCar(shoppingCarBean);
+	}
+	/**
+	 * 将购物车 中的数据删除
+	 * @param carCode
+	 */
+	@RequestMapping("removeShoppingCar")
+	@ResponseBody
+	public void removeShoppingCar(Integer carCode){
+		shoppingCarBll.deleteToCar(carCode);
+	}
+	/**
+	 * 删除购物中的所有数据
+	 * @param userCode
+	 */
+	@RequestMapping("removeAllShoppingCar")
+	@ResponseBody
+	public void removeAllShoppingCar(Integer userCode){
+		shoppingCarBll.deleteAllToCar(userCode);
+	}
+	/**
+	 * 更新购物车中的数据
+	 * @param shoppingCarBean
+	 */
+	@RequestMapping("updateAllShoppingCar")
+	@ResponseBody
+	public void updateAllShoppingCar(ShoppingCarBean shoppingCarBean){
+		shoppingCarBll.updateCarByCode(shoppingCarBean);
+	}
+	/**
+	 * 获得购物车全部信息
+	 * @param userCode
+	 * @param model
 	 * @return
 	 */
-	@RequestMapping("bookdetailed")
-	public String bookDetailed(Integer code,Model model,HttpServletRequest request) 
+	@RequestMapping("getAllShoppingCar")
+	public String bookDetailed(Integer userCode,Model model,HttpServletRequest request) 
 			throws IOException, TimeoutException, InterruptedException,
 			MemcachedException{
 		Cookie[] cookies = request.getCookies();
@@ -83,15 +115,9 @@ public class UserBookDetailedController {
 						model.addAttribute("navList", navList);
 						List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 						model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-						BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-						model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-						List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-						model.addAttribute("bookReviewsList", bookReviewsList);
-						List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
-						model.addAttribute("bookCompareList", bookCompareList);
 						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 						model.addAttribute("shoppingCarList", shoppingCarList);
-						return "user/product_page";
+						return "user/shopping_cart";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -101,15 +127,9 @@ public class UserBookDetailedController {
 							model.addAttribute("navList", navList);
 							List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 							model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-							BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-							model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-							List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-							model.addAttribute("bookReviewsList", bookReviewsList);
-							List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
-							model.addAttribute("bookCompareList", bookCompareList);
 							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 							model.addAttribute("shoppingCarList", shoppingCarList);
-							return "user/product_page";
+							return "user/shopping_cart";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
 							model.addAttribute("userCode", bean.getCode());
@@ -118,37 +138,24 @@ public class UserBookDetailedController {
 							model.addAttribute("navList", navList);
 							List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 							model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-							BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-							model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-							List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-							model.addAttribute("bookReviewsList", bookReviewsList);
-							List<BookCompareBean> bookCompareList = bookCompareBll.selectBookCompareInfoByUserCode(bean.getCode());
-							model.addAttribute("bookCompareList", bookCompareList);
-							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
+							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(userCode);
 							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
 								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
 							}
 							model.addAttribute("shoppingCarList", shoppingCarList);
-							return "user/product_page";
+							return "user/shopping_cart";
 						}
 					}
 				}else{
-					logger.info("找不到名为accountuuid的Cookie!");
 					model.addAttribute("realName", "");
 					model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 					List<NavListBean> navList = NavListBll.selectNavListIsShow();
 					model.addAttribute("navList", navList);
 					List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 					model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-					BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-					model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-					List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-					model.addAttribute("bookReviewsList", bookReviewsList);
-					List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
-					model.addAttribute("bookCompareList", bookCompareList);
 					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 					model.addAttribute("shoppingCarList", shoppingCarList);
-					return "user/product_page";
+					return "user/shopping_cart";
 				}
 			}
 		}else{
@@ -159,30 +166,20 @@ public class UserBookDetailedController {
 			model.addAttribute("navList", navList);
 			List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 			model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-			BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-			model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-			List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-			model.addAttribute("bookReviewsList", bookReviewsList);
-			List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
-			model.addAttribute("bookCompareList", bookCompareList);
 			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 			model.addAttribute("shoppingCarList", shoppingCarList);
-			return "user/product_page";
+			return "user/shopping_cart";
 		}
+		model.addAttribute("realName", "");
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 		List<NavListBean> navList = NavListBll.selectNavListIsShow();
 		model.addAttribute("navList", navList);
 		List<BookInfoBean> bookInfoListHigh = bookInfoBll.selectHighStoreBook();
 		model.addAttribute("bookInfoListHigh", bookInfoListHigh);
-		BookInfoBean bookInfoBeanDetail = bookInfoBll.selectBookInfoByCode(code);
-		model.addAttribute("bookInfoBeanDetail", bookInfoBeanDetail);
-		List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectBookReviewsInfoByBookCode(code);
-		model.addAttribute("bookReviewsList", bookReviewsList);
-		List<BookCompareBean> bookCompareList = new ArrayList<BookCompareBean>();
-		model.addAttribute("bookCompareList", bookCompareList);
 		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 		model.addAttribute("shoppingCarList", shoppingCarList);
-		return "user/product_page";
+		return "user/shopping_cart";
 	}
 
+	
 }
