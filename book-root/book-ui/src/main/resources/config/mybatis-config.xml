@@ -17,6 +17,7 @@
 		<typeAlias alias="UserPasswdBean" type="com.school.book.bean.UserPasswdBean" />
 		<typeAlias alias="AdvPhotoBean" type="com.school.book.bean.AdvPhotoBean" />
 		<typeAlias alias="BookCompareBean" type="com.school.book.bean.BookCompareBean" />
+		<typeAlias alias="UserFeedbackBean" type="com.school.book.bean.UserFeedbackBean" />
 
 	</typeAliases>
 	<environments default="book">
@@ -42,6 +43,6 @@
 		<mapper resource="mapper/UserPasswdMapper.xml" />
 		<mapper resource="mapper/AdvPhotoMapper.xml" />
 		<mapper resource="mapper/BookCompareMapper.xml" />
-
+		<mapper resource="mapper/UserFeedbackMapper.xml" />
 	</mappers>
 </configuration>

@@ -10,7 +10,7 @@ import com.school.book.dao.BookInfoDAO;
  * 图书管理
  */
 public class BookInfoBll {
-	BookInfoDAO bookInfoDAO = new BookInfoDAO();
+	private BookInfoDAO bookInfoDAO = new BookInfoDAO(); 
 	
 	/**
 	 * 新增未上架图书
@@ -18,6 +18,7 @@ public class BookInfoBll {
 	 */
 	public void addOutStoreBook(BookInfoBean bookInfoBean) {
 		bookInfoDAO.addOutStoreBook(bookInfoBean);
+		
 	}
 	/**
 	 * 查询所有未上架的图书

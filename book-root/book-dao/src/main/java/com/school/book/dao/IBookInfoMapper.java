@@ -6,6 +6,16 @@ import com.school.book.bean.BookInfoBean;
 
 public interface IBookInfoMapper {
 	/**
+	 * 更改书本库存
+	 * @param bookCode
+	 */
+	public void updateBookCountAdd(Integer bookCode, Integer num);
+	/**
+	 * 更改书本库存
+	 * @param bookCode
+	 */
+	public void updateBookCountReduce(Integer bookCode, Integer num);
+	/**
 	 * 新增未上架图书
 	 * @param bookInfoBean
 	 */

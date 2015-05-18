@@ -2,7 +2,9 @@ package com.school.book;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.http.Cookie;
@@ -18,11 +20,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.school.book.bean.BookInfoBean;
+import com.school.book.bean.BookOrderBean;
+import com.school.book.bean.BookOrderInfoBean;
 import com.school.book.bean.NavListBean;
 import com.school.book.bean.ShoppingCarBean;
 import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
+import com.school.book.bll.BookOrderBll;
 import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
@@ -40,6 +45,7 @@ public class UserShoppingCarController {
 	private LandAndRegistrationBll landAndRegistrationBll = new LandAndRegistrationBll();
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
+	private BookOrderBll bookOrderBll = new BookOrderBll();
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
@@ -179,7 +185,5 @@ public class UserShoppingCarController {
 		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 		model.addAttribute("shoppingCarList", shoppingCarList);
 		return "user/shopping_cart";
-	}
-
-	
+	}	
 }

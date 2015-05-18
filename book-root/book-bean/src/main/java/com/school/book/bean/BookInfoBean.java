@@ -75,6 +75,19 @@ public class BookInfoBean {
 	 * ISBN号
 	 */
 	private String bookISBN;
+	/**
+	 * 库存
+	 */
+	private int bookCount;
+	
+
+	public int getBookCount() {
+		return bookCount;
+	}
+
+	public void setBookCount(int bookCount) {
+		this.bookCount = bookCount;
+	}
 
 	public BookInfoBean(Integer code, String bookName, double bookPrice,
 			double bookDiscounts, Integer isNew, Integer isHot, Integer isHigh,

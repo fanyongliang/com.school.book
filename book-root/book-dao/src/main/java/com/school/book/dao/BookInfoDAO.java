@@ -19,6 +19,34 @@ public class BookInfoDAO {
 				.getSqlAccountSessionFactory();
 	}
 	/**
+	 * 更改书本库存
+	 * @param bookCode
+	 */
+	public void updateBookCountAdd(Integer bookCode,Integer num){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.updateBookCountAdd(bookCode, num);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 更改书本库存
+	 * @param bookCode
+	 */
+	public void updateBookCountReduce(Integer bookCode,Integer num){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.updateBookCountReduce(bookCode, num);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
 	 * 新增未上架图书
 	 * @param bookInfoBean
 	 */

@@ -4,12 +4,42 @@
 <mapper namespace="com.school.book.dao.IBookOrderMapper">
 	<resultMap id="BookOrderMap" type="BookOrderBean">
 		<id property="code" column="code" />
-		<result property="isPay" column="is_pay" />
+		<result property="orderStatus" column="order_status" />
 		<result property="orderCode" column="order_code" />
 		<result property="orderTime" column="order_time" />
 		<result property="total" column="total" />
 		<result property="userAddress" column="user_address" />
 		<result property="userCode" column="user_code" />
 	</resultMap>
-
+	<insert id="insertBookOrder" parameterType="BookOrderBean">
+	INSERT INTO book_order_tb 
+	(
+	order_code, 
+	order_time, 
+	order_status, 
+	total, 
+	user_address, 
+	user_code
+	)
+	VALUES
+	( 
+	#{orderCode}, 
+	#{orderTime}, 
+	#{orderStatus}, 
+	#{total}, 
+	#{userAddress}, 
+	#{userCode}
+	);
+	</insert>
+	<select id="selectBookOrderByStatus" parameterType="Integer" resultMap="BookOrderMap" resultType="list">
+	select * from book_order_tb 
+	where order_status = #{orderStatus}	
+	</select>
+	<select id="selectUserBookOrderByStatus" parameterType="Integer" resultMap="BookOrderMap" resultType="list">
+	select * from book_order_tb 
+	where order_status = #{orderStatus} and user_code = #{userCode}
+	</select>
+	<update id="updateBookOrderStatus" parameterType="Integer">
+	update book_order_tb set order_status =#{status} where order_code = #{orderCode} 
+	</update>
 </mapper>

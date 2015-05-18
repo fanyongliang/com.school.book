@@ -16,9 +16,9 @@ public class BookOrderBean {
 	 */
 	private Date orderTime;
 	/**
-	 * 是否付款
+	 * 订单状态
 	 */
-	private int isPay;
+	private int status;
 	/**
 	 * 总价
 	 */
@@ -37,13 +37,12 @@ public class BookOrderBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BookOrderBean(int code, int orderCode, Date orderTime, int isPay,
+	public BookOrderBean(int orderCode, Date orderTime, int status,
 			double total, String userAddress, int userCode) {
 		super();
-		this.code = code;
 		this.orderCode = orderCode;
 		this.orderTime = orderTime;
-		this.isPay = isPay;
+		this.status = status;
 		this.total = total;
 		this.userAddress = userAddress;
 		this.userCode = userCode;
@@ -73,12 +72,12 @@ public class BookOrderBean {
 		this.orderTime = orderTime;
 	}
 
-	public int getIsPay() {
-		return isPay;
+	public int getstatus() {
+		return status;
 	}
 
-	public void setIsPay(int isPay) {
-		this.isPay = isPay;
+	public void setstatus(int status) {
+		this.status = status;
 	}
 
 	public double getTotal() {
