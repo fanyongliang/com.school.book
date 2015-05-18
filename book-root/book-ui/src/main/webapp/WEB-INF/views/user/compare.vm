@@ -137,7 +137,6 @@
 				#end
 	      <li class="no_border">
 		<a href="getAllShoppingCar?userCode=$!userCode" class="view_cart">查看购物车</a>
-		<a href="" class="checkout">支付</a>
 	      </li>
             </ul>
           </li>
@@ -150,7 +149,8 @@
        			var data = {
 						carCode:carCode
 					};
-					$.ajax({
+					$.ajax
+					({
 							type:'get',
 							url:'removeShoppingCar',
 							data:data,
@@ -304,8 +304,24 @@
 	      </tr>
 		  <tr class="prise">
 		     <td class="desc">价格</td>
-		     <td class="bg">￥$!bookInfoFirst.bookPrice<div class="price_old">￥$!bookInfoFirst.bookPrice</div></td>
-		     <td>￥$!bookInfoSecond.bookPrice<div class="price_old">￥$!bookInfoSecond.bookPrice</div></td>
+		     <td class="bg">
+				#if($!bookInfoFirst.isDiscounts == 1)
+					#set($new=$!bookInfoFirst.bookPrice * ( 1 - $!bookInfoFirst.bookDiscounts))
+                  <div class="price_new">￥ $new</div>
+                  <div class="price_old">￥ $!bookInfoFirst.bookPrice</div>
+				#else
+					<div class="price_new">￥ $!bookInfoFirst.bookPrice</div>
+				#end
+			 </td>
+		     <td>
+				#if($!bookInfoSecond.isDiscounts == 1)
+					#set($new=$!bookInfoSecond.bookPrice * ( 1 - $!bookInfoSecond.bookDiscounts))
+                  <div class="price_new">￥ $new</div>
+                  <div class="price_old">￥ $!bookInfoSecond.bookPrice</div>
+				#else
+					<div class="price_new">￥ $!bookInfoSecond.bookPrice</div>
+				#end
+			 </td>
 	      </tr>
 	      <tr class="add_cart">
 		     <td class="desc"></td>

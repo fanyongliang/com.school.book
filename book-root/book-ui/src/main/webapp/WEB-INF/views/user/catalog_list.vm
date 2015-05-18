@@ -139,7 +139,6 @@
 				#end
 	      <li class="no_border">
 		<a href="getAllShoppingCar?userCode=$!userCode" class="view_cart">查看购物车</a>
-		<a href="" class="checkout">支付</a>
 	      </li>
             </ul>
           </li>
@@ -153,7 +152,8 @@
        			var data = {
 						carCode:carCode
 					};
-					$.ajax({
+					$.ajax
+					({
 							type:'get',
 							url:'removeShoppingCar',
 							data:data,
@@ -455,8 +455,13 @@
     				<div class="grid_2">
     					<div class="cart">
     						<div class="price">
-    							<div class="price_new">￥$!book.bookPrice</div>
-    							<div class="price_old">￥$!book.bookPrice</div>
+    							#if($!book.isDiscounts == 1)
+            						#set($new=$!book.bookPrice * ( 1 - $!book.bookDiscounts))
+                                  <div class="price_new">￥ $new</div>
+                                  <div class="price_old">￥ $!book.bookPrice</div>
+            					#else
+            						<div class="price_new">￥ $!book.bookPrice</div>
+            					#end
     						</div>
     						<a code="$!{book.code}" userCode="$!userCode" class="bay js_bay">加入购物车</a>
     						<a code="$!{book.code}" bookName="$!{book.bookName}" userCode="$!userCode" class="obn js_obn"></a>

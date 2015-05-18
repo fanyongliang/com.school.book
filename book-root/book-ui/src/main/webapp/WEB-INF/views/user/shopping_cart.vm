@@ -136,7 +136,6 @@
 				#end
 	      <li class="no_border">
 		<a href="getAllShoppingCar?userCode=$!userCode" class="view_cart">查看购物车</a>
-		<a href="" class="checkout">支付</a>
 	      </li>
             </ul>
           </li>
@@ -199,10 +198,27 @@
 		      <tr>
 			     <td class="images"><a code="$!card.bookCode" class="js_list_book"><img src="$!imagesPath$!{card.bookInfoBean.bookPicture}" alt=""></a></td>
 			     <td class="bg name">$!{card.bookInfoBean.bookName}<br /><br />$!{card.bookInfoBean.bookAuthor}<br /><br />$!{card.bookInfoBean.bookPress} $!{card.bookInfoBean.bookPublictionTime}</td>
-			     <td class="bg price">￥$!{card.bookInfoBean.bookPrice}</td>
-			     <td class="qty"><input type="text" name="" value="$!{card.bookQuantity}" placeholder="数量" /></td>
-			     <td class="bg subtotal">￥$!{card.bookInfoBean.bookPrice}</td>
-			     <td class="close"><a title="close" carCode="$!{card.code}" class="close js_close_car"></a></td>
+			   
+				 #if($!{card.bookInfoBean.isDiscounts} == 1)
+					#set($price = $!{card.bookInfoBean.bookPrice} * (1 - $!{card.bookInfoBean.bookDiscounts}))
+                  <td class="bg price">￥ $price</td>
+				#else
+					<td class="bg price">￥ $!card.bookInfoBean.bookPrice</td>
+				#end
+				 
+			     <td class="qty"><input type="text" name="" value="$!{card.bookQuantity}" placeholder="数量" readonly /></td>
+			     
+				 #if($!{card.bookInfoBean.isDiscounts} == 1)
+					#set($total=$!card.bookInfoBean.bookPrice * ( 1 - $!card.bookInfoBean.bookDiscounts) * $!card.bookQuantity)
+                  <input type="hidden" value="$total" class="totalV">
+				  <td class="bg subtotal">￥ $total</td>
+				#else
+					#set($total=$!card.bookInfoBean.bookPrice * $!card.bookQuantity)
+					<input type="hidden" value="$total" class="totalV">
+					<td class="bg subtotal">￥ $total</td>
+				#end
+			     
+				 <td class="close"><a title="close" carCode="$!{card.code}" class="close js_close_car"></a></td>
 		      </tr>
 		      #end
 		  #else
@@ -228,7 +244,8 @@
        			var data = {
 						carCode:carCode
 					};
-					$.ajax({
+					$.ajax
+					({
 							type:'get',
 							url:'removeShoppingCar',
 							data:data,
@@ -250,7 +267,8 @@
     					var data = {
     						userCode:userCode
     					};
-    					$.ajax({
+    					$.ajax
+						({
     							type:'get',
     							url:'removeAllShoppingCar',
     							data:data,
@@ -301,9 +319,18 @@
           <div class="bottom_block total">
 	      <table class="subtotal">
 		     <tr class="grand_total">
-			    <td>总计</td><td class="price">$1, 500.00</td>
+			    <td>总计</td><td class="price js_totalV">$1, 500.00</td>
 		     </tr>
 	      </table>
+		  <script>
+		  	$(function(){
+				var total = 0;
+				for(var i = 0;i < $(".totalV").size();i++){
+					total += parseFloat($(".totalV").eq(i).val());
+				}
+				$(".js_totalV").text("￥ "+total);
+			})
+		  </script>
 	    <button class="checkout">去付款</button>
           </div><!-- .total -->
         </div><!-- .grid_4 -->
@@ -339,8 +366,13 @@
                       <div class="cart">
                         <div class="price">
                         <div class="vert">
-                          <div class="price_new">￥$!highList.bookPrice</div>
-                          <div class="price_old">￥$!highList.bookPrice</div>
+                          #if($!highList.isDiscounts == 1)
+    						#set($new=$!highList.bookPrice * ( 1 - $!highList.bookDiscounts))
+                          <div class="price_new">￥ $new</div>
+                          <div class="price_old">￥ $!highList.bookPrice</div>
+    					#else
+    						<div class="price_new">￥ $!highList.bookPrice</div>
+    					#end
                         </div>
                         </div>
         				<a class="like"></a>
@@ -372,7 +404,8 @@
         						   userCode:userCode,
         						   bookName:bookName
     					};
-						$.ajax({
+						$.ajax
+						({
 							type:'get',
 							url:'bookcompareadd',
 							data:getData,

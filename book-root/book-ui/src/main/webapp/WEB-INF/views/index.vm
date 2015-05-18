@@ -133,7 +133,6 @@
 				#end
 	      <li class="no_border">
 		<a href="getAllShoppingCar?userCode=$!userCode" class="view_cart">查看购物车</a>
-		<a href="checkout.html" class="checkout">支付</a>
 	      </li>
             </ul>
           </li>
@@ -146,7 +145,8 @@
        			var data = {
 						carCode:carCode
 					};
-					$.ajax({
+					$.ajax
+					({
 							type:'get',
 							url:'removeShoppingCar',
 							data:data,
@@ -312,8 +312,13 @@
               <div class="cart">
                 <div class="price">
                 <div class="vert">
-                  <div class="price_new">￥$!newList.bookPrice</div>
-                  <div class="price_old">￥$!newList.bookPrice</div>
+					#if($!newList.isDiscounts == 1)
+						#set($new=$!newList.bookPrice * ( 1 - $!newList.bookDiscounts))
+                      <div class="price_new">￥ $new</div>
+                      <div class="price_old">￥ $!newList.bookPrice</div>
+					#else
+						<div class="price_new">￥ $!newList.bookPrice</div>
+					#end 
                 </div>
                 </div>
 				<a class="like"></a>
@@ -352,8 +357,13 @@
               <div class="cart">
                 <div class="price">
                 <div class="vert">
-                  <div class="price_new">￥$!hotList.bookPrice</div>
-                  <div class="price_old">￥$!hotList.bookPrice</div>
+                  #if($!hotList.isDiscounts == 1)
+						#set($new=$!hotList.bookPrice * ( 1 - $!hotList.bookDiscounts))
+                      <div class="price_new">￥ $new</div>
+                      <div class="price_old">￥ $!hotList.bookPrice</div>
+					#else
+						<div class="price_new">￥ $!hotList.bookPrice</div>
+					#end 
                 </div>
                 </div>
 				<a class="like"></a>
@@ -394,8 +404,13 @@
               <div class="cart">
                 <div class="price">
                 <div class="vert">
-                  <div class="price_new">￥$!highList.bookPrice</div>
-                  <div class="price_old">￥$!highList.bookPrice</div>
+                  #if($!highList.isDiscounts == 1)
+						#set($new=$!highList.bookPrice * ( 1 - $!highList.bookDiscounts))
+                      <div class="price_new">￥ $new</div>
+                      <div class="price_old">￥ $!highList.bookPrice</div>
+					#else
+						<div class="price_new">￥ $!highList.bookPrice</div>
+					#end 
                 </div>
                 </div>
 				<a class="like"></a>
