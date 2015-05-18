@@ -1,5 +1,7 @@
 package com.school.book.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -45,19 +47,47 @@ public class UserInfoDAO {
 			session.close();
 		}
 	}
-//	/**
-//	 * 查询所有的用户
-//	 * @return
-//	 */
-//	public List<UserInfo> selectAllUsers() {
-//		SqlSession session = sqlSessionFactory.openSession();
-//		try {
-//			IUserInfoDAO dao = session.getMapper(IUserInfoDAO.class);
-//			return dao.selectAllUsers();
-//		} finally {
-//			session.close();
-//		}
-//	}
+	/**
+	 * 更新用户信息
+	 * @param userInfoBean
+	 */
+	public void updateUserInfo(UserInfoBean userInfoBean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IUserInfoMapper dao = session.getMapper(IUserInfoMapper.class);
+			dao.updateUserInfo(userInfoBean);			
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 删除用户
+	 * @param userName
+	 */
+	public void deleteUser(String userName){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IUserInfoMapper dao = session.getMapper(IUserInfoMapper.class);
+			dao.deleteByUserName(userName);			
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 查询所有的用户
+	 * @return
+	 */
+	public List<UserInfoBean> selectAllUsers() {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IUserInfoMapper dao = session.getMapper(IUserInfoMapper.class);
+			return dao.selectAllUsers();
+		} finally {
+			session.close();
+		}
+	}
 //	/**
 //	 * 根据关键字查询数据库返回一个List集合
 //	 * @param key

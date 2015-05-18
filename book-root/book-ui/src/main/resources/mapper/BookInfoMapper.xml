@@ -21,7 +21,14 @@
 		<result property="isInstore" column="is_instore" />
 		<result property="bookBatch" column="book_batch" />
 		<result property="bookISBN" column="book_isbn" />
+		<result property="bookCount" column="book_count" />
 	</resultMap>
+	<update id="updateBookCountAdd" parameterType="Integer">
+	update book_info_tb set book_count += #{num} where code =#{bookCode}
+	</update>
+	<update id="updateBookCountReduce" parameterType="Integer">
+	update book_info_tb set book_count -= #{num} where code =#{bookCode}
+	</update>
 	<insert id="addOutStoreBook" parameterType="BookInfoBean">
 		INSERT INTO book_info_tb (book_name,book_price,book_discounts,is_new,is_hot,is_high,is_discounts,input_time,book_author,book_press,book_publiction_time,book_type,book_describe,book_picture,is_instore,book_batch,book_isbn)
 		VALUES (#{bookName},#{bookPrice},#{bookDiscounts},#{isNew},#{isHot},#{isHigh},#{isDiscounts},#{inputTime},#{bookAuthor},#{bookPress},#{bookPublictionTime},#{bookType},#{bookDescribe},#{bookPicture},#{isInstore},#{bookBatch},#{bookISBN})
@@ -56,7 +63,7 @@
 	</delete>
 	<!-- 修改图书信息 -->
 	<update id="updateOutStoreBook" parameterType="BookInfoBean">
-		UPDATE book_info_tb SET book_name = #{bookName},book_price = #{bookPrice},book_discounts = #{bookDiscounts},is_new = #{isNew},is_hot = #{isHot},is_high = #{isHigh},is_discounts = #{isDiscounts},input_time = #{inputTime},book_author = #{bookAuthor},book_press = #{bookPress},book_publiction_time = #{bookPublictionTime},book_type = #{bookType},book_describe = #{bookDescribe},book_picture = #{bookPicture},is_instore = #{isInstore},book_batch = #{bookBatch},book_isbn = #{bookISBN} 
+		UPDATE book_info_tb SET book_name = #{bookName},book_price = #{bookPrice},book_discounts = #{bookDiscounts},is_new = #{isNew},is_hot = #{isHot},is_high = #{isHigh},is_discounts = #{isDiscounts},input_time = #{inputTime},book_author = #{bookAuthor},book_press = #{bookPress},book_publiction_time = #{bookPublictionTime},book_type = #{bookType},book_describe = #{bookDescribe},book_picture = #{bookPicture},is_instore = #{isInstore},book_batch = #{bookBatch},book_isbn = #{bookISBN},book_count = #{bookCount} 
 		WHERE code = #{code}
 	</update>
 	<!-- 图书未上架变为上架 -->

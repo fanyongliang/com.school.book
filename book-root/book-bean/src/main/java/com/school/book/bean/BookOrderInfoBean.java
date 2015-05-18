@@ -27,10 +27,9 @@ public class BookOrderInfoBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BookOrderInfoBean(int code, int orderCode, int bookCode,
+	public BookOrderInfoBean(int orderCode, int bookCode,
 			int quantity, double payPrice) {
 		super();
-		this.code = code;
 		this.orderCode = orderCode;
 		this.bookCode = bookCode;
 		this.quantity = quantity;
