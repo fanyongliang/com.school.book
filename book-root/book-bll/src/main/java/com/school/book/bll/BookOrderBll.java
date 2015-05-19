@@ -21,11 +21,6 @@ public class BookOrderBll {
 	 */
 	public void addBookOrder(BookOrderBean bookOrderBean){	
 		bookOrderDAO.insertBookOrder(bookOrderBean);
-		//图书库存相应减少
-		List<BookOrderInfoBean> bookOrderInfoList = bookOrderInfoDAO.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
-		for(BookOrderInfoBean orderInfoBean :  bookOrderInfoList){
-			bookInfoDAO.updateBookCountReduce(orderInfoBean.getBookCode(), orderInfoBean.getQuantity());
-		}
 		
 	}
 	/**
@@ -67,5 +62,13 @@ public class BookOrderBll {
 	 */
 	public List<BookOrderInfoBean> selectBookOrderInfoByOrderCode(Integer orderCode){
 		return bookOrderInfoDAO.selectBookOrderInfoByOrderCode(orderCode);
+	}
+	/**
+	 * 删除购书订单
+	 * @param orderCode
+	 */
+	public void deleteBookOrder(Integer orderCode){
+		bookOrderDAO.deleteBookOrder(orderCode);
+		bookOrderInfoDAO.deleteBookOrderInfo(orderCode);
 	}
 }

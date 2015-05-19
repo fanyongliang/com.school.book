@@ -19,6 +19,20 @@ public class BookOrderInfoDAO {
 				.getSqlAccountSessionFactory();
 	}
 	/**
+	 * 删除订单详细信息
+	 * @param orderCode
+	 */
+	public void deleteBookOrderInfo(Integer orderCode){
+		SqlSession session = sqlSessionFactory.openSession();
+		try{
+			iBookOrderInfoMapper = session.getMapper(IBookOrderInfoMapper.class);
+			iBookOrderInfoMapper.deleteBookOrderInfo(orderCode);
+			session.commit();
+		}finally{
+			session.close();
+		}
+	}
+	/**
 	 * 插入数据
 	 * @param bookOrderInfoBean
 	 */

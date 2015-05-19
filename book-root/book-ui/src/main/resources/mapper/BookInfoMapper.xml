@@ -24,10 +24,10 @@
 		<result property="bookCount" column="book_count" />
 	</resultMap>
 	<update id="updateBookCountAdd" parameterType="Integer">
-	update book_info_tb set book_count = book_count + #{num} where code =#{bookCode}
+	update book_info_tb set book_count = book_count + #{1} where code =#{0}
 	</update>
 	<update id="updateBookCountReduce" parameterType="Integer">
-	update book_info_tb set book_count = book_count - #{num} where code =#{bookCode}
+	update book_info_tb set book_count = book_count - #{1} where code =#{0}
 	</update>
 	<insert id="addOutStoreBook" parameterType="BookInfoBean">
 		INSERT INTO book_info_tb (book_name,book_price,book_discounts,is_new,is_hot,is_high,is_discounts,input_time,book_author,book_press,book_publiction_time,book_type,book_describe,book_picture,is_instore,book_batch,book_isbn)

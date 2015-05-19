@@ -10,6 +10,9 @@
 		<result property="userAddress" column="user_address" />
 		<result property="userCode" column="user_code" />
 	</resultMap>
+	<delete id="deleteBookOrder" parameterType="Integer">
+	delete from book_info_tb where order_code=#{orderCode}
+	</delete>
 	<insert id="insertBookOrder" parameterType="BookOrderBean" useGeneratedKeys="true" keyProperty="orderCode">
 	INSERT INTO book_order_tb 
 	(

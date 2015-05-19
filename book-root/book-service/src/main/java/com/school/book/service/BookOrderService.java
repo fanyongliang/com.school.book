@@ -1,18 +1,13 @@
 package com.school.book.service;
 
-import java.util.Date;
 import java.util.List;
 
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.BookOrderBean;
 import com.school.book.bean.BookOrderInfoBean;
 import com.school.book.bean.ShoppingCarBean;
-import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.BookOrderBll;
-import com.school.book.bll.BookReviewsBll;
-import com.school.book.bll.LandAndRegistrationBll;
-import com.school.book.bll.NavListBll;
 import com.school.book.bll.ShoppingCarBll;
 
 /**
@@ -46,6 +41,11 @@ public class BookOrderService
 			BookOrderInfoBean bookOrderInfoBean = new BookOrderInfoBean(bookOrderBean.getOrderCode(),bean.getBookCode(),
 					bean.getBookQuantity(), payPrice);
 			bookOrderBll.insertBookOrderInfo(bookOrderInfoBean);
+		}
+		//图书库存相应减少
+		List<BookOrderInfoBean> bookOrderInfoList = bookOrderBll.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
+		for(BookOrderInfoBean orderInfoBean :  bookOrderInfoList){
+			bookInfoBll.updateBookCountReduce(orderInfoBean.getBookCode(), orderInfoBean.getQuantity());
 		}
 		//清空购物车
 		shoppingCarBll.deleteAllToCar(bookOrderBean.getUserCode());			

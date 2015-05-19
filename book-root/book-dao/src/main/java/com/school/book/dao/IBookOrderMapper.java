@@ -4,7 +4,12 @@ import java.util.List;
 
 import com.school.book.bean.BookOrderBean;
 
-public interface IBookOrderMapper {
+public interface IBookOrderMapper { 
+	/**
+	 * 删除购书订单
+	 * @param orderCode
+	 */
+	public void deleteBookOrder(Integer orderCode);
 	/**
 	 * 插入BookOrderBean
 	 * @param bookOrderBean

@@ -6,6 +6,11 @@ import com.school.book.bean.BookOrderInfoBean;
 
 public interface IBookOrderInfoMapper {
 	/**
+	 * 删除订单详细信息
+	 * @param orderCode
+	 */
+	public void deleteBookOrderInfo(Integer orderCode);
+	/**
 	 * 插入数据
 	 * @param bookOrderInfoBean
 	 */

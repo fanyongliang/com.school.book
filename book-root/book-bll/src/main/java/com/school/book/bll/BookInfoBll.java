@@ -11,6 +11,14 @@ import com.school.book.dao.BookInfoDAO;
  */
 public class BookInfoBll {
 	private BookInfoDAO bookInfoDAO = new BookInfoDAO(); 
+	/**
+	 * 减少书本库存
+	 * @param bookCode
+	 * @param num
+	 */
+	public void updateBookCountReduce(Integer bookCode , Integer num){
+		bookInfoDAO.updateBookCountReduce(bookCode, num);
+	}
 	
 	/**
 	 * 新增未上架图书
