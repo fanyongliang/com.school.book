@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <title>购物车</title>
+  <title>我的历史订单</title>
 
   <link rel="shortcut icon" href="${rc.contextPath}/resources/favicon.png">
   <link href="${rc.contextPath}/resources/css/style.css" media="screen" rel="stylesheet" type="text/css">
@@ -184,59 +184,44 @@
 
   <div class="clear"></div>
 
-  <section id="main" class="entire_width">
+  <section id="" class="">
     <div class="container_12">
        <div class="grid_12">
-       <h1 class="page_title">购物车</h1>
-
        <table class="cart_product">
 	      <tr>
-		     <th class="images"></th>
-		     <th class="bg name">名称</th>
+			<th class="bg">订单号</th>
+			<th class="images">封面</th>
+		     <th class="bg">名称</th>
 		     <th class="bg price">单价</th>
 		     <th class="qty">数量</th>
-		     <th class="bg subtotal">总价</th>
+		     <th class="bg">下单时间</th>
+			 <th class="bg">订单状态</th>
 		     <th class="close"> </th>
 	      </tr>
-	      #if(${shoppingCarList} != "[]")
-		      #foreach($card in $shoppingCarList)
+	      #if(${bookOrderInfoList} != "[]")
+		      #foreach($orderInfo in $bookOrderInfoList)
 		      <tr>
-			     <td class="images"><a code="$!card.bookCode" class="js_list_book"><img src="$!imagesPath$!{card.bookInfoBean.bookPicture}" alt=""></a></td>
-			     <td class="bg name">$!{card.bookInfoBean.bookName}<br /><br />$!{card.bookInfoBean.bookAuthor}<br /><br />$!{card.bookInfoBean.bookPress} $!{card.bookInfoBean.bookPublictionTime}</td>
-			   
-				 #if($!{card.bookInfoBean.isDiscounts} == 1)
-					#set($price = $!{card.bookInfoBean.bookPrice} * (1 - $!{card.bookInfoBean.bookDiscounts}))
-                  <td class="bg price">￥ $price</td>
-				#else
-					<td class="bg price">￥ $!card.bookInfoBean.bookPrice</td>
-				#end
-				 
-			     <td class="qty"><input type="text" name="" value="$!{card.bookQuantity}" placeholder="数量" readonly /></td>
-			     
-				 #if($!{card.bookInfoBean.isDiscounts} == 1)
-					#set($total=$!card.bookInfoBean.bookPrice * ( 1 - $!card.bookInfoBean.bookDiscounts) * $!card.bookQuantity)
-                  <input type="hidden" value="$total" class="totalV">
-				  <td class="bg subtotal">￥ $total</td>
-				#else
-					#set($total=$!card.bookInfoBean.bookPrice * $!card.bookQuantity)
-					<input type="hidden" value="$total" class="totalV">
-					<td class="bg subtotal">￥ $total</td>
-				#end
-			     
-				 <td class="close"><a title="close" carCode="$!{card.code}" class="close js_close_car"></a></td>
+				<td class="bg">$orderInfo.orderCode</td>
+				<td class="images"><a code="$!orderInfo.bookCode" class="js_list_book"><img src="$!imagesPath$!{orderInfo.bookInfoBean.bookPicture}" alt=""></a></td>
+			    <td class="bg name">$!orderInfo.bookInfoBean.bookName<br /><br />$!{orderInfo.bookInfoBean.bookAuthor}<br /><br />$!{orderInfo.bookInfoBean.bookPress} $!{card.bookInfoBean.bookPublictionTime}</td>
+				<td class="bg price">￥ $!orderInfo.payPrice</td>
+			    <td class="">$!orderInfo.quantity</td>
+				<td class="bg">$!orderInfo.orderTime</td>
+				<td class="bg">$!orderInfo.orderStatus</td>
+				<td class="close"><a title="close" carCode="$!{card.code}" class="close js_close_car"></a></td>
 		      </tr>
-		      #end
+			  #end
 		  #else
 				<tr>
-                    <td colspan="6">
-						<span style="font-size:10pt;">购物车是空的</span>
+                    <td colspan="8">
+						<span style="font-size:10pt;">我的历史订单是空的</span>
 					</td>
                 </tr>
 			#end
 	      <tr>
 		     <td colspan="7" class="cart_but">
-			    <button class="continue"><span>icon</span>继续购物</button>
-			    <button userCode="$!userCode" class="update js_remove_car"><span>icon</span>清空购物车</button>
+			    <button class="continue"><span>icon</span>返回上一页</button>
+			    <button userCode="$!userCode" class="update js_remove_car"><span>icon</span>清空我的历史订单</button>
 		     </td>
 	      </tr>
        </table>
@@ -264,163 +249,15 @@
 							}
 						})
        		})
-     		$(".js_remove_car").click(function(){
-					if($(this).parent().parent().parent().parent().find("tr").eq(1).text().trim()== "购物车是空的"){
-    						alert("购物车是空的");
-					}else{
-    					var userCode = $(this).attr("userCode");
-    					var data = {
-    						userCode:userCode
-    					};
-    					$.ajax
-						({
-    							type:'get',
-    							url:'removeAllShoppingCar',
-    							data:data,
-    							dataType:'text',
-    							success:function(){
-    								alert("购物车列表清空成功!");
-    								history.go(0);
-    							},
-    							error:function(){
-    								alert("购物车列表清空失败!");
-    							}
-    					})
-					}
-				})
+     		
 				$(".continue").click(function(){
 					history.go(-1);
 				})
        	})
        </script>
-       
-
-       <div id="content_bottom">
-        <div class="grid_8">
-          <div class="bottom_block discount">
-            <h3>收货地址</h3>
-            <p>请填写您详细收货地址，</p>
-	    <form>
-	      <p>
-		     <input type="text" id="car_address" value="" style="width:550px"/>
-	      </p>
-	    </form>
-          </div><!-- .estimate -->
-        </div><!-- .grid_4 -->
-
-
-        <div class="grid_4" style="float:right">
-          <div class="bottom_block total">
-	      <table class="subtotal">
-		     <tr class="grand_total">
-			    <td>总计</td><td class="price js_totalV">$1, 500.00</td>
-				<input type="hidden" id="totalV_input" value="">
-		     </tr>
-	      </table>
-		  <script>
-		  	$(function(){
-				var total = 0;
-				for(var i = 0;i < $(".totalV").size();i++){
-					total += parseFloat($(".totalV").eq(i).val());
-				}
-				$(".js_totalV").text("￥ "+total);
-				$("#totalV_input").val(total);
-			})
-		  </script>
-	    <button class="checkout">去付款</button>
-          </div><!-- .total -->
-        </div><!-- .grid_4 -->
-		
-		<script>
-			$(function(){
-				$(".checkout").click(function(){
-					var realName = "$!{realName}";
-					var userCode = $!{userCode};
-					var total = $("#totalV_input").val();
-					var userAddress = $("#car_address").val();
-					if(realName == ""){
-						window.location.href="login";
-					}else{
-    					if(total == 0){
-							alert("购物车是空的！");
-						}else if(userAddress == ""){
-							alert("请填写您的收货地址！");
-						}else{
-							var dataOrder = {
-								userCode:userCode,
-								total:total,
-								userAddress:userAddress
-							};
-							$.ajax
-    						({
-    							type:'get',
-    							url:'addOrder',
-    							data:dataOrder,
-    							dataType:'text',
-    							success:function(){
-    								alert("结算成功!");
-    								history.go(0);
-    							},
-    							error:function(){
-    								alert("结算失败!");
-    							}
-    						})
-						}
-					}
-				})
-			})
-		</script>
-
-        <div class="clear"></div>
-      </div><!-- #content_bottom -->
-      <div class="clear"></div>
 
       <div class="clear"></div>
 
-      <div class="carousel" id="following">
-        <div class="c_header">
-          <div class="grid_10">
-            <h5>根据您的选择, 您可能会对这些感兴趣:</h5>
-          </div><!-- .grid_10 -->
-
-          <div class="grid_2">
-            <a id="next_c1" class="next arows" href="#"><span>Next</span></a>
-            <a id="prev_c1" class="prev arows" href="#"><span>Prev</span></a>
-           </div><!-- .grid_2 -->
-        </div><!-- .c_header -->
-
-        <div class="list_carousel">
-
-        <ul id="list_product" class="list_product">
-         	#foreach($highList in $bookInfoListHigh)
-                  <li class="">
-                    <div class="grid_3 product">
-                      <div class="prev">
-                        <a code="$!highList.code" class="js_list_book"><img src="$!imagesPath$!{highList.bookPicture}" alt="" title="$!highList.bookName" /></a>
-                      </div><!-- .prev -->
-                      <h3 class="title">$!highList.bookName</h3>
-                      <div class="cart">
-                        <div class="price">
-                        <div class="vert">
-                          #if($!highList.isDiscounts == 1)
-    						#set($new=$!highList.bookPrice * ( 1 - $!highList.bookDiscounts))
-                          <div class="price_new">￥ $new</div>
-                          <div class="price_old">￥ $!highList.bookPrice</div>
-    					#else
-    						<div class="price_new">￥ $!highList.bookPrice</div>
-    					#end
-                        </div>
-                        </div>
-        				<a class="like"></a>
-                        <a code="$!{highList.code}" bookName="$!{highList.bookName}" userCode="$!userCode" class="obn js_obn"></a>
-                        <a code="$!{highList.code}" userCode="$!userCode" class="bay js_bay"></a>
-                      </div><!-- .cart -->
-                    </div><!-- .grid_3 -->
-                  </li>
-        		  #end
-        </ul><!-- #list_product -->
-        </div><!-- .list_carousel -->
-      </div><!-- .carousel -->
 	<script>
 	  	$(function(){
 			$(".js_list_book").click(function(){
@@ -429,58 +266,6 @@
 			})
 		})
 	  </script>
-	  <script>
-				$(function(){
-					$(".js_obn").click(function(){
-						var code = $(this).attr("code");
-						var userCode = $(this).attr("userCode");
-						var bookName = $(this).attr("bookName");
-						var getData={
-        						   bookCode:code,
-        						   userCode:userCode,
-        						   bookName:bookName
-    					};
-						$.ajax
-						({
-							type:'get',
-							url:'bookcompareadd',
-							data:getData,
-							dataType:'text',
-							success:function(){
-								alert("添加比较列表成功!");
-								history.go(0);
-							},
-							error:function(){
-								alert("添加比较列表失败,请检查登录状态!");
-							}
-						})
-					})
-					$(".js_bay").click(function(){
-						var code = $(this).attr("code");
-						var userCode = $(this).attr("userCode");
-						var bookQuantity = 1;
-						var getData={
-								   bookCode:code,
-								   userCode:userCode,
-								   bookQuantity:bookQuantity
-						};
-						$.ajax
-						({
-							type:'get',
-							url:'addShoppingCar',
-							data:getData,
-							dataType:'text',
-							success:function(){
-								alert("添加购物车成功!");
-								history.go(0);
-							},
-							error:function(){
-								alert("添加购物车失败,请检查登录状态!");
-							}
-						})
-					})
-				})
-			</script>
     </div><!-- .container_12 -->
   </section><!-- #main -->
 

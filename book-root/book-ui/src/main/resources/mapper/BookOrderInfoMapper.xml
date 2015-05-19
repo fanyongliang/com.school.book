@@ -19,10 +19,10 @@
 	)
 	VALUES
 	( 
-	#{order_code}, 
-	#{book_code}, 
+	#{orderCode}, 
+	#{bookCode}, 
 	#{quantity}, 
-	#{pay_price}
+	#{payPrice}
 	);	
 	</insert>
 	<select id="selectBookOrderInfoByOrderCode" parameterType="Integer" resultMap="BookOrderInfoMap" resultType="list">

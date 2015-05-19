@@ -33,6 +33,18 @@ public class BookOrderDAO {
 		}
 	}
 	/**
+	 * 查找订单按用户
+	 */
+	public List<BookOrderBean> selectBookOrderByUserCode(Integer userCode){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookOrderMapper = session.getMapper(IBookOrderMapper.class);
+			return iBookOrderMapper.selectBookOrderByUserCode(userCode);
+		} finally {
+			session.close();
+		}
+	}
+	/**
 	 * 查找订单按状态
 	 */
 	public List<BookOrderBean> selectBookOrderByStatus(Integer status){

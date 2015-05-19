@@ -11,6 +11,10 @@ public interface IBookOrderMapper {
 	 */
 	public void insertBookOrder(BookOrderBean bookOrderBean);
 	/**
+	 * 查找订单按用户
+	 */
+	public List<BookOrderBean> selectBookOrderByUserCode(Integer userCode);
+	/**
 	 * 查找订单按照状态
 	 */
 	public List<BookOrderBean> selectBookOrderByStatus(Integer status);

@@ -1,12 +1,13 @@
 package com.school.book;
 
+import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.BookOrderBean;
@@ -19,6 +20,7 @@ import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
 import com.school.book.bll.ShoppingCarBll;
+import com.school.book.service.BookOrderService;
 /**
  * 用户订单处理控制器
  */
@@ -32,23 +34,14 @@ public class UserBookOrderController {
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	private BookOrderBll bookOrderBll = new BookOrderBll();
+	private BookOrderService bookOrderService = new BookOrderService();
 	
-	
-	@RequestMapping("addOrder")
-	public void payForCar(Integer userCode, Double total, String userAddress){
-		Integer orderCode =Integer.parseInt(UUID.randomUUID().toString());
-		BookOrderBean bookOrderBean = new BookOrderBean(orderCode, new Date(), 1,total, userAddress,userCode);
-		bookOrderBll.addBookOrder(bookOrderBean);
-		List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(userCode);
-		for(ShoppingCarBean bean:shoppingCarList){
-			BookInfoBean bookInfoBean = bookInfoBll.selectBookInfoByCode(bean.getBookCode());
-			double payPrice = bookInfoBean.getBookPrice()*bookInfoBean.getBookDiscounts();
-			BookOrderInfoBean bookOrderInfoBean = new BookOrderInfoBean(orderCode,bean.getBookCode(),
-					bean.getBookQuantity(), payPrice);
-			bookOrderBll.insertBookOrderInfo(bookOrderInfoBean);
-		}
-		//清空购物车
-		shoppingCarBll.deleteAllToCar(userCode);			
+	@RequestMapping("/addOrder")
+	@ResponseBody
+	public void payForCar(Integer userCode, double total, String userAddress) throws UnsupportedEncodingException{
+		userAddress = new String(userAddress.getBytes("iso8859-1"),"utf-8");
+		BookOrderBean bookOrderBean = new BookOrderBean(new Date(), 1,total, userAddress,userCode);
+		bookOrderService.addToCar(bookOrderBean);		
 	}
 	/**
 	 * 根据订单的状态查找订单类表

@@ -1,5 +1,7 @@
 package com.school.book.bean;
 
+import java.util.Date;
+
 public class BookOrderInfoBean {
 	/**
 	 * 编号
@@ -21,6 +23,42 @@ public class BookOrderInfoBean {
 	 * 单价
 	 */
 	private double payPrice;
+	/**
+	 * 图书信息
+	 */
+	private BookInfoBean bookInfoBean;
+	/**
+	 * 下单时间
+	 */
+	private Date orderTime;
+	/**
+	 * 订单状态
+	 */
+	private int orderStatus;
+	
+	public Date getOrderTime() {
+		return orderTime;
+	}
+
+	public void setOrderTime(Date orderTime) {
+		this.orderTime = orderTime;
+	}
+
+	public int getOrderStatus() {
+		return orderStatus;
+	}
+
+	public void setOrderStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+	public BookInfoBean getBookInfoBean() {
+		return bookInfoBean;
+	}
+
+	public void setBookInfoBean(BookInfoBean bookInfoBean) {
+		this.bookInfoBean = bookInfoBean;
+	}
 
 	public BookOrderInfoBean() {
 		super();

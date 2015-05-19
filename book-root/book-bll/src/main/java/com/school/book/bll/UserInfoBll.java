@@ -9,7 +9,7 @@ import com.school.book.dao.UserInfoDAO;
  * 用户信息业务逻辑
  */
 public class UserInfoBll {
-	private UserInfoDAO userInfoDAO;
+	private UserInfoDAO userInfoDAO = new UserInfoDAO();;
 	/**
 	 * 修改个人信息
 	 * @param userInfoBean

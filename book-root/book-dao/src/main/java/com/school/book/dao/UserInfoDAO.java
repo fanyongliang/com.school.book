@@ -12,7 +12,6 @@ import com.school.book.bean.UserInfoBean;
  */
 public class UserInfoDAO {
 	private SqlSessionFactory sqlSessionFactory;
-	private IUserPasswdMapper iUserPasswdMapper ;
 	public UserInfoDAO() {
 		sqlSessionFactory = MyBatisConnectionFactory
 				.getSqlAccountSessionFactory();

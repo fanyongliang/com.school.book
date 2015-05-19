@@ -20,7 +20,7 @@ INSERT INTO user_feedback_tb
 	#{feedback}
 	);
 	</insert>
-	<select id="selectFeedback"  resultMap="UserFeedbackBean" resultType="list">
+	<select id="selectFeedback"  resultMap="UserFeedbackMap" resultType="list">
 	select * from user_feedback_tb 
 	</select>
 </mapper>

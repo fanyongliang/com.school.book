@@ -2,7 +2,10 @@ package com.school.book;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Date;
+import java.util.Iterator;
 import java.util.List;
+import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.http.Cookie;
@@ -17,6 +20,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.BookOrderBean;
 import com.school.book.bean.BookOrderInfoBean;
 import com.school.book.bean.NavListBean;
@@ -29,14 +33,13 @@ import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
 import com.school.book.bll.ShoppingCarBll;
-import com.school.book.bll.UserInfoBll;
 
 /**
- * 用户个人信息管理
+ * 历史订单控制器
  */
 @Controller
-@RequestMapping("user")
-public class UserInfoController {
+@RequestMapping("/user")
+public class UserBookHistoryOrderController {
 	private NavListBll NavListBll = new NavListBll();
 	private BookInfoBll bookInfoBll = new BookInfoBll();
 	private BookReviewsBll bookReviewsBll = new BookReviewsBll();
@@ -44,26 +47,19 @@ public class UserInfoController {
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	private BookOrderBll bookOrderBll = new BookOrderBll();
-	private UserInfoBll userInfoBll = new UserInfoBll();
-	
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
 	private static final Logger logger = LoggerFactory
 			.getLogger(UserRegisterController.class);
 	/**
-	 * 更新个人信息
+	 * 获得历史订单全部信息
+	 * @param userCode
+	 * @param model
+	 * @return
 	 */
-	@RequestMapping("updateInfo")
-	@ResponseBody
-	public void updateInfo(UserInfoBean userInfoBean) {
-		userInfoBll.updateUserInfo(userInfoBean);
-	}
-	/**
-	 * 查看个人信息
-	 */
-	@RequestMapping("selcetUserInfo")
-	public String selcetUserInfo(String userName,Model model,HttpServletRequest request) 
+	@RequestMapping("historyOrder")
+	public String historyOrder(Integer userCode,Model model,HttpServletRequest request) 
 			throws IOException, TimeoutException, InterruptedException,
 			MemcachedException{
 		Cookie[] cookies = request.getCookies();
@@ -81,9 +77,11 @@ public class UserInfoController {
 						model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 						List<NavListBean> navList = NavListBll.selectNavListIsShow();
 						model.addAttribute("navList", navList);
+						List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+						model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 						List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 						model.addAttribute("shoppingCarList", shoppingCarList);
-						return "user/user_info";
+						return "user/history_cart";
 					} else {
 						UserInfoBean bean = (UserInfoBean) landAndRegistrationBll.getMem(value);
 						if(bean.getRealName() == null){
@@ -91,24 +89,36 @@ public class UserInfoController {
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
 							model.addAttribute("navList", navList);
+							List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+							model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 							List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 							model.addAttribute("shoppingCarList", shoppingCarList);
-							return "user/user_info";
+							return "user/history_cart";
 						}else{
 							model.addAttribute("realName", bean.getRealName());
-							model.addAttribute("userName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
 							model.addAttribute("navList", navList);
+							List<BookOrderBean> bookOrderList = bookOrderBll.selectBookOrderByUserCode(bean.getCode());
+							List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+							for (BookOrderBean bookOrderBean : bookOrderList) {
+								List<BookOrderInfoBean> bookOrderInfoListnew = bookOrderBll.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
+								for (BookOrderInfoBean bookOrderInfoBean : bookOrderInfoListnew){
+									bookOrderInfoBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(bookOrderInfoBean.getBookCode()));
+									bookOrderInfoBean.setOrderTime(bookOrderBean.getOrderTime());
+									bookOrderInfoBean.setOrderStatus(bookOrderBean.getOrderStatus());
+									bookOrderInfoList.add(bookOrderInfoBean);
+								}
+							}
+							model.addAttribute("bookOrderList", bookOrderList);
+							model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 							List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bean.getCode());
 							for (ShoppingCarBean shoppingCarBean : shoppingCarList) {
 								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
 							}
 							model.addAttribute("shoppingCarList", shoppingCarList);
-							UserInfoBean userInfoBean = userInfoBll.selectUserByName(userName);
-							model.addAttribute("userInfoBean", userInfoBean);
-							return "user/user_info";
+							return "user/history_cart";
 						}
 					}
 				}else{
@@ -116,9 +126,11 @@ public class UserInfoController {
 					model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 					List<NavListBean> navList = NavListBll.selectNavListIsShow();
 					model.addAttribute("navList", navList);
+					List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+					model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 					List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 					model.addAttribute("shoppingCarList", shoppingCarList);
-					return "user/user_info";
+					return "user/history_cart";
 				}
 			}
 		}else{
@@ -127,16 +139,20 @@ public class UserInfoController {
 			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 			List<NavListBean> navList = NavListBll.selectNavListIsShow();
 			model.addAttribute("navList", navList);
+			List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+			model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 			List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 			model.addAttribute("shoppingCarList", shoppingCarList);
-			return "user/user_info";
+			return "user/history_cart";
 		}
 		model.addAttribute("realName", "");
 		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 		List<NavListBean> navList = NavListBll.selectNavListIsShow();
 		model.addAttribute("navList", navList);
+		List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
+		model.addAttribute("bookOrderInfoList", bookOrderInfoList);
 		List<ShoppingCarBean> shoppingCarList = new ArrayList<ShoppingCarBean>();
 		model.addAttribute("shoppingCarList", shoppingCarList);
-		return "user/user_info";
+		return "user/history_cart";
 	}	
 }

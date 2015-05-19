@@ -12,30 +12,27 @@ import com.school.book.dao.BookOrderInfoDAO;
  * 图书订单业务逻辑类
  */
 public class BookOrderBll {
-	private BookOrderDAO bookOrderDAO;
-	private BookOrderInfoDAO bookOrderInfoDAO;
-	private BookInfoDAO bookInfoDAO;
+	private BookOrderDAO bookOrderDAO = new BookOrderDAO();
+	private BookOrderInfoDAO bookOrderInfoDAO = new BookOrderInfoDAO();
+	private BookInfoDAO bookInfoDAO = new BookInfoDAO();
 	/**
 	 * 增加订单
 	 * @param bookOrderBean
 	 */
-	public String addBookOrder(BookOrderBean bookOrderBean){
-		String message = null;
-		//检查库存是否充足
-		List<BookOrderInfoBean> orderInfoList = bookOrderInfoDAO.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
-		for(BookOrderInfoBean orderInfoBean :  orderInfoList){
-			Integer count = bookInfoDAO.selectBookInfoByCode(orderInfoBean.getBookCode()).getBookCount();
-			if(orderInfoBean.getQuantity()>count){
-				return message="库存不足。";
-			}
-		}		
+	public void addBookOrder(BookOrderBean bookOrderBean){	
+		bookOrderDAO.insertBookOrder(bookOrderBean);
 		//图书库存相应减少
 		List<BookOrderInfoBean> bookOrderInfoList = bookOrderInfoDAO.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
 		for(BookOrderInfoBean orderInfoBean :  bookOrderInfoList){
 			bookInfoDAO.updateBookCountReduce(orderInfoBean.getBookCode(), orderInfoBean.getQuantity());
 		}
-		bookOrderDAO.insertBookOrder(bookOrderBean);
-		return message;
+		
+	}
+	/**
+	 * 查找订单按照用户
+	 */
+	public List<BookOrderBean> selectBookOrderByUserCode(Integer usercode){
+		return bookOrderDAO.selectBookOrderByUserCode(usercode);
 	}
 	/**
 	 * 查找订单按照状态

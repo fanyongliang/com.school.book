@@ -4,10 +4,6 @@ import java.util.Date;
 
 public class BookOrderBean {
 	/**
-	 * 编号
-	 */
-	private int code;
-	/**
 	 * 订单编号
 	 */
 	private int orderCode;
@@ -18,7 +14,7 @@ public class BookOrderBean {
 	/**
 	 * 订单状态
 	 */
-	private int status;
+	private int orderStatus;
 	/**
 	 * 总价
 	 */
@@ -37,23 +33,14 @@ public class BookOrderBean {
 		// TODO Auto-generated constructor stub
 	}
 
-	public BookOrderBean(int orderCode, Date orderTime, int status,
+	public BookOrderBean(Date orderTime, int orderStatus,
 			double total, String userAddress, int userCode) {
 		super();
-		this.orderCode = orderCode;
 		this.orderTime = orderTime;
-		this.status = status;
+		this.orderStatus = orderStatus;
 		this.total = total;
 		this.userAddress = userAddress;
 		this.userCode = userCode;
-	}
-
-	public int getCode() {
-		return code;
-	}
-
-	public void setCode(int code) {
-		this.code = code;
 	}
 
 	public int getOrderCode() {
@@ -72,12 +59,14 @@ public class BookOrderBean {
 		this.orderTime = orderTime;
 	}
 
-	public int getstatus() {
-		return status;
+
+
+	public int getOrderStatus() {
+		return orderStatus;
 	}
 
-	public void setstatus(int status) {
-		this.status = status;
+	public void setOrderStatus(int orderStatus) {
+		this.orderStatus = orderStatus;
 	}
 
 	public double getTotal() {

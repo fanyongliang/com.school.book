@@ -132,7 +132,12 @@
 	                <a code="$!card.bookCode"class="prev_cart js_list_book"><div class="cart_vert"><img src="$!imagesPath$!{card.bookInfoBean.bookPicture}" alt="" title="" /></div></a>
 	                <div class="cont_cart">
 	                  <h4>$!{card.bookInfoBean.bookName}</h4>
-	                  <div class="price">$!{card.bookQuantity} x ￥$!{card.bookInfoBean.bookPrice}</div>
+	                  #if($!card.bookInfoBean.isDiscounts == 1)
+    						#set($new=$!card.bookInfoBean.bookPrice * ( 1 - $!card.bookInfoBean.bookDiscounts))
+                          <div class="price">$!{card.bookQuantity} x ￥ $new</div>
+    					#else
+    						<div class="price">$!{card.bookQuantity} x ￥ $!card.bookInfoBean.bookPrice</div>
+    					#end
 	                </div>
 	                <a title="close" class="close js_close_car" carCode="$!{card.code}"></a>
 	                <div class="clear"></div>
@@ -181,7 +186,7 @@
           <ul>
             <li><a href="#">个人中心</a></li>
 		<li class="separator">|</li>
-            <li><a href="#">我的收藏夹</a></li>
+            <li><a href="historyOrder?userCode=$!userCode">我的历史订单</a></li>
           </ul>
         </nav><!-- .private -->
       </div><!-- .grid_6 -->
@@ -794,7 +799,7 @@
           <nav class="f_menu">
             <ul>
               <li><a href="#">个人中心</a></li>
-              <li><a href="#">历史订单</a></li>
+              <li><a href="#">我的历史订单</a></li>
               <li><a href="#">购物车</a></li>
               <li><a href="#">最新消息</a></li>
             </ul>
