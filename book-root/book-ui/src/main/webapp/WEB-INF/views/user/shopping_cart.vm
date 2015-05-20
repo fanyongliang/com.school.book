@@ -148,7 +148,7 @@
 
         <nav class="private">
           <ul>
-            <li><a href="#">个人中心</a></li>
+            <li><a href="selcetUserInfo?userName=$!realName">个人中心</a></li>
 		<li class="separator">|</li>
             <li><a href="historyOrder?userCode=$!userCode">我的历史订单</a></li>
           </ul>
@@ -299,11 +299,16 @@
         <div class="grid_8">
           <div class="bottom_block discount">
             <h3>收货地址</h3>
-            <p>请填写您详细收货地址，</p>
+            <p>请选择您详细收货地址，</p>
 	    <form>
-	      <p>
-		     <input type="text" id="car_address" value="" style="width:550px"/>
-	      </p>
+  		<p>
+		     <select class="selectBox" id="car_address" style="display: none;width:550px">
+			    <option>请选择收货地址</option>
+				#foreach($list in $userAddressList)
+			    <option value="$list.userAddress">$list.userAddress</option>
+				#end
+		     </select>
+	    </p>
 	    </form>
           </div><!-- .estimate -->
         </div><!-- .grid_4 -->
@@ -502,10 +507,7 @@
           <h3>购物指南</h3>
           <nav class="f_menu">
             <ul>
-              <li><a href="#">关于我们</a></li>
-              <li><a href="#">隐私政策</a></li>
-              <li><a href="#">用户条款</a></li>
-              <li><a href="#">安全支付</a></li>
+              <li><a href="feedbackshow">关于我们</a></li>
             </ul>
           </nav><!-- .private -->
         </div><!-- .grid_3 -->
@@ -514,10 +516,7 @@
           <h3>商家服务</h3>
           <nav class="f_menu">
             <ul>
-              <li><a href="contact_us.html">联系我们</a></li>
-              <li><a href="#">优惠政策</a></li>
-              <li><a href="#">反馈问题</a></li>
-              <li><a href="#">官方BLOG</a></li>
+              <li><a href="feedbackshow">用户反馈</a></li>
             </ul>
           </nav><!-- .private -->
         </div><!-- .grid_3 -->
@@ -526,10 +525,9 @@
           <h3>我的翻书</h3>
           <nav class="f_menu">
             <ul>
-              <li><a href="#">个人中心</a></li>
-              <li><a href="#">我的历史订单</a></li>
-              <li><a href="#">购物车</a></li>
-              <li><a href="#">最新消息</a></li>
+              <li><a href="selcetUserInfo?userName=$!realName">个人中心</a></li>
+              <li><a href="historyOrder?userCode=$!userCode">我的历史订单</a></li>
+              <li><a href="getAllShoppingCar?userCode=$!userCode">购物车</a></li>
             </ul>
           </nav><!-- .private -->
         </div><!-- .grid_3 -->

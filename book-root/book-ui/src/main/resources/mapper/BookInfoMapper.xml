@@ -30,8 +30,8 @@
 	update book_info_tb set book_count = book_count - #{num} where code =#{bookCode}
 	</update>
 	<insert id="addOutStoreBook" parameterType="BookInfoBean">
-		INSERT INTO book_info_tb (book_name,book_price,book_discounts,is_new,is_hot,is_high,is_discounts,input_time,book_author,book_press,book_publiction_time,book_type,book_describe,book_picture,is_instore,book_batch,book_isbn)
-		VALUES (#{bookName},#{bookPrice},#{bookDiscounts},#{isNew},#{isHot},#{isHigh},#{isDiscounts},#{inputTime},#{bookAuthor},#{bookPress},#{bookPublictionTime},#{bookType},#{bookDescribe},#{bookPicture},#{isInstore},#{bookBatch},#{bookISBN})
+		INSERT INTO book_info_tb (book_name,book_price,book_discounts,is_new,is_hot,is_high,is_discounts,input_time,book_author,book_press,book_publiction_time,book_type,book_describe,book_picture,is_instore,book_batch,book_isbn,book_count)
+		VALUES (#{bookName},#{bookPrice},#{bookDiscounts},#{isNew},#{isHot},#{isHigh},#{isDiscounts},#{inputTime},#{bookAuthor},#{bookPress},#{bookPublictionTime},#{bookType},#{bookDescribe},#{bookPicture},#{isInstore},#{bookBatch},#{bookISBN},#{bookCount})
 	</insert>
 	<!-- 查询所有未上架的图书 -->
 	<select id="selectOutStoreBook" resultMap="BookInfoMap">

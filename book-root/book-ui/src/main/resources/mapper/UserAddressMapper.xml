@@ -23,7 +23,7 @@
 	update user_address_tb set user_address=#{userAddress} where user_info_code=#{userInfoCode}
 	</update>
 	<delete id="deleteAddredd" parameterType="Integer">
-	delete user_address_tb where user_info_code=#{code}
+	delete from user_address_tb where code=#{code}
 	</delete>
 	<select id="selectAddress" parameterType="Integer" resultMap="UserAddressMap" resultType="list">
 	select * from user_address_tb where user_info_code=#{userCode}

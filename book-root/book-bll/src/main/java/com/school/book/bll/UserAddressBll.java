@@ -8,7 +8,7 @@ import com.school.book.dao.UserAddressDAO;
  *用户收货地址管理业务类
  */
 public class UserAddressBll {
-	private UserAddressDAO userAddressDAO;
+	private UserAddressDAO userAddressDAO = new UserAddressDAO();
 	/**
 	 * 增加用户收货地址
 	 * @param userAddressBean

@@ -394,7 +394,7 @@
     													<a title="上架" data-original-title="" class="btn btn-xs btn-success js_in_book" code = "$!book.code"  data-title="上架" data-toggle="modal">
                                                             <i class="fa fa-gears"> 上架</i>
                                                         </a>
-                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                             <i class="fa fa-edit"> 编辑</i>
                                                         </a>
     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -490,6 +490,12 @@
                                 <input type="text" id="bookBatchadd" name="bookBatch" class="form-control">
                             </div>
                         </div>
+						<div class="form-group">
+                            <label for="input-id-1" class="col-sm-2 control-label">库存:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="bookCountadd" name="bookCount" class="form-control">
+                            </div>
+                        </div>
                         <div class="form-group">
                             <label for="input-id-1" class="col-sm-2 control-label">封面:</label>
                             <div class="col-sm-10">
@@ -531,6 +537,8 @@
 					alert("ISBN不能为空！");
 				}else if($("#bookBatchadd").val() == ""){
 					alert("批次号不能为空！");
+				}else if($("#bookCountadd").val() == ""){
+					alert("库存不能为空！");
 				}else if($("#bookPicadd").val() == ""){
 					alert("请上传图书封面！");
 				}else{
@@ -551,6 +559,7 @@
 				var bookDescribe = $(this).attr("bookDescribe");
 				var bookISBN = $(this).attr("bookISBN");
 				var bookBatch = $(this).attr("bookBatch");
+				var bookCount = $(this).attr("bookCount");
 				$("#code").val(code);
 				$("#bookName").val(bookName);
 				$("#bookPrice").val(bookPrice);
@@ -561,6 +570,7 @@
 				$("#bookDescribe").val(bookDescribe);
 				$("#bookISBN").val(bookISBN);
 				$("#bookBatch").val(bookBatch);
+				$("#bookCount").val(bookCount);
 			})
 			$(".js_delete_book").click(function(){
 				var code = $(this).attr("code");
@@ -643,6 +653,12 @@
                             <label for="input-id-1" class="col-sm-2 control-label">批次号:</label>
                             <div class="col-sm-10">
                                 <input type="text" id="bookBatch" name="bookBatch" class="form-control">
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label for="input-id-1" class="col-sm-2 control-label">库存:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="bookCount" name="bookCount" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

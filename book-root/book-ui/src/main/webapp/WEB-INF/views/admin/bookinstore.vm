@@ -736,6 +736,7 @@
 				var bookDescribe = $(this).attr("bookDescribe");
 				var bookISBN = $(this).attr("bookISBN");
 				var bookBatch = $(this).attr("bookBatch");
+				var bookCount = $(this).attr("bookCount");
 				$("#code").val(code);
 				$("#bookName").val(bookName);
 				$("#bookPrice").val(bookPrice);
@@ -746,6 +747,7 @@
 				$("#bookDescribe").val(bookDescribe);
 				$("#bookISBN").val(bookISBN);
 				$("#bookBatch").val(bookBatch);
+				$("#bookCount").val(bookCount);
 			})
 			$(".js_delete_book").click(function(){
 				var code = $(this).attr("code");
@@ -840,6 +842,12 @@
                             <label for="input-id-1" class="col-sm-2 control-label">批次号:</label>
                             <div class="col-sm-10">
                                 <input type="text" id="bookBatch" name="bookBatch" class="form-control">
+                            </div>
+                        </div>
+						<div class="form-group">
+                            <label for="input-id-1" class="col-sm-2 control-label">库存:</label>
+                            <div class="col-sm-10">
+                                <input type="text" id="bookCount" name="bookCount" class="form-control">
                             </div>
                         </div>
                         <div class="form-group">

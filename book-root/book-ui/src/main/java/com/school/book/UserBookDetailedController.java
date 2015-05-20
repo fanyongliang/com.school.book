@@ -111,7 +111,7 @@ public class UserBookDetailedController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/product_page";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();

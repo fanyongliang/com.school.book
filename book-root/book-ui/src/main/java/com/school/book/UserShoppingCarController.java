@@ -2,9 +2,7 @@ package com.school.book;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 import java.util.concurrent.TimeoutException;
 
 import javax.servlet.http.Cookie;
@@ -20,10 +18,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.school.book.bean.BookInfoBean;
-import com.school.book.bean.BookOrderBean;
-import com.school.book.bean.BookOrderInfoBean;
 import com.school.book.bean.NavListBean;
 import com.school.book.bean.ShoppingCarBean;
+import com.school.book.bean.UserAddressBean;
 import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookCompareBll;
 import com.school.book.bll.BookInfoBll;
@@ -32,6 +29,7 @@ import com.school.book.bll.BookReviewsBll;
 import com.school.book.bll.LandAndRegistrationBll;
 import com.school.book.bll.NavListBll;
 import com.school.book.bll.ShoppingCarBll;
+import com.school.book.bll.UserAddressBll;
 
 /**
  * 购物车控制器
@@ -46,6 +44,7 @@ public class UserShoppingCarController {
 	private BookCompareBll bookCompareBll = new BookCompareBll();
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	private BookOrderBll bookOrderBll = new BookOrderBll();
+	private UserAddressBll UserAddressBll = new UserAddressBll();
 	/**
 	 * 创建logger控制台日志显示对象
 	 */
@@ -137,7 +136,7 @@ public class UserShoppingCarController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/shopping_cart";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
@@ -149,6 +148,8 @@ public class UserShoppingCarController {
 								shoppingCarBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(shoppingCarBean.getBookCode()));
 							}
 							model.addAttribute("shoppingCarList", shoppingCarList);
+							List<UserAddressBean> userAddressList =  UserAddressBll.getAddress(bean.getCode());
+							model.addAttribute("userAddressList", userAddressList);
 							return "user/shopping_cart";
 						}
 					}

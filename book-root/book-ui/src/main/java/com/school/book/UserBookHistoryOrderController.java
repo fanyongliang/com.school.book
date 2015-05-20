@@ -95,7 +95,7 @@ public class UserBookHistoryOrderController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/history_cart";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();

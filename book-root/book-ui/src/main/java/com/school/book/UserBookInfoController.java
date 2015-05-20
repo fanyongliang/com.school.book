@@ -136,7 +136,7 @@ public class UserBookInfoController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
@@ -337,7 +337,7 @@ public class UserBookInfoController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
@@ -508,7 +508,7 @@ public class UserBookInfoController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_grid_search";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
@@ -619,7 +619,7 @@ public class UserBookInfoController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "user/catalog_list_search";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();

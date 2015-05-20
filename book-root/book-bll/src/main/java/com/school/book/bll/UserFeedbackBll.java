@@ -6,7 +6,7 @@ import com.school.book.bean.UserFeedbackBean;
 import com.school.book.dao.UserFeedbackDAO;
 
 public class UserFeedbackBll {
-	private UserFeedbackDAO userFeedbackDAO;
+	private UserFeedbackDAO userFeedbackDAO = new UserFeedbackDAO();;
 	/**
 	 * 增加用户反馈
 	 * @param userFeedbackBean

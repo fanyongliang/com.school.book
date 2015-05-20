@@ -107,7 +107,7 @@ public class BookController {
 							model.addAttribute("shoppingCarList", shoppingCarList);
 							return "index";
 						}else{
-							model.addAttribute("realName", bean.getRealName());
+							model.addAttribute("realName", bean.getUserName());
 							model.addAttribute("userCode", bean.getCode());
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
 							model.addAttribute("navList", navList);

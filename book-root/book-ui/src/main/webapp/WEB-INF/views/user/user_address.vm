@@ -7,7 +7,7 @@
   <meta name="description" content="">
   <meta name="keywords" content="">
 
-  <title>用户个人信息</title>
+  <title>用户收货地址</title>
 
   <link rel="shortcut icon" href="${rc.contextPath}/resources/favicon.png">
   <link href="${rc.contextPath}/resources/css/style.css" media="screen" rel="stylesheet" type="text/css">
@@ -185,8 +185,8 @@
 		     
 		     <nav class="left_menu">
 			    <ul>
-				   <li><a href="selcetUserInfo?userName=$!userName">个人信息<span style="margin-left:50%">>>></span></a></li>
-				   <li><a href="selectAddress?userCode=$!userCode">收货地址<span style="margin-left:50%"></span></a></li>
+				   <li><a href="selcetUserInfo?userName=$!userName">个人信息<span style="margin-left:50%"></span></a></li>
+				   <li><a href="selectAddress?userCode=$!userCode">收货地址<span style="margin-left:50%">>>></span></a></li>
 			    </ul>
 		     </nav><!-- .left_menu -->
 	      </aside>
@@ -194,29 +194,33 @@
        </div><!-- .sidebar -->
 
        <div id="content" class="grid_9">
-	      <h1 class="page_title">个人信息</h1>
-
-		  <div class="" style="padding-top:30px">
-			<form class="registed" id="userForm" method="post" style="padding-left:20%;border:0px">
+	      <h1 class="page_title">收货地址</h1>
+		  
+		  <div class="tab1 tab_body">
+						<br>
+						
+						<table>
+							<tbody>
+								#foreach($addr in $addressList)
+								<tr>
+									<th class="bg">$velocityCount</th><th>$addr.userAddress</th><th code="$addr.code" class="bg js_close_addr">x</th>
+								</tr>
+								#end
+						</tbody>
+					</table>
+					</div>
+		  
+		  <div class="">
+			<form class="registed" id="userForm" method="post" style="border:0px">
 				<br />			
-				<input type="hidden" name="userName" id="nulluserName" value="$!userName"/>
+				<input type="hidden" name="userInfoCode" id="nulluserInfoCode" value="$!userCode"/>
 				<div class="password">
-					<strong>真实姓名:</strong><sup class="surely">*</sup><br/>
-					<input type="text" name="realName" class="" id="userRegRealName" value="$!userInfoBean.realName" />
+					<strong>新增收货地址:</strong><sup class="surely">*</sup><br/>
+					<input type="text" name="userAddress" style="width:100%" id="userAddress" value="" />
+					
 				</div><!-- .password -->
-
-				<div class="password">
-					<strong>身份证号码:</strong><sup class="surely">*</sup><br/>
-					<input type="text" name="idCard" class="" id="userRegIdCard" value="$!userInfoBean.idCard" />
-				</div><!-- .password -->
-
-				<div class="password">
-					<strong>密保邮箱:</strong><sup class="surely">*</sup><br/>
-					<input type="email" name="userEmail" class="" id="userRegEmail" value="$!userInfoBean.userEmail" />
-				</div><!-- .password -->
-				
-				<div class="submit" style="padding-left:15%">	
-					<input type="submit" id="userButton" value="确定修改" />
+				<div class="submit">	
+					<input type="submit" id="userButton" value="添加" />
 				</div><!-- .submit -->
 				<br />	
 			</form><!-- .registed -->
@@ -225,22 +229,38 @@
 		  <script>
 		  	$(function(){
 				$("#userButton").click(function(){
-					if($("#nulluserName").val() == ""){
-						alert("请先登录！");
-					}else{
     					$.ajax
     					({
     						type:'post',
-    						url:'updateInfo',
+    						url:'addAddress',
     						data:$("#userForm").serialize(),
     						success:function(){
-    							alert("修改成功!");
+    							alert("添加收货地址成功!");
+    							history.go(0);
     						},
     						error:function(){
-    							alert("修改失败!");
+    							alert("修改收货地址失败!");
     						}
     					})
+				})
+				$(".js_close_addr").click(function(){
+					var code = $(this).attr("code");
+					var data = {
+						code:code
 					}
+					$.ajax
+    					({
+    						type:'get',
+    						url:'deleteAddress',
+    						data:data,
+    						success:function(){
+    							alert("删除成功!");
+    							history.go(0);
+    						},
+    						error:function(){
+    							alert("删除失败!");
+    						}
+    					})
 				})
 			})
 		  </script>
