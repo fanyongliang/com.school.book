@@ -35,7 +35,11 @@ public class UserBookOrderController {
 	private ShoppingCarBll shoppingCarBll = new ShoppingCarBll();
 	private BookOrderBll bookOrderBll = new BookOrderBll();
 	private BookOrderService bookOrderService = new BookOrderService();
-	
+	@RequestMapping("/deleteOrder")
+	@ResponseBody
+	public void deleteOrder(Integer orderCode){
+		bookOrderBll.deleteBookOrder(orderCode);	
+	}
 	@RequestMapping("/addOrder")
 	@ResponseBody
 	public void payForCar(Integer userCode, double total, String userAddress) throws UnsupportedEncodingException{

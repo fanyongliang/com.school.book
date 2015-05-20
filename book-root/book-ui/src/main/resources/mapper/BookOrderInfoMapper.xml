@@ -9,6 +9,9 @@
 		<result property="payPrice" column="pay_price" />
 		<result property="quantity" column="quantity" />
 	</resultMap>
+	<delete id="deleteBookOrderInfo" parameterType="Integer">
+	delete from book_order_info_tb where order_code=#{orderCode}
+	</delete>
 	<insert id="insertBookOrderInfo" parameterType="BookOrderInfoBean">
 	INSERT INTO book_order_info_tb 
 	( 
