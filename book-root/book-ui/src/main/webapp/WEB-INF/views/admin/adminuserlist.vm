@@ -2,15 +2,13 @@
 <html class="app">
 <head>
     <meta charset="utf-8" />
-    <title>广告管理</title>
+    <title>用户信息</title>
 	<link rel="shortcut icon" href="/book-ui/resources/favicon.png">
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/font.css" type="text/css" cache="false" />
     <link rel="stylesheet" href="${rc.contextPath}/resources/css/app.v2.css" type="text/css" />
     <link href="${rc.contextPath}/resources/css/datatables.css" rel="stylesheet" />
     <script src="${rc.contextPath}/resources/js/app.v2.js"></script>
     <script src="${rc.contextPath}/resources/js/jquery-1.7.2.min.js" ></script>
-	<script src="${rc.contextPath}/resources/js/jquery-ui.dialog.min.js"></script>
-	<script src="${rc.contextPath}/resources/js/jquery.lightbox.js" type="text/javascript"></script>
     <style>
         .fa-20x { font-family: 'Microsoft YaHei'; font-size: 20px; line-height: 2em; }
 
@@ -24,47 +22,8 @@
 
         .flleft { float: left; padding-left: 10%; }
     </style>
-	<script>
-		function validFile(){
-        	if($("#file").val() != null && $("#file").val() != ""){
-        		$("#address").val($("#file").val());
-        	}else{
-        		$("#address").val("");
-        	}
-			if($("#fileadd").val() != null && $("#fileadd").val() != ""){
-				$("#addressadd").val($("#fileadd").val());
-        	}else{
-				$("#addressadd").val("");
-        	}
-        	
-        }
-	</script>
-	<script type="text/javascript" charset="utf-8">
-		$(document).ready(function(){	    
-			$(".lightbox").lightbox({
-			    fitToScreen: true,
-			    imageClickClose: false
-		    });
-			
-			$(".lightbox-2").lightbox({
-			    fitToScreen: true,
-			    scaleImages: true,
-			    xScale: 1.2,
-			    yScale: 1.2,
-			    displayDownloadLink: true
-		    });
-		});
-
-	</script>
-	<style type="text/css">
-        input{ vertical-align:middle; margin:0; padding:0}
-        .file-box{ position:relative;width:340px}
-        .txtnew{ height:22px; border:1px solid #cdcdcd; width:180px;}
-        .btnnew{ background-color:#FFF; border:1px solid #CDCDCD;height:24px; width:70px;}
-        .filenew{ position:absolute; top:0; right:80px; height:24px;opacity: 0;width:260px }
-    </style>
 </head>
-<body onload="setInterval('validFile()',50)">
+<body>
     <section class="vbox">
         <!--公用头部  begin-->
         <header class="bg-dark dk header navbar navbar-fixed-top-xs">
@@ -174,7 +133,7 @@
                                                 <span>主页</span>
                                             </a>
                                         </li>
-                                        <li  class="active">
+                                        <li>
                                             <a href="">
                                                 <i class="fa fa-desktop icon">
                                                     <b class="bg-success"></b>
@@ -186,7 +145,7 @@
                                                 <span>模块管理</span>
                                             </a>
                                             <ul class="nav lt">
-                                                <li  class="active">
+                                                <li>
                                                     <a href="">
                                                         <i class="fa fa-angle-down text"></i>
                                                         <i class="fa fa-angle-up text-active"></i>
@@ -194,8 +153,8 @@
                                                     </a>
                                                     <ul class="nav bg">
                                                         <li><a href="navigation"><i class="fa fa-angle-right"></i><span>导航菜单</span> </a></li>
-														<li class="active"><a href="advert"><i class="fa fa-angle-right"></i><span>滚动广告</span> </a></li>
-                                                    </ul>
+														<li><a href="advert"><i class="fa fa-angle-right"></i><span>滚动广告</span> </a></li>
+													</ul>
                                                 </li>
                                             </ul>
                                         </li>
@@ -280,7 +239,7 @@
                                                 </li>
                                             </ul>
                                         </li>
-										<li>
+										<li class="active">
                                             <a href="">
                                                 <i class="fa fa-desktop icon">
                                                     <b class="bg-success"></b>
@@ -292,14 +251,14 @@
                                                 <span>安全管理</span>
                                             </a>
                                             <ul class="nav lt">
-                                                <li>
+                                                <li class="active">
                                                     <a href="">
                                                         <i class="fa fa-angle-down text"></i>
                                                         <i class="fa fa-angle-up text-active"></i>
                                                         <span>帐号中心</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href="getAllUser"><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
+                                                        <li class="active"><a href="getAllUser"><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
 														<li><a href="updatePassword"><i class="fa fa-angle-right"></i><span>修改密码</span> </a></li>
                                                     </ul>
                                                 </li>
@@ -351,7 +310,6 @@
                             <div class="row m-t-sm">
                                 <div class="col-sm-3 m-b-xs">
                                     <div class="col-sm-2 m-b-xs">
-										<a class="btn btn-sm btn-default js_add_new" href="#addnew" data-toggle="modal">增加广告</a>
 						            </div>
                                 </div>
                             </div>
@@ -361,34 +319,35 @@
                             <div class="m-b-md">
                             </div>
                             <!--数据表格  begin -->
-							<section class="panel panel-default">
+                            <section class="panel panel-default">
                                 <div class="table-responsive">
                                     <table class="table table-striped m-b-none">
                                         <thead>
                                             <tr>
                                                 <th>编号</th>
-                                                <th>广告描述</th>
-                                                <th>图片</th>
-                                                <th>操作</th>
+                                                <th>用户名</th>
+												<th>真实姓名</th>
+												<th>身份证号</th>
+												<th>密保邮箱</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-											#foreach($advPhoto in $advPhotoList)
-                                             <tr>
-                                                <td>$velocityCount</td>
-                                                <td>$!advPhoto.photoDescribe</td>
-												 <td>
-													<a class="lightbox" href="$!imagesPath$!{advPhoto.fileName}" title=""><font color="red">查看附件</font></a>
-												</td>
-												<td>
-                                                    <a title="编辑广告" data-original-title="" class="btn btn-xs btn-info js_edit_adv" code = "$!advPhoto.code" photoDescribe="$!advPhoto.photoDescribe" href="#editnew" data-title="编辑广告" data-toggle="modal">
-                                                        <i class="fa fa-edit"> 编辑</i>
-                                                    </a>
-													<a title="删除广告" data-original-title="" class="btn btn-xs btn-danger js_delete_adv" code = "$!advPhoto.code" data-title="删除广告" data-toggle="modal">
-                                                        <i class="fa fa-minus-square"> 删除</i>
-                                                    </a>
-                                                </td>
-                                            </tr>
+											#if(${userInfoList} != "[]")
+    											#foreach($userInfo in $userInfoList)
+                                                 <tr>
+                                                    <td>$velocityCount</td>
+    												<td>$!userInfo.userName</td>
+    												<td>$!userInfo.realName</td>
+													<td>$!userInfo.idCard</td>
+													<td>$!userInfo.userEmail</td>
+                                                </tr>
+    											#end
+											#else
+												<tr>
+                                                    <td colspan="9">
+														<span style="font-size:20pt;color:red;margin-left:30%">暂无用户信息！</span>
+													</td>
+                                                </tr>
 											#end
                                         </tbody>
                                     </table>
@@ -402,258 +361,7 @@
             </section>
         </section>
     </section>
-	    <!--弹层信息-->
-    <div class="modal fade" id="addnew">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">添加广告</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="addAdvertForm" method="post" enctype="multipart/form-data">
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">广告描述:</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="photoDescribeadd" name="photoDescribe" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">上传图片:</label>
-                            <div class="col-sm-10">
-                                <div class="file-box">
-									<input type='text' name='address' id='addressadd' class='txtnew' />  
-									<input type='button' class='btnnew' value='浏览...' />
-									<input type="file" name="file" class="filenew" id="fileadd" size="28" accept="image/*" runat="server"/>
-								</div>
-								<span>附件不要大于<span style="color:red;">10M</span></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                    <button type="button" id="addAdvertButton" class="btn btn-info">添加</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-	<script>
-		$(function(){
-			$("#addAdvertButton").click(function(){
-				if($("#photoDescribeadd").val() == ""){
-					alert("广告描述不能为空！");
-				}else if($("#addressadd").val() == ""){
-					alert("请上传新图片！");
-				}else{
-					$("#addAdvertForm").attr("action","advertadd");
-					$("#addAdvertForm").submit();
-				}
-			})
-			$(".js_edit_adv").click(function(){
-				var code = $(this).attr("code");
-				var photoDescribe = $(this).attr("photoDescribe");
-				$("#codeedit").val(code);
-				$("#photoDescribe").val(photoDescribe);
-			})
-			$(".js_delete_adv").click(function(){
-				var code = $(this).attr("code");
-				if(confirm("删除后不可恢复!是否确定删除?")){
-					window.location.href="advertdelete?code="+code;
-				}
-			})
-		})
-	</script>
 	
-    <div class="modal fade" id="editnew">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                    <h4 class="modal-title">编辑广告</h4>
-                </div>
-                <div class="modal-body">
-                    <form class="form-horizontal" id="editAdvertForm" method="post" enctype="multipart/form-data">
-						<input type="hidden" id="codeedit" name="code">
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">广告描述:</label>
-                            <div class="col-sm-10">
-                                <input type="text" id="photoDescribe" name="photoDescribe" class="form-control">
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="input-id-1" class="col-sm-2 control-label">上传图片:</label>
-                            <div class="col-sm-10">
-                                <div class="file-box">
-									<input type='text' name='address' id='address' class='txtnew' />  
-									<input type='button' class='btnnew' value='浏览...' />
-									<input type="file" name="file" class="filenew" id="file" size="28" accept="image/*" runat="server"/>
-								</div>
-								<span>附件不要大于<span style="color:red;">10M</span></span>
-                            </div>
-                        </div>
-                    </form>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">返回</button>
-                    <button type="button" id="editAdvertButton" class="btn btn-info">修改</button>
-                </div>
-            </div>
-            <!-- /.modal-content -->
-        </div>
-        <!-- /.modal-dialog -->
-    </div>
-    <!--弹层信息-->
-	
-	<script>
-		$(function(){
-			$("#editAdvertButton").click(function(){
-				if($("#photoDescribe").val() == ""){
-					alert("广告描述不能为空！");
-				}else if($("#address").val() == ""){
-					alert("请上传新图片！");
-				}else{
-					$("#editAdvertForm").attr("action","advertupdate");
-					$("#editAdvertForm").submit();
-				}
-			})
-		})
-	</script>
-
-    <!-- lightbox -->
-	<style rel="stylesheet" type="text/css">
-		#lightbox{
-	position: absolute;
-	left: 0;
-	width: 100%;
-	z-index: 100;
-	text-align: center;
-	line-height: 0;
-	}
-
-#lightbox a img{ border: none; }
-
-#outerImageContainer{
-	position: relative;
-	background-color: #fff;
-	width: 250px;
-	height: 250px;
-	margin: 0 auto;
-	}
-
-#imageContainer{
-	padding: 10px;
-	}
-
-#loading{
-	position: absolute;
-	top: 40%;
-	left: 0%;
-	height: 25%;
-	width: 100%;
-	text-align: center;
-	line-height: 0;
-	}
-#hoverNav{
-	position: absolute;
-	top: 0;
-	left: 0;
-	height: 100%;
-	width: 100%;
-	z-index: 10;
-	}
-#imageContainer>#hoverNav{ left: 0;}
-#hoverNav a{ outline: none;}
-
-#prevLink, #nextLink{
-	width: 49%;
-	height: 100%;
-	background: transparent url(${rc.contextPath}/resources/images/blank.gif) no-repeat; /* Trick IE into showing hover */
-	display: block;
-	}
-#prevLink { left: 0; float: left;}
-#nextLink { right: 0; float: right;}
-#prevLink:hover, #prevLink:visited:hover { background: url(${rc.contextPath}/resources/images/prev.gif) left 50% no-repeat; }
-#nextLink:hover, #nextLink:visited:hover { background: url(${rc.contextPath}/resources/images/next.gif) right 50% no-repeat; }
-
-/*** START : next / previous text links ***/
-#nextLinkText, #prevLinkText{
-color: #FF9834;
-font-weight:bold;
-text-decoration: none;
-}
-#nextLinkText{
-padding-left: 20px;
-}
-#prevLinkText{
-padding-right: 20px;
-}
-/*** END : next / previous text links ***/
-/*** START : added padding when navbar is on top ***/
-
-.ontop #imageData {
-    padding-top: 5px;
-}
-
-/*** END : added padding when navbar is on top ***/
-
-#imageDataContainer{
-	font: 10px Verdana, Helvetica, sans-serif;
-	background-color: #fff;
-	margin: 0 auto;
-	line-height: 1.4em;
-	}
-
-#imageData{
-	padding:0 10px;
-	}
-#imageData #imageDetails{ width: 70%; float: left; text-align: left; }	
-#imageData #caption{ font-weight: bold;	}
-#imageData #numberDisplay{ display: block; clear: left; padding-bottom: 1.0em;	}
-#imageData #numberDisplay a { color: black; padding-left: 5px; padding-right: 5px;}
-#imageData #bottomNavClose{ width: 66px; float: right;  padding-bottom: 0.7em;	}
-#imageData #helpDisplay {clear: left; float: left; display: block; }
-
-#overlay{
-	position: absolute;
-	top: 0;
-	left: 0;
-	z-index: 90;
-	width: 100%;
-	height: 500px;
-	background-color: #000;
-	filter:alpha(opacity=60);
-	-moz-opacity: 0.6;
-	opacity: 0.6 !important;
-	display: none;
-	}
-	
-
-.clearfix:after {
-	content: "."; 
-	display: block; 
-	height: 0; 
-	clear: both; 
-	visibility: hidden;
-	}
-
-* html>body .clearfix {
-	display: inline-block; 
-	width: 100%;
-	}
-
-* html .clearfix {
-	/* Hides from IE-mac \*/
-	height: 1%;
-	/* End hide from IE-mac */
-	}	
-
-#lightboxIframe {
-	display: none;
-}	
-
-	</style>
+    <!-- Bootstrap -->
 </body>
 </html>

@@ -66,10 +66,22 @@ public class BookInfoBll {
 		bookInfoDAO.instorebookdisc(bookInfoBean);
 	}
 	/**
+	 *  取消折扣
+	 */
+	public void deleteinstorebookdisc(Integer code) {
+		bookInfoDAO.deleteinstorebookdisc(code);
+	}
+	/**
 	 *  新书推荐
 	 */
 	public void instorebooknew(Integer code) {
 		bookInfoDAO.instorebooknew(code);
+	}
+	/**
+	 *  取消新书推荐
+	 */
+	public void deleteinstorebooknew(Integer code) {
+		bookInfoDAO.deleteinstorebooknew(code);
 	}
 	/**
 	 *  热门推荐
@@ -78,10 +90,22 @@ public class BookInfoBll {
 		bookInfoDAO.instorebookhot(code);
 	}
 	/**
+	 *  取消热门推荐
+	 */
+	public void deleteinstorebookhot(Integer code) {
+		bookInfoDAO.deleteinstorebookhot(code);
+	}
+	/**
 	 *  评分推荐
 	 */
 	public void instorebookhigh(Integer code) {
 		bookInfoDAO.instorebookhigh(code);
+	}
+	/**
+	 *  取消评分推荐
+	 */
+	public void deleteinstorebookhigh(Integer code) {
+		bookInfoDAO.deleteinstorebookhigh(code);
 	}
 	/**
 	 * 查询所有有折扣的图书

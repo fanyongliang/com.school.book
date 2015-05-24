@@ -142,6 +142,20 @@ public class BookInfoDAO {
 		}
 	}
 	/**
+	 * 取消折扣
+	 * @param bookInfoBean
+	 */
+	public void deleteinstorebookdisc(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.deleteinstorebookdisc(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
 	 * 新书推荐
 	 */
 	public void instorebooknew(Integer code){
@@ -149,6 +163,19 @@ public class BookInfoDAO {
 		try {
 			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
 			iBookInfoMapper.instorebooknew(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 取消新书推荐
+	 */
+	public void deleteinstorebooknew(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.deleteinstorebooknew(code);
 		} finally {
 			session.commit();
 			session.close();
@@ -168,6 +195,19 @@ public class BookInfoDAO {
 		}
 	}
 	/**
+	 * 取消热门推荐
+	 */
+	public void deleteinstorebookhot(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.deleteinstorebookhot(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
 	 * 评分推荐
 	 */
 	public void instorebookhigh(Integer code){
@@ -175,6 +215,19 @@ public class BookInfoDAO {
 		try {
 			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
 			iBookInfoMapper.instorebookhigh(code);
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	/**
+	 * 取消评分推荐
+	 */
+	public void deleteinstorebookhigh(Integer code){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			iBookInfoMapper = session.getMapper(IBookInfoMapper.class);
+			iBookInfoMapper.deleteinstorebookhigh(code);
 		} finally {
 			session.commit();
 			session.close();

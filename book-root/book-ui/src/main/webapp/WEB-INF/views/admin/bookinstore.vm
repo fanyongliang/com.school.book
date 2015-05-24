@@ -132,8 +132,8 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight">
                         <span class="arrow top"></span>
-                        <li><a href="#">修改密码</a> </li>
-                        <li><a href="#">退出</a> </li>
+                        <li><a href="updatePassword">修改密码</a> </li>
+                        <li><a href="loginout">退出</a> </li>
                     </ul>
                 </li>
             </ul>
@@ -273,9 +273,9 @@
                                                         <span>货物管理</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>未处理订单</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>已处理订单</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>已取消订单</span> </a></li>
+                                                        <li><a href="orderwait"><i class="fa fa-angle-right"></i><span>未处理订单</span> </a></li>
+														<li><a href="orderpass"><i class="fa fa-angle-right"></i><span>已处理订单</span> </a></li>
+														<li><a href="orderfinish"><i class="fa fa-angle-right"></i><span>已完成订单</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -299,8 +299,8 @@
                                                         <span>帐号中心</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>修改密码</span> </a></li>
+                                                        <li><a href="getAllUser"><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
+														<li><a href="updatePassword"><i class="fa fa-angle-right"></i><span>修改密码</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -324,7 +324,7 @@
                                                         <span>信息中心</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>用户反馈</span> </a></li>
+                                                        <li><a href="feedbackshow"><i class="fa fa-angle-right"></i><span>用户反馈</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -405,7 +405,7 @@
                 														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                             <i class="fa fa-eye"> High</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -423,7 +423,7 @@
     																	<a title="Hot" data-original-title="" class="btn btn-xs btn-facebook js_hot_book" code="$!book.code" data-title="Hot" data-toggle="modal">
                                                                             <i class="fa fa-eye"> Hot</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -443,7 +443,7 @@
                 														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                             <i class="fa fa-eye"> High</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -458,7 +458,7 @@
     																	<a title="New" data-original-title="" class="btn btn-xs btn-warning js_new_book" code="$!book.code" data-title="New" data-toggle="modal">
                                                                             <i class="fa fa-eye"> New</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -480,7 +480,7 @@
             														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                         <i class="fa fa-eye"> High</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -495,7 +495,7 @@
 																	<a title="Hot" data-original-title="" class="btn btn-xs btn-facebook js_hot_book" code="$!book.code" data-title="Hot" data-toggle="modal">
                                                                         <i class="fa fa-eye"> Hot</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -512,7 +512,7 @@
             														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                         <i class="fa fa-eye"> High</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -524,7 +524,7 @@
 																	<a title="折扣" data-original-title="" class="btn btn-xs btn-dark js_disc_book" code="$!book.code" href="#addDisc" data-title="折扣" data-toggle="modal">
                                                                         <i class="fa fa-eye"> 折扣</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -548,7 +548,7 @@
                 														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                             <i class="fa fa-eye"> High</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -563,7 +563,7 @@
     																	<a title="Hot" data-original-title="" class="btn btn-xs btn-facebook js_hot_book" code="$!book.code" data-title="Hot" data-toggle="modal">
                                                                             <i class="fa fa-eye"> Hot</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -580,7 +580,7 @@
                 														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                             <i class="fa fa-eye"> High</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -592,7 +592,7 @@
     																	<a title="New" data-original-title="" class="btn btn-xs btn-warning js_new_book" code="$!book.code" data-title="New" data-toggle="modal">
                                                                             <i class="fa fa-eye"> New</i>
                                                                         </a>
-                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                        <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                             <i class="fa fa-edit"> 编辑</i>
                                                                         </a>
                     													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -611,7 +611,7 @@
             														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                         <i class="fa fa-eye"> High</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -623,7 +623,7 @@
 																	<a title="Hot" data-original-title="" class="btn btn-xs btn-facebook js_hot_book" code="$!book.code" data-title="Hot" data-toggle="modal">
                                                                         <i class="fa fa-eye"> Hot</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -637,7 +637,7 @@
             														<a title="High" data-original-title="" class="btn btn-xs btn-success js_high_book" code="$!book.code" data-title="High" data-toggle="modal">
                                                                         <i class="fa fa-eye"> High</i>
                                                                     </a>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">
@@ -646,7 +646,7 @@
                                                                 </td>
 																#else
 																<td>
-                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" href="#editnew" data-title="编辑图书" data-toggle="modal">
+                                                                    <a title="编辑图书" data-original-title="" class="btn btn-xs btn-info js_edit_book" code = "$!book.code" bookName="$!book.bookName" bookPrice="$!book.bookPrice" bookAuthor="$!book.bookAuthor" bookPress="$!book.bookPress" bookPublictionTime="$!book.bookPublictionTime" bookType="$!book.bookType" bookDescribe="$!book.bookDescribe" bookISBN="$!book.bookISBN" bookBatch="$!book.bookBatch" bookCount = "$!book.bookCount" href="#editnew" data-title="编辑图书" data-toggle="modal">
                                                                         <i class="fa fa-edit"> 编辑</i>
                                                                     </a>
                 													<a title="删除图书" data-original-title="" class="btn btn-xs btn-danger js_delete_book" code = "$!book.code" data-title="删除图书" data-toggle="modal">

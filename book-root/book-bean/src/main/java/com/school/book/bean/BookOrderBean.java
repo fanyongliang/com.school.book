@@ -12,6 +12,10 @@ public class BookOrderBean {
 	 */
 	private Date orderTime;
 	/**
+	 * 下单时间
+	 */
+	private String orderTimeString;
+	/**
 	 * 订单状态
 	 */
 	private int orderStatus;
@@ -59,7 +63,13 @@ public class BookOrderBean {
 		this.orderTime = orderTime;
 	}
 
+	public String getOrderTimeString() {
+		return orderTimeString;
+	}
 
+	public void setOrderTimeString(String orderTimeString) {
+		this.orderTimeString = orderTimeString;
+	}
 
 	public int getOrderStatus() {
 		return orderStatus;

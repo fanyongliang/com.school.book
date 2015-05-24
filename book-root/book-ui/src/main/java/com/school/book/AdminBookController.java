@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -28,6 +29,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.school.book.bean.BookInfoBean;
 import com.school.book.bean.NavListBean;
+import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookInfoBll;
 import com.school.book.bll.NavListBll;
 import com.school.book.dao.prop.SimpleProperties;
@@ -51,13 +53,19 @@ public class AdminBookController {
 	 * @return
 	 */
 	@RequestMapping("outstorebook")
-	public String outstorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectOutStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookoutstore";
+	public String outstorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectOutStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookoutstore";
+		}
 	}
 	/**
 	 * 修改未上架图书
@@ -196,13 +204,19 @@ public class AdminBookController {
 	 * @return
 	 */
 	@RequestMapping("instorebook")
-	public String instorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookinstore";
+	public String instorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectInStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookinstore";
+		}
 	}
 	
 	/**
@@ -311,20 +325,57 @@ public class AdminBookController {
 		bookInfoBll.instorebookhigh(code);
 		return "redirect:instorebook";
 	}
-	
+	/**
+	 * 取消折扣
+	 */
+	@RequestMapping("deleteinstorebookdisc")
+	public String deleteinstorebookdisc(Integer code) {
+		bookInfoBll.deleteinstorebookdisc(code);
+		return "redirect:instorebook";
+	}
+	/**
+	 * 取消新书推荐
+	 */
+	@RequestMapping("deleteinstorebooknew")
+	public String deleteinstorebooknew(Integer code) {
+		bookInfoBll.deleteinstorebooknew(code);
+		return "redirect:instorebook";
+	}
+	/**
+	 * 取消热门推荐
+	 */
+	@RequestMapping("deleteinstorebookhot")
+	public String deleteinstorebookhot(Integer code) {
+		bookInfoBll.deleteinstorebookhot(code);
+		return "redirect:instorebook";
+	}
+	/**
+	 * 取消评分推荐
+	 */
+	@RequestMapping("deleteinstorebookhigh")
+	public String deleteinstorebookhigh(Integer code) {
+		bookInfoBll.deleteinstorebookhigh(code);
+		return "redirect:instorebook";
+	}
 	/**
 	 *  有折扣图书
 	 * 
 	 * @return
 	 */
 	@RequestMapping("discstorebook")
-	public String discstorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectDiscStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookinstoredisc";
+	public String discstorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectDiscStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookinstoredisc";
+		}
 	}
 	/**
 	 * 修改折扣
@@ -344,13 +395,19 @@ public class AdminBookController {
 	 * @return
 	 */
 	@RequestMapping("newstorebook")
-	public String newstorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectNewStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookinstorenew";
+	public String newstorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectNewStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookinstorenew";
+		}
 	}
 	/**
 	 *  热门推荐图书
@@ -358,13 +415,19 @@ public class AdminBookController {
 	 * @return
 	 */
 	@RequestMapping("hotstorebook")
-	public String hotstorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectHotStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookinstorehot";
+	public String hotstorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectHotStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookinstorehot";
+		}
 	}
 	/**
 	 *  评分推荐图书
@@ -372,13 +435,19 @@ public class AdminBookController {
 	 * @return
 	 */
 	@RequestMapping("highstorebook")
-	public String highstorebook(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		List<BookInfoBean> bookInfoList = bookInfoBll.selectHighStoreBook();
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		model.addAttribute("bookInfoList", bookInfoList);
-		return "admin/bookinstorehigh";
+	public String highstorebook(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			List<BookInfoBean> bookInfoList = bookInfoBll.selectHighStoreBook();
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			model.addAttribute("bookInfoList", bookInfoList);
+			return "admin/bookinstorehigh";
+		}
 	}
 
 }

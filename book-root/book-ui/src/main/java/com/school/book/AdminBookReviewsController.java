@@ -12,6 +12,9 @@ package com.school.book;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -19,6 +22,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.school.book.bean.BookReviewsBean;
+import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.BookReviewsBll;
 
 
@@ -38,30 +42,48 @@ public class AdminBookReviewsController {
 	 * @return
 	 */
 	@RequestMapping("/reviewswait")
-	public String reviewsadd(Model model) {
-		List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllNoAccessReviews();
-		model.addAttribute("bookReviewsList", bookReviewsList);
-		return "admin/reviewsall";
+	public String reviewsadd(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllNoAccessReviews();
+			model.addAttribute("bookReviewsList", bookReviewsList);
+			return "admin/reviewsall";
+		}
 	}
 	/**
 	 * 通过评论
 	 * @return
 	 */
 	@RequestMapping("/reviewspass")
-	public String reviewspass(Model model) {
-		List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllPassReviews();
-		model.addAttribute("bookReviewsList", bookReviewsList);
-		return "admin/reviewspass";
+	public String reviewspass(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllPassReviews();
+			model.addAttribute("bookReviewsList", bookReviewsList);
+			return "admin/reviewspass";
+		}
 	}
 	/**
 	 * 未通过评论
 	 * @return
 	 */
 	@RequestMapping("/reviewsnopass")
-	public String reviewsnopass(Model model) {
-		List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllNoPassReviews();
-		model.addAttribute("bookReviewsList", bookReviewsList);
-		return "admin/reviewsnopass";
+	public String reviewsnopass(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<BookReviewsBean> bookReviewsList = bookReviewsBll.selectAllNoPassReviews();
+			model.addAttribute("bookReviewsList", bookReviewsList);
+			return "admin/reviewsnopass";
+		}
 	}
 	/**
 	 * 审核通过

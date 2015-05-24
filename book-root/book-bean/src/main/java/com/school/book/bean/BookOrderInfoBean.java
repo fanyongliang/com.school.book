@@ -30,18 +30,20 @@ public class BookOrderInfoBean {
 	/**
 	 * 下单时间
 	 */
-	private Date orderTime;
+	private String orderTimeString;
 	/**
 	 * 订单状态
 	 */
 	private int orderStatus;
 	
-	public Date getOrderTime() {
-		return orderTime;
+	
+
+	public String getOrderTimeString() {
+		return orderTimeString;
 	}
 
-	public void setOrderTime(Date orderTime) {
-		this.orderTime = orderTime;
+	public void setOrderTimeString(String orderTimeString) {
+		this.orderTimeString = orderTimeString;
 	}
 
 	public int getOrderStatus() {

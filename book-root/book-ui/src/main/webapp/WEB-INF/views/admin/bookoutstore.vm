@@ -132,8 +132,8 @@
                     </a>
                     <ul class="dropdown-menu animated fadeInRight">
                         <span class="arrow top"></span>
-                        <li><a href="#">修改密码</a> </li>
-                        <li><a href="#">退出</a> </li>
+                        <li><a href="updatePassword">修改密码</a> </li>
+                        <li><a href="loginout">退出</a> </li>
                     </ul>
                 </li>
             </ul>
@@ -273,9 +273,9 @@
                                                         <span>货物管理</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>未处理订单</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>已处理订单</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>已取消订单</span> </a></li>
+                                                        <li><a href="orderwait"><i class="fa fa-angle-right"></i><span>未处理订单</span> </a></li>
+														<li><a href="orderpass"><i class="fa fa-angle-right"></i><span>已处理订单</span> </a></li>
+														<li><a href="orderfinish"><i class="fa fa-angle-right"></i><span>已完成订单</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -299,8 +299,8 @@
                                                         <span>帐号中心</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
-														<li><a href=""><i class="fa fa-angle-right"></i><span>修改密码</span> </a></li>
+                                                        <li><a href="getAllUser"><i class="fa fa-angle-right"></i><span>已注册用户</span> </a></li>
+														<li><a href="updatePassword"><i class="fa fa-angle-right"></i><span>修改密码</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -324,7 +324,7 @@
                                                         <span>信息中心</span>
                                                     </a>
                                                     <ul class="nav bg">
-                                                        <li><a href=""><i class="fa fa-angle-right"></i><span>用户反馈</span> </a></li>
+                                                        <li><a href="feedbackshow"><i class="fa fa-angle-right"></i><span>用户反馈</span> </a></li>
                                                     </ul>
                                                 </li>
                                             </ul>
@@ -704,6 +704,8 @@
 					alert("ISBN不能为空！");
 				}else if($("#bookBatch").val() == ""){
 					alert("批次号不能为空！");
+				}else if($("#bookCount").val() == ""){
+					alert("库存不能为空！");
 				}else if($("#bookPic").val() == ""){
 					alert("请上传图书封面！");
 				}else{

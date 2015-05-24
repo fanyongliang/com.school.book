@@ -1,6 +1,7 @@
 package com.school.book;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
@@ -101,12 +102,18 @@ public class UserBookHistoryOrderController {
 							List<NavListBean> navList = NavListBll.selectNavListIsShow();
 							model.addAttribute("navList", navList);
 							List<BookOrderBean> bookOrderList = bookOrderBll.selectBookOrderByUserCode(bean.getCode());
+							if(bookOrderList != null){
+								for(BookOrderBean bookOrderBean:bookOrderList){
+									SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+									bookOrderBean.setOrderTimeString(sdf.format(bookOrderBean.getOrderTime()));
+								}
+							}
 							List<BookOrderInfoBean> bookOrderInfoList = new ArrayList<BookOrderInfoBean>();
 							for (BookOrderBean bookOrderBean : bookOrderList) {
 								List<BookOrderInfoBean> bookOrderInfoListnew = bookOrderBll.selectBookOrderInfoByOrderCode(bookOrderBean.getOrderCode());
 								for (BookOrderInfoBean bookOrderInfoBean : bookOrderInfoListnew){
 									bookOrderInfoBean.setBookInfoBean(bookInfoBll.selectBookInfoByCode(bookOrderInfoBean.getBookCode()));
-									bookOrderInfoBean.setOrderTime(bookOrderBean.getOrderTime());
+									bookOrderInfoBean.setOrderTimeString(bookOrderBean.getOrderTimeString());
 									bookOrderInfoBean.setOrderStatus(bookOrderBean.getOrderStatus());
 									bookOrderInfoList.add(bookOrderInfoBean);
 								}

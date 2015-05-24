@@ -126,5 +126,12 @@ public class LandAndRegistrationBll {
 	public UserInfoBean getUserInfoBySelect(String userName) {
 		return userInfoDAO.selectByUserName(userName);
 	}
-
+	/**
+	 * 返回通过用户名查找到的用户帐号信息
+	 * @param info_account
+	 * @return
+	 */
+	public UserPasswdBean getUserPasswordBySelect(String userName) {
+		return userPasswdDAO.getUserPasswordByUserName(userName);
+	}
 }

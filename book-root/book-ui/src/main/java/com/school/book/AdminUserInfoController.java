@@ -2,6 +2,9 @@ package com.school.book;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,9 +19,9 @@ import com.school.book.bll.UserInfoBll;
 @Controller
 @RequestMapping("admin")
 public class AdminUserInfoController {
-	private UserInfoBll userInfoBll;
+	private UserInfoBll userInfoBll = new UserInfoBll();
 	/**
-	 * 更新个人信息
+	 * 删除个人信息
 	 */
 	@RequestMapping("deleteUser")
 	@ResponseBody
@@ -29,10 +32,16 @@ public class AdminUserInfoController {
 	 * 查询所有用户信息
 	 */
 	@RequestMapping("getAllUser")
-	@ResponseBody
-	public void getAllUser(Model model) {
-		List<UserInfoBean> userInfoList = userInfoBll.selectAllUser();
-		model.addAttribute("userInfoList", userInfoList);
+	public String getAllUser(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<UserInfoBean> userInfoList = userInfoBll.selectAllUser();
+			model.addAttribute("userInfoList", userInfoList);
+			return "admin/adminuserlist";
+		}
 	}
 	/**
 	 * 查询某个用户信息

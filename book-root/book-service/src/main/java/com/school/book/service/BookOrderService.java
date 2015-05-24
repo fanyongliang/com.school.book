@@ -23,13 +23,13 @@ public class BookOrderService
 	 * 加入购物车
 	 * @param bookOrderBean
 	 */
-	public void addToCar(BookOrderBean bookOrderBean){
+	public String addToCar(BookOrderBean bookOrderBean){
 		List<ShoppingCarBean> shoppingCarList = shoppingCarBll.selectToCar(bookOrderBean.getUserCode());
 		//检查库存是否充足
 		for(ShoppingCarBean bean:shoppingCarList){
 			BookInfoBean bookInfoBean = bookInfoBll.selectBookInfoByCode(bean.getBookCode());
 			if(bookInfoBean.getBookCount()<bean.getBookQuantity()){
-				return;
+				return "库存不足！";
 			}
 		}
 		//记录订单信息
@@ -48,6 +48,7 @@ public class BookOrderService
 			bookInfoBll.updateBookCountReduce(orderInfoBean.getBookCode(), orderInfoBean.getQuantity());
 		}
 		//清空购物车
-		shoppingCarBll.deleteAllToCar(bookOrderBean.getUserCode());			
+		shoppingCarBll.deleteAllToCar(bookOrderBean.getUserCode());		
+		return "付款成功！";
 	}
 }

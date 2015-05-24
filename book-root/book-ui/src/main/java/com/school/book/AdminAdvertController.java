@@ -16,6 +16,7 @@ import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.school.book.bean.AdvPhotoBean;
+import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.AdvPhotoBll;
 import com.school.book.dao.prop.SimpleProperties;
 
@@ -48,11 +50,17 @@ public class AdminAdvertController {
 	 * @return
 	 */
 	@RequestMapping("advert")
-	public String navigation(Model model) {
-		List<AdvPhotoBean> advPhotoList = advPhotoBll.selectAllAdvPhoto();
-		model.addAttribute("advPhotoList", advPhotoList);
-		model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
-		return "admin/advert";
+	public String navigation(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<AdvPhotoBean> advPhotoList = advPhotoBll.selectAllAdvPhoto();
+			model.addAttribute("advPhotoList", advPhotoList);
+			model.addAttribute("imagesPath", "http://www.fanshu.com/images/");
+			return "admin/advert";
+		}
 	}
 	/**
 	 * 修改广告

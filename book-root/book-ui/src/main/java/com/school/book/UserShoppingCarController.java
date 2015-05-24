@@ -57,9 +57,6 @@ public class UserShoppingCarController {
 	@RequestMapping("addShoppingCar")
 	@ResponseBody
 	public void addShoppingCar(Integer userCode,Integer bookCode,Integer bookQuantity){
-		System.out.println(userCode);
-		System.out.println(bookCode);
-		System.out.println(bookQuantity);
 		ShoppingCarBean shoppingCarBean = new ShoppingCarBean();
 		shoppingCarBean.setUserCode(userCode);
 		shoppingCarBean.setBookCode(bookCode);

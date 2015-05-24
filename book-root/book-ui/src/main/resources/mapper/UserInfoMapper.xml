@@ -7,7 +7,6 @@
 		<result property="idCard" column="id_card" />
 		<result property="realName" column="real_name" />
 		<result property="userEmail" column="user_email" />
-		<result property="userId" column="user_id" />
 		<result property="userName" column="user_name" />
 	</resultMap>
 	<insert id="insertUserInfo" parameterType="UserInfoBean">
@@ -24,12 +23,11 @@
 		real_name=#{realName},id_card=#{idCard},user_email=#{userEmail}
 		where user_name=#{userName}
 	</update>
-	<select id="selectByUserName" parameterType="String"
-		resultType="UserInfoBean" resultMap="UserInfoMap">
+	<select id="selectByUserName" parameterType="String" resultMap="UserInfoMap">
 		select * from
 		user_info_tb where user_name=#{userName}
 	</select>
-	<select id="selectAllUsers" resultType="UserInfoBean" resultMap="UserInfoMap">
+	<select id="selectAllUsers" resultMap="UserInfoMap">
 		select * from user_info_tb
 	</select>
 	<select id="selectByKey" parameterType="String" resultType="UserInfoBean" resultMap="UserInfoMap">

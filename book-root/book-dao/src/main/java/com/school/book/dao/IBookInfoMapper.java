@@ -47,17 +47,34 @@ public interface IBookInfoMapper {
 	 */
 	public void instorebookdisc(BookInfoBean bookInfoBean);
 	/**
+	 * 取消折扣
+	 * @param bookInfoBean
+	 */
+	public void deleteinstorebookdisc(Integer code);
+	/**
 	 * 新书推荐
 	 */
 	public void instorebooknew(Integer code);
+	/**
+	 * 取消新书推荐
+	 */
+	public void deleteinstorebooknew(Integer code);
 	/**
 	 * 热门推荐
 	 */
 	public void instorebookhot(Integer code);
 	/**
+	 * 取消热门推荐
+	 */
+	public void deleteinstorebookhot(Integer code);
+	/**
 	 * 评分推荐
 	 */
 	public void instorebookhigh(Integer code);
+	/**
+	 * 取消评分推荐
+	 */
+	public void deleteinstorebookhigh(Integer code);
 	/**
 	 * 查询所有有折扣的图书
 	 * @param bookInfoBean

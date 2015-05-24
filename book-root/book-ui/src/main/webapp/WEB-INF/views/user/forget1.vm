@@ -156,16 +156,21 @@
           <h3>联系我们</h3>
           <ul class="f_contact">
             <li>北京翻书网有限责任公司</li>
-            <li>+86 </li>
-            <li>@fanshu.com</li>
+            <li>+86 18945039214</li>
+            <li>wanglei@fanshu.com</li>
           </ul><!-- .f_contact -->
         </div><!-- .grid_3 -->
 
         <div class="grid_3">
-          <h3>购物指南</h3>
+          <h3>购物链接</h3>
           <nav class="f_menu">
             <ul>
-              <li><a href="feedbackshow">关于我们</a></li>
+              <li><a target="_blank" href="http://www.taobao.com">淘宝网</a></li>
+			  <li><a target="_blank" href="http://www.tmall.com">天猫商城</a></li>
+			  <li><a target="_blank" href="http://www.jd.com">京东</a></li>
+			  <li><a target="_blank" href="http://www.amazon.cn">亚马逊</a></li>
+			  <li><a target="_blank" href="http://www.dangdang.com">当当网</a></li>
+			  
             </ul>
           </nav><!-- .private -->
         </div><!-- .grid_3 -->
@@ -175,6 +180,7 @@
           <nav class="f_menu">
             <ul>
               <li><a href="feedbackshow">用户反馈</a></li>
+			  <li><a href="feedbackshow">关于我们</a></li>
             </ul>
           </nav><!-- .private -->
         </div><!-- .grid_3 -->

@@ -10,13 +10,18 @@ package com.school.book;
 import java.io.UnsupportedEncodingException;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.http.HttpRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.school.book.bean.NavListBean;
+import com.school.book.bean.UserInfoBean;
 import com.school.book.bll.NavListBll;
 
 
@@ -36,10 +41,16 @@ public class AdminNavController {
 	 * @return
 	 */
 	@RequestMapping("navigation")
-	public String navigation(Model model) {
-		List<NavListBean> navList = navListBll.selectAllNavList();
-		model.addAttribute("navList", navList);
-		return "admin/navigation";
+	public String navigation(Model model,HttpServletRequest request) {
+		HttpSession session = request.getSession();
+		UserInfoBean u = (UserInfoBean) session.getAttribute("adminInfo");
+		if(u == null){
+			return "admin/adminlogin";
+		}else{
+			List<NavListBean> navList = navListBll.selectAllNavList();
+			model.addAttribute("navList", navList);
+			return "admin/navigation";
+		}
 	}
 	/**
 	 * 增加一个新导航
