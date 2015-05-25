@@ -369,10 +369,10 @@
                                                 <th>书名</th>
 												<th>封面</th>
                                                 <th>作者</th>
-												<th>单价</th>
+												<th>原价</th>
 												<th>分类</th>
 												<th>ISBN</th>
-												<th>批次</th>
+												<th>库存</th>
 												<th>操作</th>
                                             </tr>
                                         </thead>
@@ -387,7 +387,7 @@
     												<td>￥$!book.bookPrice</td>
     												<td>$!book.bookType</td>
     												<td>$!book.bookISBN</td>
-    												<td>$!book.bookBatch</td>
+    												<td>$!book.bookCount</td>
 													<td>
 														<a title="取消" data-original-title="" class="btn btn-xs btn-danger js_book_hidden" href = "deleteinstorebookhot?code=$!book.code" data-title="取消" data-toggle="modal">
                                                             <i class="fa fa-minus-square"> 取消</i>

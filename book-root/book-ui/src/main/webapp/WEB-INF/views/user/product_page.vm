@@ -393,8 +393,10 @@
 							<div class="sku">
 								ISBN: <span> $!{bookInfoBeanDetail.bookISBN}</span>
 							</div>
+							<div class="sku">
+								库存: <span style="color:red"> $!{bookInfoBeanDetail.bookCount}</span>&nbsp;本
+							</div>
 						</div><!-- .availability_sku -->
-
 						<div class="price">
 							#if($!bookInfoBeanDetail.isDiscounts == 1)
     						#set($new=$!bookInfoBeanDetail.bookPrice * ( 1 - $!bookInfoBeanDetail.bookDiscounts))
