@@ -1,14 +1,5 @@
 package com.school.book.dao.core;
 
-/**
- * 
- */
-
-
-/**
- * @author YangJiayi
- *
- */
 public class Environment {
 
 	public static OS getOS() {

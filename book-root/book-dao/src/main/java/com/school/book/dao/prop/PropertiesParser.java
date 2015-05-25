@@ -2,12 +2,6 @@ package com.school.book.dao.prop;
 
 /**
  * -------------------------------------------------------------------------
- * @版权所有：北京光宇在线科技有限责任公司
- * @项目名称：Java类库
- * @作者：liuyongzhi
- * @联系方式：liuyongzhi@gyyx.cn
- * @创建时间： 2014年11月26日 下午2:50:13
- * @版本号：
  * @本类主要用途描述：处理properties属性文件的工具类
  *-------------------------------------------------------------------------
  */
@@ -101,7 +95,6 @@ public class PropertiesParser {
 	/**
 	 * 得到属性文件对应的Properties类
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getUnderlyingProperties
 	 * @return Properties
 	 */
@@ -112,7 +105,6 @@ public class PropertiesParser {
 	/**
 	 * 通过属性名properName得到对应的属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getStringProperty
 	 * @param properName
 	 *            属性名
@@ -126,7 +118,6 @@ public class PropertiesParser {
 	 * 
 	 * 通过属性名properName得到对应的属性值；如果属性值不存在，默认为用户输入defaultValue
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getStringProperty
 	 * @param properName
 	 *            属性名
@@ -144,7 +135,6 @@ public class PropertiesParser {
 	/**
 	 * 得到boolean属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getBooleanProperty
 	 * @param properName
 	 *            属性名
@@ -157,7 +147,6 @@ public class PropertiesParser {
 	/**
 	 * 得到boolean属性值，并将其转化成bool类型，属性值不存在时返回默认值defaultBoolean
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getBooleanProperty
 	 * @param properName
 	 * @param defaultBoolean
@@ -174,7 +163,6 @@ public class PropertiesParser {
 	 * 
 	 * 通过属性名获取多个属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getStringArrayProperty
 	 * @param propertName
 	 *            属性名
@@ -188,7 +176,6 @@ public class PropertiesParser {
 	 * 
 	 * 通过属性名获取多个属性值；如果属性值不存在返回默认属性值数组
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getStringArrayProperty
 	 * @param propertName
 	 *            属性名
@@ -220,7 +207,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到byte型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getByteProperty
 	 * @param properName
 	 *            属性名
@@ -245,7 +231,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到byte型属性值;如果属性值不存在，返回默认数值defaultByte
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getByteProperty
 	 * @param properName
 	 *            属性名
@@ -273,7 +258,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到Char型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getCharProperty
 	 * @param properName
 	 *            属性名
@@ -287,7 +271,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到byte型属性值;如果属性值不存在，返回默认字符defaultChar
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getCharProperty
 	 * @param properName
 	 *            属性名
@@ -304,7 +287,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到double型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getDoubleProperty
 	 * @param properName
 	 * @return
@@ -328,7 +310,6 @@ public class PropertiesParser {
 	/**
 	 * 得到double型属性值;如果属性值不存在，返回默认数值defaultDouble
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getDoubleProperty
 	 * @param properName
 	 *            属性名
@@ -355,7 +336,6 @@ public class PropertiesParser {
 	/**
 	 * 得到float型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getFloatProperty
 	 * @param properName
 	 *            属性名
@@ -380,7 +360,6 @@ public class PropertiesParser {
 	/**
 	 * 得到float型属性值;如果属性值不存在，返回默认数值defaultFloat
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getFloatProperty
 	 * @param properName
 	 *            属性名
@@ -407,7 +386,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到int型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getIntProperty
 	 * @param properName
 	 *            属性名
@@ -433,7 +411,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到int型属性值;如果属性值不存在，返回默认数值defaultInt
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getIntProperty
 	 * @param properName
 	 *            属性名
@@ -462,7 +439,6 @@ public class PropertiesParser {
 	 * 
 	 * 根据属性名得到多个整型int属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getIntArrayProperty
 	 * @param properName
 	 *            属性名
@@ -478,7 +454,6 @@ public class PropertiesParser {
 	 * 
 	 * 根据属性名得到多个整型int属性值；如果属性名不存在返回默认整型数组
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getIntArrayProperty
 	 * @param properName
 	 *            属性名
@@ -519,7 +494,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到long型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getLongProperty
 	 * @param properName
 	 *            属性名
@@ -545,7 +519,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到long型属性值;如果属性值不存在返回默认long类型值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getLongProperty
 	 * @param properName
 	 *            属性名
@@ -572,7 +545,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到short型属性值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getShortProperty
 	 * @param properName
 	 *            属性名
@@ -598,7 +570,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到short型属性值;如果属性值不存在返回默认short类型值
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getShortProperty
 	 * @param properName
 	 *            属性名
@@ -625,7 +596,6 @@ public class PropertiesParser {
 	 * 
 	 * 以prefix开头，去掉属性名的前缀为prefix的属性名数组
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getPropertyGroups
 	 * @param prefix
 	 *            属性名前缀
@@ -655,7 +625,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到所有前缀以prefix开始的属性
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getPropertyGroup
 	 * @param prefix
 	 *            前缀
@@ -669,7 +638,6 @@ public class PropertiesParser {
 	 * 
 	 * 得到所有以【属性名以prefix为前缀，根据stripPrefix值判断是否删除前缀】的属性
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getPropertyGroup
 	 * @param prefix
 	 *            属性名前缀
@@ -686,7 +654,6 @@ public class PropertiesParser {
 	 * 得到所有
 	 * 【属性名以prefix为前缀，判断是否符合excludedPrefixes数组中的前缀；没有则根据stripPrefix值判断是否删除前缀】的属性
 	 * 
-	 * @日期：2014年11月26日
 	 * @Title: getPropertyGroup
 	 * @param prefix
 	 *            属性名前缀

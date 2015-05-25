@@ -1,14 +1,5 @@
 package com.school.book.dao.core;
 
-/**
- * 
- */
-
-
-/**
- * @author YangJiayi
- *
- */
 public class Text {
 
 	public static boolean isNullOrEmpty(String text) {
